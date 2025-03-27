@@ -23,6 +23,7 @@ class New_SSP_Screen extends ConsumerStatefulWidget {
 
 class _New_SSP_ScreenState extends ConsumerState<New_SSP_Screen> {
   int myCurrentPage = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +33,7 @@ class _New_SSP_ScreenState extends ConsumerState<New_SSP_Screen> {
         isTwoLine: false,
         title1: 'New Purchase Plan',
         title2: '',
-        actionLogo: 'info.svg',
+        actionLogo: '',
         isWhite: false,
         ActiononTap: () {
           Navigator.push(
@@ -43,8 +44,21 @@ class _New_SSP_ScreenState extends ConsumerState<New_SSP_Screen> {
     );
   }
 
+  Widget _carouselImg(context, imageURL) {
+    return Container(
+      height: 185,
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        image:
+            DecorationImage(image: NetworkImage(imageURL), fit: BoxFit.cover),
+      ),
+    );
+  }
+
   Widget _Mainbody() {
     final myschemedata = ref.watch(ActiveplanProvider);
+    final bannerimagedata = ref.watch(BannerDataProvider);
     return SingleChildScrollView(
       child: Padding(
         padding:
@@ -52,40 +66,75 @@ class _New_SSP_ScreenState extends ConsumerState<New_SSP_Screen> {
         child: Column(
           children: [
             //BANNER
-            CarouselSlider(
-                items: [
-                  _carouselImg(
-                    context,
+            bannerimagedata.when(data: (data) {
+              List<Widget> carouselItems = data?.data?.map<Widget>((item) {
+                    return _carouselImg(context,
+                        item.bannerImg); // Pass the item to your _carouselImg method
+                  }).toList() ??
+                  [];
+
+              return
+                  //CAROSEL BANNER
+                  Container(
+                color: white1,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      //CAROSEL SLIDER
+
+                      CarouselSlider(
+                          items: carouselItems,
+                          options: CarouselOptions(
+                            autoPlay: true,
+                            viewportFraction: 1,
+                            enlargeCenterPage: true,
+                            aspectRatio: 16 / 9,
+                            autoPlayAnimationDuration:
+                                const Duration(milliseconds: 800),
+                            onPageChanged: (index, reason) {
+                              setState(() {
+                                myCurrentPage = index;
+                              });
+                            },
+                          )),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Center(
+                        child: AnimatedSmoothIndicator(
+                          activeIndex: myCurrentPage,
+                          count: carouselItems.length,
+                          effect: const ExpandingDotsEffect(
+                              dotHeight: 5,
+                              dotWidth: 5,
+                              activeDotColor: gradient1),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                    ],
                   ),
-                  _carouselImg(
-                    context,
-                  ),
-                  _carouselImg(
-                    context,
-                  ),
-                  _carouselImg(
-                    context,
-                  ),
-                ],
-                options: CarouselOptions(
-                  autoPlay: true,
-                  viewportFraction: 1,
-                  enlargeCenterPage: true,
-                  aspectRatio: 16 / 9,
-                  autoPlayAnimationDuration: Duration(milliseconds: 700),
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      myCurrentPage = index;
-                    });
-                  },
-                )),
+                ),
+              );
+            }, error: (Object error, StackTrace stackTrace) {
+              return Text("$error");
+            }, loading: () {
+              return const CircularProgressIndicator();
+            }),
+
             Padding(
               padding: const EdgeInsets.only(top: 15, bottom: 10),
               child: Center(
                 child: AnimatedSmoothIndicator(
                   activeIndex: myCurrentPage,
                   count: 4,
-                  effect: ExpandingDotsEffect(
+                  effect: const ExpandingDotsEffect(
                       dotHeight: 5, dotWidth: 5, activeDotColor: gradient2),
                 ),
               ),
@@ -108,13 +157,14 @@ class _New_SSP_ScreenState extends ConsumerState<New_SSP_Screen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => New_SSP_Plan1_Screen()));
+                              builder: (context) =>
+                                  const New_SSP_Plan1_Screen()));
                     });
                   });
             }, error: (Object error, StackTrace stackTrace) {
               return Text('ERROR$error');
             }, loading: () {
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             })
 
             //JOIN NOW CONTAINERS
@@ -161,20 +211,20 @@ class _New_SSP_ScreenState extends ConsumerState<New_SSP_Screen> {
 }
 
 //CAROUSEL IMG STACK
-Widget _carouselImg(context) {
-  return Padding(
-    padding: const EdgeInsets.only(left: 10, right: 10),
-    child: Container(
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
-        image: DecorationImage(
-            image: AssetImage('lib/assets/New_SSP_Banner.png'),
-            fit: BoxFit.cover),
-      ),
-    ),
-  );
-}
+// Widget _carouselImg(context) {
+//   return Padding(
+//     padding: const EdgeInsets.only(left: 10, right: 10),
+//     child: Container(
+//       width: MediaQuery.of(context).size.width,
+//       decoration: BoxDecoration(
+//         borderRadius: BorderRadius.circular(25),
+//         image: DecorationImage(
+//             image: AssetImage('lib/assets/New_SSP_Banner.png'),
+//             fit: BoxFit.cover),
+//       ),
+//     ),
+//   );
+// }
 
 Widget JoinnowContainer(context,
     {required Data? data, required void Function()? onPress}) {
@@ -215,7 +265,7 @@ Widget JoinnowContainer(context,
             data?.allowJoin == true
                 ? Paynowcommonbutton1(context,
                     onPress: onPress, titleName: 'Join Now')
-                : SizedBox.shrink()
+                : const SizedBox.shrink()
           ],
         ),
       ),

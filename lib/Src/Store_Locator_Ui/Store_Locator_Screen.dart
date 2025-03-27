@@ -49,7 +49,7 @@ class _Store_Locator_ScreenState extends ConsumerState<Store_Locator_Screen> {
                       itemCount: data?.data?.length ?? 0,
                       shrinkWrap: true,
                       scrollDirection: Axis.vertical,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       padding: EdgeInsets.zero,
                       itemBuilder: (context, index) {
                         return Location_Container(
@@ -57,7 +57,7 @@ class _Store_Locator_ScreenState extends ConsumerState<Store_Locator_Screen> {
                           mainaddress: "${data?.data?[index]?.name ?? ""} ",
                           address: "${data?.data?[index]?.address1 ?? ""} ",
                           number: "${data?.data?[index]?.mobile ?? ""} ",
-                          image: 'lib/assets/location3.png',
+                          image: '',
                           timing:
                               "STORE HOURS : ${data?.data?[index]?.stoneHours ?? ""} ",
                         );
@@ -69,9 +69,9 @@ class _Store_Locator_ScreenState extends ConsumerState<Store_Locator_Screen> {
             ),
           );
         }, error: (Object error, StackTrace stackTrace) {
-          return Text("ERROR");
+          return const Text("ERROR");
         }, loading: () {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         }));
   }
 }
@@ -94,18 +94,6 @@ Widget Location_Container(
           borderRadius: BorderRadius.circular(10)),
       child: Column(
         children: [
-          //IMAGE CONTAINER
-          Container(
-            height: 100,
-            width: MediaQuery.sizeOf(context).width,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                ),
-                image: DecorationImage(
-                    fit: BoxFit.cover, image: AssetImage(image))),
-          ),
           Padding(
             padding:
                 const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 15),
@@ -122,7 +110,7 @@ Widget Location_Container(
                     // ImgPathSvg('map.svg')
                   ],
                 ),
-                Divider(),
+                const Divider(),
 
                 Text(
                   address,

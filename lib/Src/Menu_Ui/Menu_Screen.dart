@@ -66,7 +66,7 @@ class _Menu_ScreenState extends ConsumerState<Menu_Screen> {
               Container(
                 height: 180,
                 width: MediaQuery.sizeOf(context).width,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                       bottomRight: Radius.circular(20),
                       bottomLeft: Radius.circular(20)),
@@ -95,7 +95,7 @@ class _Menu_ScreenState extends ConsumerState<Menu_Screen> {
                             height: 100,
                             width: 100,
                             decoration: BoxDecoration(
-                                image: DecorationImage(
+                                image: const DecorationImage(
                                     fit: BoxFit.cover,
                                     image: AssetImage(
                                         'lib/assets/profileimage.png')),
@@ -165,7 +165,7 @@ class _Menu_ScreenState extends ConsumerState<Menu_Screen> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                Notification_Screen()));
+                                                const Notification_Screen()));
                                   }),
                               // Divider(),
                               // NavContainer(
@@ -178,7 +178,7 @@ class _Menu_ScreenState extends ConsumerState<Menu_Screen> {
                               //               builder: (context) =>
                               //                   Wallet_screen()));
                               //     }),
-                              Divider(),
+                              const Divider(),
                               NavContainer(
                                   image1: 'ema.svg',
                                   planST: 'Pay EMA',
@@ -191,7 +191,7 @@ class _Menu_ScreenState extends ConsumerState<Menu_Screen> {
                                                   selectedIndex: null,
                                                 )));
                                   }),
-                              Divider(),
+                              const Divider(),
                               NavContainer(
                                   image1: 'history.svg',
                                   planST: 'Payment History',
@@ -200,9 +200,9 @@ class _Menu_ScreenState extends ConsumerState<Menu_Screen> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                payment_History_Screen()));
+                                                const payment_History_Screen()));
                                   }),
-                              Divider(),
+                              const Divider(),
                               NavContainer(
                                   image1: 'settings.svg',
                                   planST: 'Settings',
@@ -239,9 +239,9 @@ class _Menu_ScreenState extends ConsumerState<Menu_Screen> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                Store_Locator_Screen()));
+                                                const Store_Locator_Screen()));
                                   }),
-                              Divider(),
+                              const Divider(),
                               NavContainer(
                                   image1: 'contact.svg',
                                   planST: 'Contact Us',
@@ -250,7 +250,7 @@ class _Menu_ScreenState extends ConsumerState<Menu_Screen> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                Contact_Us_Screen()));
+                                                const Contact_Us_Screen()));
                                   }),
                               // Divider(),
                               // NavContainer(
@@ -286,17 +286,6 @@ class _Menu_ScreenState extends ConsumerState<Menu_Screen> {
                       //Navigator.pop(context);
                     }),
 
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 25, right: 25, bottom: 20, top: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Terms & Conditions*', style: underline),
-                          Text('Privacy Policy', style: underline),
-                        ],
-                      ),
-                    ),
                     //DIVIDER
                     // Divider(
                     //   indent: 25,
@@ -341,7 +330,7 @@ class _Menu_ScreenState extends ConsumerState<Menu_Screen> {
                         {
                           Routes("false");
                           Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(builder: (context) => LoginScreen()),
+                            MaterialPageRoute(builder: (context) => const LoginScreen()),
                                 (Route<dynamic> route) => false, // Removes all previous routes
                           );
                         }
@@ -410,7 +399,7 @@ Widget NavContainer(
           Padding(
             padding: const EdgeInsets.only(left: 15),
             child: Text(planST,
-              style:  TextStyle(
+              style:  const TextStyle(
                 fontSize: 14,
                 color: Colors.black,
                 fontWeight: FontWeight.bold, // Optional for emphasis

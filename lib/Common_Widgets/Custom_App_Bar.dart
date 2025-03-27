@@ -13,6 +13,7 @@ class Custom_AppBar extends StatefulWidget implements PreferredSizeWidget {
   String? actionLogo;
   bool? isWhite;
   void Function()? ActiononTap;
+
   Custom_AppBar(
       {Key? key,
       required this.isNav,
@@ -35,7 +36,7 @@ class _CustomAppBarState extends State<Custom_AppBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: appGradient,
       ),
       child: AppBar(
@@ -44,22 +45,22 @@ class _CustomAppBarState extends State<Custom_AppBar> {
         automaticallyImplyLeading: false,
         elevation: 0,
         toolbarHeight: 100,
-        systemOverlayStyle: SystemUiOverlayStyle(
+        systemOverlayStyle: const SystemUiOverlayStyle(
             systemNavigationBarColor: Colors.black, // Navigation bar
             statusBarColor: Colors.transparent,
             statusBarIconBrightness: Brightness.dark // Status bar
             ),
         leading: widget.isNav == true
             ? Container(
-                margin: EdgeInsets.all(12.5),
+                margin: const EdgeInsets.all(12.5),
                 decoration:
-                    BoxDecoration(shape: BoxShape.circle, color: white1),
+                    const BoxDecoration(shape: BoxShape.circle, color: white1),
                 child: InkWell(
                   onTap: () {
                     Navigator.pop(context);
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.all(1.5),
+                  child: const Padding(
+                    padding: EdgeInsets.all(1.5),
                     child: Icon(Icons.arrow_back_ios_new),
                   ),
                 ),
@@ -87,11 +88,6 @@ class _CustomAppBarState extends State<Custom_AppBar> {
                 widget.title1 ?? "",
                 style: ButtonT,
               ),
-        actions: [
-          InkWell(
-              onTap: widget.ActiononTap,
-              child: ImgPathSvg(widget.actionLogo ?? "")),
-        ],
       ),
     );
   }

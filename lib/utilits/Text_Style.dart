@@ -2,263 +2,263 @@ import 'package:flutter/material.dart';
 import 'package:jewelone/utilits/Common_Colors.dart';
 
 //HEADING STYLE
-TextStyle Heading_Style = TextStyle(
+TextStyle Heading_Style = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 24,
     color: Color.fromRGBO(24, 24, 24, 1),
     fontWeight: FontWeight.w700);
 
 //HEADING STYLE
-TextStyle Heading_Style1 = TextStyle(
+TextStyle Heading_Style1 = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 20,
     color: Color.fromRGBO(24, 24, 24, 1),
     fontWeight: FontWeight.w700);
 
 //SUB TEXT STYLE
-TextStyle Sub_TextStyle = TextStyle(
+TextStyle Sub_TextStyle = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 16,
     color: Color.fromRGBO(24, 24, 24, 1),
     fontWeight: FontWeight.w400);
-TextStyle Sub_TextStyleBT = TextStyle(
+TextStyle Sub_TextStyleBT = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 16,
     color: gradient1,
     fontWeight: FontWeight.w600);
 
 //DROPDOWNT T
-TextStyle dropDownST = TextStyle(
+TextStyle dropDownST = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 14,
     color: Font_Primary_Color,
     fontWeight: FontWeight.w600);
 
 //PHONE NUMBER
-TextStyle phone_ST = TextStyle(
+TextStyle phone_ST = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 20,
     color: Color.fromRGBO(24, 24, 24, 1),
     fontWeight: FontWeight.w500);
 
 //SKIP STYLE
-TextStyle skip_ST = TextStyle(
+TextStyle skip_ST = const TextStyle(
     fontFamily: 'Inter',
     fontSize: 16,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w500);
 
-TextStyle follow = TextStyle(
+TextStyle follow = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 15,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w400);
 
-TextStyle bottomotext = TextStyle(
+TextStyle bottomotext = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 16,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w500);
 
 //USER NAME ST
-TextStyle UserST = TextStyle(
+TextStyle UserST = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 16,
     color: Color.fromRGBO(255, 255, 255, 1),
     fontWeight: FontWeight.w800);
 
 //PLAN STYLE
-TextStyle planST = TextStyle(
+TextStyle planST = const TextStyle(
     fontFamily: 'Inter',
-    fontSize: 12,
+    fontSize: 13,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.bold);
 
-TextStyle planST2 = TextStyle(
+TextStyle planST2 = const TextStyle(
     fontFamily: 'Inter',
     fontSize: 12,
     color: Color.fromRGBO(113, 121, 126, 1),
     fontWeight: FontWeight.w800);
 
-TextStyle walletT2 = TextStyle(
+TextStyle walletT2 = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 12,
     color: Color.fromRGBO(136, 136, 136, 1),
     fontWeight: FontWeight.w500);
 
-TextStyle walletT3 = TextStyle(
+TextStyle walletT3 = const TextStyle(
     fontFamily: 'Inter',
-    fontSize: 12,
+    fontSize: 14,
     color: Color.fromRGBO(255, 255, 255, 1),
     fontWeight: FontWeight.w500);
 
-TextStyle plandetailT = TextStyle(
+TextStyle plandetailT = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 12,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w500);
 
 //GRAM
-TextStyle gramST = TextStyle(
+TextStyle gramST = const TextStyle(
     fontFamily: 'Inter',
-    fontSize: 12,
+    fontSize: 16,
     color: Colors.black,
     fontWeight: FontWeight.bold);
 
-TextStyle gramrateST = TextStyle(
+TextStyle gramrateST = const TextStyle(
     fontFamily: 'Inter',
-    fontSize: 12,
+    fontSize: 16,
     color: Colors.green,
     fontWeight: FontWeight.w700);
 
 //RADIO T
-TextStyle radioST = TextStyle(
+TextStyle radioST = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 14,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w400);
 
-TextStyle radioST1 = TextStyle(
+TextStyle radioST1 = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 14,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w400);
 
-TextStyle appTitle = TextStyle(
+TextStyle appTitle = const TextStyle(
     fontFamily: 'Roboto',
     fontSize: 18,
     color: Colors.black,
     fontWeight: FontWeight.w500);
-TextStyle appTitle2 = TextStyle(
+TextStyle appTitle2 = const TextStyle(
     fontFamily: 'Roboto',
     fontSize: 18,
     color: white1,
     fontWeight: FontWeight.w500);
 
-TextStyle phoneHT = TextStyle(
+TextStyle phoneHT = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 14,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w500);
 
-TextStyle light = TextStyle(
+TextStyle light = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 12,
     color: Color.fromRGBO(181, 181, 181, 1),
     fontWeight: FontWeight.w400);
 
-TextStyle locationT = TextStyle(
+TextStyle locationT = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 24,
     color: Color.fromRGBO(40, 40, 40, 1),
     fontWeight: FontWeight.w700);
 
-TextStyle locationT1 = TextStyle(
+TextStyle locationT1 = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 16,
     color: Color.fromRGBO(40, 40, 40, 1),
     fontWeight: FontWeight.w600);
 
-TextStyle delete = TextStyle(
+TextStyle delete = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 14,
     color: Color.fromRGBO(255, 0, 0, 1),
     fontWeight: FontWeight.w500);
 
-TextStyle Textfield_Style = TextStyle(
+TextStyle Textfield_Style = const TextStyle(
     fontFamily: 'Inter',
     fontSize: 14,
     color: Colors.black,
     fontWeight: FontWeight.w400);
 
-TextStyle TextField_Title = TextStyle(
+TextStyle TextField_Title = const TextStyle(
     fontFamily: 'Montserrat',
     fontSize: 16,
     color: Color.fromRGBO(0, 0, 0, 1),
     fontWeight: FontWeight.w500);
-TextStyle Textfield_Style2 = TextStyle(
+TextStyle Textfield_Style2 = const TextStyle(
     fontFamily: 'Inter',
     fontSize: 14,
     color: Colors.black,
     fontWeight: FontWeight.w500);
-TextStyle StarT = TextStyle(color: Colors.red, fontSize: 16);
+TextStyle StarT = const TextStyle(color: Colors.red, fontSize: 16);
 
 //BUTTON TEXT
-TextStyle ButtonT = TextStyle(
+TextStyle ButtonT = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 16,
     color: white1,
     fontWeight: FontWeight.w500);
 
-TextStyle ButtonT2 = TextStyle(
+TextStyle ButtonT2 = const TextStyle(
     fontFamily: 'Inter',
     fontSize: 14,
     color: white1,
     fontWeight: FontWeight.w600);
 
-TextStyle ButtonT3 = TextStyle(
+TextStyle ButtonT3 = const TextStyle(
     fontFamily: 'Inter',
     fontSize: 14,
     color: Colors.black,
     fontWeight: FontWeight.w600);
 
-TextStyle BlackTextColorLowSize = TextStyle(
+TextStyle BlackTextColorLowSize = const TextStyle(
   fontFamily: 'Metropolis',
   fontSize: 14,
   color: BlackNormal,
   fontWeight: FontWeight.w500,
 );
 
-TextStyle BlackTextColor = TextStyle(
+TextStyle BlackTextColor = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 16,
   color: BlackNormal,
   fontWeight: FontWeight.w500,
 );
 
-TextStyle TBlack = TextStyle(
+TextStyle TBlack = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 24,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w800);
 
-TextStyle TBlack1 = TextStyle(
+TextStyle TBlack1 = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 24,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w600);
 
-TextStyle Total_Plan_amount = TextStyle(
+TextStyle Total_Plan_amount = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 18,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w600);
 
-TextStyle detailsT = TextStyle(
+TextStyle detailsT = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 12,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w600);
 
-TextStyle Plan_Style = TextStyle(
+TextStyle Plan_Style = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 17,
     color: Color.fromRGBO(145, 26, 29, 1),
     fontWeight: FontWeight.w500);
 
-TextStyle Tamount = TextStyle(
+TextStyle Tamount = const TextStyle(
     fontFamily: 'Inter',
     fontSize: 20,
     color: Color.fromRGBO(0, 0, 0, 1),
     fontWeight: FontWeight.w600);
 
-TextStyle TBlack2 = TextStyle(
+TextStyle TBlack2 = const TextStyle(
     fontFamily: 'Inter',
     fontSize: 24,
     color: Color.fromRGBO(0, 0, 0, 1),
     fontWeight: FontWeight.w600);
 
-TextStyle Goldweight = TextStyle(
+TextStyle Goldweight = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 13,
     color: Color.fromRGBO(145, 26, 29, 1),
@@ -313,7 +313,7 @@ Widget RadioText(String txt, {required double? width}) {
   );
 }
 
-TextStyle pdfT = TextStyle(
+TextStyle pdfT = const TextStyle(
     fontFamily: 'Inter',
     fontSize: 16,
     color: Color.fromRGBO(0, 0, 0, 1),
@@ -336,7 +336,7 @@ Widget CheckBoxes(context,
           value: value,
           activeColor: gradient1,
           onChanged: onChanged,
-          visualDensity: VisualDensity(horizontal: -4, vertical: -4),
+          visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         ),
         InkWell(onTap: onTap, child: RadioText(checkBoxText, width: width)),
@@ -347,95 +347,95 @@ Widget CheckBoxes(context,
 
 //ONLINE EMI PAYMENT
 //CONTAINER TEXTS
-TextStyle plan1 = TextStyle(
+TextStyle plan1 = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 18,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w600);
 
-TextStyle plantexts = TextStyle(
+TextStyle plantexts = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 12,
     color: Color.fromRGBO(130, 130, 130, 1),
     fontWeight: FontWeight.w500);
 
-TextStyle plancode = TextStyle(
+TextStyle plancode = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 12,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w500);
 
-TextStyle plantexts2 = TextStyle(
+TextStyle plantexts2 = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 14,
     color: Color.fromRGBO(141, 141, 141, 1),
     fontWeight: FontWeight.w500);
 
-TextStyle rate = TextStyle(
+TextStyle rate = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 25,
     color: Color.fromRGBO(12, 167, 80, 1),
     fontWeight: FontWeight.w900);
 
-TextStyle success = TextStyle(
+TextStyle success = const TextStyle(
     fontFamily: 'Metropolis',
-    fontSize: 10,
+    fontSize: 14,
     color: Color.fromRGBO(12, 167, 80, 1),
-    fontWeight: FontWeight.w600);
+    fontWeight: FontWeight.w700);
 
-TextStyle rate2 = TextStyle(
+TextStyle rate2 = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 14,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w600);
 
-TextStyle underline = TextStyle(
+TextStyle underline = const TextStyle(
     decoration: TextDecoration.underline,
     fontFamily: 'Metropolis',
     fontSize: 13,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w500);
 
-TextStyle maintext = TextStyle(
+TextStyle maintext = const TextStyle(
     fontFamily: 'Inter',
     fontSize: 16,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w600);
 
-TextStyle TabbarT = TextStyle(
+TextStyle TabbarT = const TextStyle(
     fontFamily: 'Inter',
     fontSize: 16,
     color: Color.fromRGBO(126, 126, 126, 1),
     fontWeight: FontWeight.w600);
 
 //FAQ TEXT
-TextStyle texts = TextStyle(
+TextStyle texts = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 15,
     color: Color.fromRGBO(16, 24, 40, 1),
     fontWeight: FontWeight.w500);
 
-TextStyle texts2 = TextStyle(
+TextStyle texts2 = const TextStyle(
     fontFamily: 'Inter',
     fontSize: 16,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w500);
 
 //FAQ CONTACT US
-TextStyle lighttext = TextStyle(
+TextStyle lighttext = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 14,
     color: Color.fromRGBO(116, 116, 116, 1),
     fontWeight: FontWeight.w400);
 
-TextStyle location_Phone = TextStyle(
+TextStyle location_Phone = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 12,
     color: Color.fromRGBO(184, 133, 46, 1),
     fontWeight: FontWeight.w400);
 
 //FAQ CONTAINER HEADING
-TextStyle colortexts = TextStyle(
+TextStyle colortexts = const TextStyle(
   fontFamily: 'Metropolis',
   fontSize: 14,
   color: Color.fromRGBO(217, 154, 38, 1),
@@ -443,139 +443,139 @@ TextStyle colortexts = TextStyle(
 );
 
 //MOBILE NUMBER
-TextStyle Num = TextStyle(
+TextStyle Num = const TextStyle(
     fontFamily: 'Metropolis',
-    fontSize: 24,
+    fontSize: 18,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w600);
 
-TextStyle password = TextStyle(
+TextStyle password = const TextStyle(
     fontFamily: 'Inter',
     fontSize: 20,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w500);
 
-TextStyle appbarT2 = TextStyle(
+TextStyle appbarT2 = const TextStyle(
     fontFamily: 'Inter',
     fontSize: 20,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w600);
 
-TextStyle planlist = TextStyle(
+TextStyle planlist = const TextStyle(
     fontFamily: 'Inter',
     fontSize: 14,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w500);
 
-TextStyle password2 = TextStyle(
+TextStyle password2 = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 14,
     color: Color.fromRGBO(168, 168, 168, 1),
     fontWeight: FontWeight.w500);
 
 //MY SSP
-TextStyle sspplan = TextStyle(
+TextStyle sspplan = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 18,
     color: Color.fromRGBO(145, 26, 29, 1),
     fontWeight: FontWeight.w600);
 
 //VIEW DETAILS
-TextStyle Viewdetails = TextStyle(
+TextStyle Viewdetails = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 15,
     color: Color.fromRGBO(217, 154, 38, 1),
     fontWeight: FontWeight.w600);
 
 //HEIP
-TextStyle help = TextStyle(
+TextStyle help = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 16,
     color: Color.fromRGBO(117, 117, 117, 1),
     fontWeight: FontWeight.w500);
 
 //NEW SSP TEXTS
-TextStyle Gramage = TextStyle(
+TextStyle Gramage = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 26,
     color: Color.fromRGBO(247, 198, 118, 1),
     fontWeight: FontWeight.w600);
 
-TextStyle Gramage2 = TextStyle(
+TextStyle Gramage2 = const TextStyle(
     fontFamily: 'Metropolis',
     fontStyle: FontStyle.italic,
     fontSize: 15,
     color: Color.fromRGBO(160, 34, 44, 1),
     fontWeight: FontWeight.w700);
 
-TextStyle hours = TextStyle(
+TextStyle hours = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 13,
     color: Color.fromRGBO(160, 34, 44, 1),
     fontWeight: FontWeight.w500);
 
-TextStyle stackT = TextStyle(
+TextStyle stackT = const TextStyle(
     fontFamily: 'Canela Trial',
     fontSize: 40,
     color: Color.fromRGBO(158, 89, 36, 1),
     fontWeight: FontWeight.w400);
 
-TextStyle stackT2 = TextStyle(
+TextStyle stackT2 = const TextStyle(
     fontFamily: 'Canela Trial',
     fontStyle: FontStyle.italic,
     fontSize: 20,
     color: Color.fromRGBO(158, 89, 36, 1),
     fontWeight: FontWeight.w400);
 
-TextStyle Content1 = TextStyle(
+TextStyle Content1 = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 14,
     color: Color.fromRGBO(255, 255, 255, 1),
     fontWeight: FontWeight.w400);
 
-TextStyle profilenum = TextStyle(
+TextStyle profilenum = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 16,
     color: Color.fromRGBO(255, 255, 255, 1),
     fontWeight: FontWeight.w400);
 
-TextStyle noticount = TextStyle(
+TextStyle noticount = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 13,
     color: Color.fromRGBO(255, 255, 255, 1),
     fontWeight: FontWeight.w500);
 
-TextStyle appbarT = TextStyle(
+TextStyle appbarT = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 20,
     color: Color.fromRGBO(255, 255, 255, 1),
     fontWeight: FontWeight.w600);
 
-TextStyle profilT = TextStyle(
+TextStyle profilT = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 24,
     color: Color.fromRGBO(255, 255, 255, 1),
     fontWeight: FontWeight.w600);
 
-TextStyle TandC = TextStyle(
+TextStyle TandC = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 16,
     color: Color.fromRGBO(138, 138, 138, 1),
     fontWeight: FontWeight.w500);
 
-TextStyle GPlanT = TextStyle(
+TextStyle GPlanT = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 18,
     color: Color.fromRGBO(159, 33, 44, 1),
     fontWeight: FontWeight.w600);
 
-TextStyle WalletT = TextStyle(
+TextStyle WalletT = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 14,
     color: Color.fromRGBO(159, 33, 44, 1),
     fontWeight: FontWeight.w500);
 
-TextStyle WalletT1 = TextStyle(
+TextStyle WalletT1 = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 14,
     color: Color.fromRGBO(89, 89, 89, 1),

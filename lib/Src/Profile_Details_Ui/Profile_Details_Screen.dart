@@ -105,7 +105,7 @@ class _Profile_Details_ScreenState extends State<Profile_Details_Screen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Heading(text: 'User name'),
-                        Container(
+                        SizedBox(
                           width: MediaQuery.sizeOf(context).width/1.6,
                           child: textFormField_border(
                             // isEnabled: false,
@@ -303,7 +303,7 @@ class _Profile_Details_ScreenState extends State<Profile_Details_Screen> {
                       children: [
                         Heading(text: 'Country'),
                         Container(
-                          //height: 50,
+                          height: 45,
                           width: MediaQuery.sizeOf(context).width/2.3,
                           decoration: BoxDecoration(
                             color: white1,
@@ -311,7 +311,7 @@ class _Profile_Details_ScreenState extends State<Profile_Details_Screen> {
                             border: Border.all(width: 1,color: borderclr)
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 8,bottom: 8,),
+                            padding: const EdgeInsets.only(top: 1,bottom: 5,),
                             child: CountryListPick(
                               initialSelection: '+91',
                               onChanged: (CountryCode? CountryCode){
@@ -332,7 +332,7 @@ class _Profile_Details_ScreenState extends State<Profile_Details_Screen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Heading(text: 'City'),
-                        Container(
+                        SizedBox(
                           width: MediaQuery.sizeOf(context).width/2.3,
                           child: textFormField_border(
                             // isEnabled: false,
@@ -363,7 +363,7 @@ class _Profile_Details_ScreenState extends State<Profile_Details_Screen> {
 
                 //NOMINEE NAME
                 Heading(text: 'Nominee name'),
-                Container(
+                SizedBox(
                   width: MediaQuery.sizeOf(context).width,
                   child: textFormField_border(
                     // isEnabled: false,
@@ -418,9 +418,6 @@ class _Profile_Details_ScreenState extends State<Profile_Details_Screen> {
                       }
                     }, titleName: 'Save'),
 
-                //DELETE TEXT
-                deleteT(),
-
               ],
             ),
           ),
@@ -437,18 +434,3 @@ Widget Heading ({required String text}){
   );
 }
 
-Widget deleteT (){
-  return Padding(
-    padding: const EdgeInsets.only(top: 10),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        ImgPathSvg('delete.svg'),
-        Padding(
-          padding: const EdgeInsets.only(left: 5),
-          child: Text('Delete Account',style: delete,),
-        ),
-      ],
-    ),
-  );
-}

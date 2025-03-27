@@ -49,7 +49,7 @@ class _payment_History_ScreenState
                   ),
                   //LIST VIEW BUILDER
                   Container(
-                    margin: EdgeInsets.only(bottom: 20),
+                    margin: const EdgeInsets.only(bottom: 20),
                     child: ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
@@ -64,139 +64,110 @@ class _payment_History_ScreenState
                                   borderRadius: BorderRadius.circular(10)),
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 1,vertical: 10),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                                    horizontal: 15, vertical: 10),
+                                child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween, // Ensures space between elements
                                       children: [
-                                        Text(
-                                          data?.responseData?[index]
-                                                  .schemeName ??
-                                              "",
-                                          style: Goldweight,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              top: 10, bottom: 10),
-                                          child: Row(
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 10),
-                                                child: ImgPathSvg(
-                                                    'Greenright.svg'),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 10),
-                                                child: Text(
-                                                  data?.responseData?[index]
-                                                          .amount ??
-                                                      "",
-                                                  style: bottomotext,
-                                                ),
-                                              ),
-                                              Container(
-                                                //width: MediaQuery.sizeOf(context).width/8,
-                                                decoration: BoxDecoration(
-                                                    color: grey5,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            50)),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 10,
-                                                          right: 10,
-                                                          top: 5,
-                                                          bottom: 5),
-                                                  child: Center(
-                                                      child: Text(
-                                                    data?.responseData?[index]
-                                                            .statusName ??
-                                                        "",
-                                                    style: success,
-                                                  )),
-                                                ),
-                                              )
-                                            ],
-                                          ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              data?.responseData?[index].schemeName ?? "",
+                                              style: Goldweight,
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
+                                            ),
+                                          ],
                                         ),
                                         Text(
-                                          'Gold Rate : ${data?.responseData?[index].metalRate ?? ""}',
-                                          style: planST,
+                                          data?.responseData?[index].accountNumber ?? "",
+                                          style: rate2,
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 1,
+                                          textAlign: TextAlign.end, // Aligns it to the right
                                         ),
                                       ],
                                     ),
-                                    const Spacer(),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      //crossAxisAlignment: CrossAxisAlignment.start,
+                                    const SizedBox(height: 5),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween, // Ensures space between elements
+                                      children: [
+                                        Row(
+                                          children: [
+                                            ImgPathSvg('Greenright.svg'),
+                                            const SizedBox(width: 20), // Space between image and text
+                                            Text(
+                                              data?.responseData?[index].amount ?? "",
+                                              style: bottomotext,
+                                            ),
+                                          ],
+                                        ),
+                                        Container(
+                                          width: MediaQuery.sizeOf(context).width / 5,
+                                          decoration: BoxDecoration(
+                                            color: grey5,
+                                            borderRadius: BorderRadius.circular(50),
+                                          ),
+                                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                          child: Center(
+                                            child: Text(
+                                              data?.responseData?[index].statusName ?? "",
+                                              style: success,
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+
+                                    const SizedBox(height: 5),
+
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          data?.responseData?[index]
-                                                  .accountNumber ??
-                                              "",
-                                          style: rate2,
+                                          data?.responseData?[index].paymentDate ?? "",
+                                          style: planST,
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              top: 10, bottom: 10),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.end,
-                                            children: [
-                                              Text(
-                                                data?.responseData?[index]
-                                                        .paymentDate ??
-                                                    "",
+                                        const SizedBox(width: 20),
+                                        Container(
+                                          margin: const EdgeInsets.all(1),
+                                          decoration: BoxDecoration(
+                                            color: grey5,
+                                            borderRadius: BorderRadius.circular(50),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                            child: Center(
+                                              child: Text(
+                                                data?.responseData?[index].paymentMode ?? "",
                                                 style: planST,
                                               ),
-                                              Container(
-                                                margin:
-                                                    EdgeInsets.only(left: 10),
-                                                //width: MediaQuery.sizeOf(context).width/8,
-                                                decoration: BoxDecoration(
-                                                    color: grey5,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            50)),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 15,
-                                                          right: 15,
-                                                          top: 2,
-                                                          bottom: 2),
-                                                  child: Center(
-                                                      child: Text(
-                                                    data?.responseData?[index]
-                                                            .paymentMode ??
-                                                        "",
-                                                    style: planST,
-                                                  )),
-                                                ),
-                                              ),
-                                            ],
+                                            ),
                                           ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 5),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween, // Ensures space between elements
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Gold Rate : ${data?.responseData?[index].metalRate ?? ""}',
+                                              style: planST,
+                                            ),
+                                          ],
                                         ),
                                         Text(
                                           'Gold Weight : ${data?.responseData?[index].metalWeight ?? ""} g',
                                           style: planST,
-                                        )
+                                        ),
                                       ],
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -204,11 +175,6 @@ class _payment_History_ScreenState
                           );
                         }),
                   ),
-
-                  //HELP CONTAINER
-                  HelpContainer(context, Color: grey5),
-
-                  //BUTTON
                   CommonContainerButton(context, onPress: () {
                     Navigator.pop(context);
                   }, titleName: "Back"),
@@ -220,12 +186,12 @@ class _payment_History_ScreenState
       }, error: (Object error, StackTrace stackTrace) {
         return Text("ERROR, $error");
       }, loading: () {
-        return Center(child: CircularProgressIndicator());
+        return const Center(child: CircularProgressIndicator());
       }),
     );
   }
 
-  // Widget _mainBody() {
-  //   return
-  // }
+// Widget _mainBody() {
+//   return
+// }
 }

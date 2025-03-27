@@ -68,7 +68,7 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => Menu_Screen()));
             },
-            child: Icon(Icons.menu_outlined)),
+            child: const Icon(Icons.menu_outlined)),
         centerTitle: true,
         title: App_Logo(context),
         actions: [
@@ -79,7 +79,7 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => Notification_Screen()));
+                          builder: (context) => const Notification_Screen()));
                 },
                 child: ImgPathSvg("notification.svg")),
           ),
@@ -102,6 +102,7 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
               //  }),
 
               //GOLD PRICE
+
               priceRate.when(data: (data) {
                 return GoldScrollPriceWidget(
                   data: data,
@@ -109,7 +110,7 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
               }, error: (Object error, StackTrace stackTrace) {
                 return Text("$error");
               }, loading: () {
-                return CircularProgressIndicator();
+                return const CircularProgressIndicator();
               }),
 
               Container(
@@ -124,7 +125,7 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                           height: 238,
                           child: ListView.builder(
                               itemCount: data?.data?.length ?? 0,
-                              physics: ScrollPhysics(),
+                              physics: const ScrollPhysics(),
                               scrollDirection: Axis.horizontal,
                               shrinkWrap: true,
                               itemBuilder: (BuildContext context, int index) {
@@ -138,11 +139,10 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                     width: cardWidth,
                                     context,
                                     customername:
-                                        "${data?.data?[index].accountName ?? ""}",
+                                        data?.data?[index].accountName ?? "",
                                     Acnumval:
                                         "${data?.data?[index].idSchemeAccount ?? ""}",
-                                    totalpaidval: '₹' +
-                                        "${data?.data?[index].paidAmount?.toStringAsFixed(2) ?? ""}",
+                                    totalpaidval: '₹${data?.data?[index].paidAmount?.toStringAsFixed(2) ?? ""}',
                                     totaccval: data?.data?[index].paidWeight
                                             ?.toStringAsFixed(3) ??
                                         "",
@@ -179,9 +179,9 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                         return const SizedBox(height: 10);
                       }
                     }, error: (Object error, StackTrace stackTrace) {
-                      return Text('');
+                      return const Text('');
                     }, loading: () {
-                      return CircularProgressIndicator();
+                      return const CircularProgressIndicator();
                     }),
 
                     // Padding(
@@ -230,7 +230,7 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            New_SSP_Screen()));
+                                            const New_SSP_Screen()));
                               },
                               child: Plan_Card(
                                 context,
@@ -268,7 +268,7 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            payment_History_Screen()));
+                                            const payment_History_Screen()));
                               },
                               child: Plan_Card(
                                 context,
@@ -283,7 +283,7 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            CloseAccountScreen()));
+                                            const CloseAccountScreen()));
                               },
                               child: Plan_Card(
                                 context,
@@ -334,7 +334,7 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                     enlargeCenterPage: true,
                                     aspectRatio: 16 / 9,
                                     autoPlayAnimationDuration:
-                                        Duration(milliseconds: 800),
+                                        const Duration(milliseconds: 800),
                                     onPageChanged: (index, reason) {
                                       setState(() {
                                         myCurrentPage = index;
@@ -348,7 +348,7 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                 child: AnimatedSmoothIndicator(
                                   activeIndex: myCurrentPage,
                                   count: carouselItems.length,
-                                  effect: ExpandingDotsEffect(
+                                  effect: const ExpandingDotsEffect(
                                       dotHeight: 5,
                                       dotWidth: 5,
                                       activeDotColor: gradient1),
@@ -364,7 +364,7 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                     }, error: (Object error, StackTrace stackTrace) {
                       return Text("$error");
                     }, loading: () {
-                      return CircularProgressIndicator();
+                      return const CircularProgressIndicator();
                     }),
                   ],
                 ),
@@ -464,10 +464,9 @@ class _GoldScrollPriceWidgetState extends ConsumerState<GoldScrollPriceWidget> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
-            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
@@ -481,14 +480,13 @@ class _GoldScrollPriceWidgetState extends ConsumerState<GoldScrollPriceWidget> {
             ],
           ),
           double.parse((widget.data?.data?.goldRateDifference ?? "0.0")
-                      .replaceAll(',', '')) <
-                  0
-              ? Icon(
+                      .replaceAll(',', '')) < 0
+              ? const Icon(
                   Icons.arrow_downward_outlined,
                   color: Colors.black,
                   size: 18,
                 )
-              : Icon(
+              : const Icon(
                   Icons.arrow_upward_outlined,
                   color: Colors.red,
                   size: 18,
@@ -509,12 +507,12 @@ class _GoldScrollPriceWidgetState extends ConsumerState<GoldScrollPriceWidget> {
             ],
           ),
           double.parse(widget.data?.data?.silverRateDifference ?? "0.0") < 0
-              ? Icon(
+              ? const Icon(
                   Icons.arrow_downward_outlined,
                   color: Colors.black,
                   size: 18,
                 )
-              : Icon(
+              : const Icon(
                   Icons.arrow_upward_outlined,
                   color: Colors.red,
                   size: 18,

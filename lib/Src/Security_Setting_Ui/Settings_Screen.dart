@@ -50,7 +50,7 @@ class _Settings_ScreenState extends ConsumerState<Settings_Screen> {
   Widget _Mainbody() {
     return Padding(
       padding: const EdgeInsets.only(bottom: 50),
-      child: Container(
+      child: SizedBox(
         width: MediaQuery.sizeOf(context).width,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -62,7 +62,7 @@ class _Settings_ScreenState extends ConsumerState<Settings_Screen> {
                 Container(
                   height: 140,
                   width: MediaQuery.sizeOf(context).width,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     gradient: LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.topRight,
@@ -92,22 +92,9 @@ class _Settings_ScreenState extends ConsumerState<Settings_Screen> {
                           style: appbarT,
                         ),
                       ),
-                      const Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 45),
-                        child: InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Faq_Screen()));
-                            },
-                            child: ImgPathSvg('info.svg')),
-                      ),
                     ],
                   ),
                 ),
-
                 //PROFILE
                 Positioned(
                   top: 90,
@@ -116,7 +103,7 @@ class _Settings_ScreenState extends ConsumerState<Settings_Screen> {
                     height: 100,
                     width: 100,
                     decoration: BoxDecoration(
-                        image: DecorationImage(
+                        image: const DecorationImage(
                             fit: BoxFit.cover,
                             image: AssetImage('lib/assets/profileimage.png')),
                         borderRadius: BorderRadius.circular(100)),
@@ -160,7 +147,7 @@ class _Settings_ScreenState extends ConsumerState<Settings_Screen> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                Profile_Details_Screen()));
+                                                const Profile_Details_Screen()));
                                   },
                                   child: ImgPathSvg('Edit.svg'))
                             ],
@@ -185,7 +172,7 @@ class _Settings_ScreenState extends ConsumerState<Settings_Screen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Password_Screen()));
+                            builder: (context) => const Password_Screen()));
                   }),
                   // Settingscontainer(context,text: 'KYC', image: 'kyc.svg', image2: 'rightarrow2.svg', onTap: () {
                   //   Navigator.push(context, MaterialPageRoute(builder: (context)=>KYC_Screen()));
@@ -195,24 +182,7 @@ class _Settings_ScreenState extends ConsumerState<Settings_Screen> {
             ),
 
             //TERMS AND CONDITIONS
-            SizedBox(
-              height: MediaQuery.sizeOf(context).height / 5,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 40, right: 40, bottom: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Terms & Conditions*', style: underline),
-                  Text('Privacy Policy', style: underline),
-                ],
-              ),
-            ),
-            //DIVIDER
-            Divider(
-              indent: 40,
-              endIndent: 40,
-            ),
+      
 
             // Padding(
             //   padding: const EdgeInsets.only(
@@ -250,7 +220,7 @@ class _Settings_ScreenState extends ConsumerState<Settings_Screen> {
               child: buttonIcon(context, onPress: () {
                 {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()));
+                      MaterialPageRoute(builder: (context) => const LoginScreen()));
                 }
               }, titleName: 'Logout'),
             ),

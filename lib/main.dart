@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'Src/Login_Ui/LoginScreen.dart';
 
 void main() {
-  runApp(ProviderScope(child: const MyApp()));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -29,11 +29,11 @@ class MyApp extends StatelessWidget {
           initialRoute: '/',
           routes: {
             "/": (context) => Landing(),
-            "/login": (context) => LoginScreen(),
+            "/login": (context) => const LoginScreen(),
             "/home": (context) => Home_DashBoard_Screen(),
           },
           onGenerateRoute: (value) {
-            return MaterialPageRoute(builder: (context) => LoginScreen());
+            return MaterialPageRoute(builder: (context) => const LoginScreen());
           },
         );
       },
