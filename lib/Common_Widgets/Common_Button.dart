@@ -13,7 +13,7 @@ Widget CommonElevatedButton(
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
       backgroundColor: brown1,
-      minimumSize: Size(double.infinity, 50),
+      minimumSize: const Size(double.infinity, 50),
       elevation: 9,
       shape: RoundedRectangleBorder(
         
@@ -35,7 +35,7 @@ Widget CommonContainerButton(context,{ required void Function()? onPress,require
       width: MediaQuery.sizeOf(context).width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.topRight,
         colors: [
@@ -62,7 +62,7 @@ Widget CommonContainerButton2(context,{ required void Function()? onPress,requir
       width: MediaQuery.sizeOf(context).width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.topRight,
         colors: [
@@ -89,7 +89,7 @@ Widget buttonIcon(context,{ required void Function()? onPress,required String ti
         width: MediaQuery.sizeOf(context).width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.topRight,
               colors: [
@@ -124,7 +124,7 @@ Widget Paynowcommonbutton1 (context,{ required void Function()? onPress,required
         width: MediaQuery.sizeOf(context).width/4.5,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.topRight,
               colors: [
@@ -166,7 +166,7 @@ Widget bottombutton (context,{ required void Function()? onPress,required String
       width: MediaQuery.sizeOf(context).width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.topRight,
             colors: [
@@ -188,7 +188,7 @@ Widget upload (context,{ required void Function()? onPress,required String title
       width: MediaQuery.sizeOf(context).width/3,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.topRight,
             colors: [

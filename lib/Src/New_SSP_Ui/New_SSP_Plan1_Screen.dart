@@ -47,66 +47,63 @@ class _New_SSP_Plan1_ScreenState extends State<New_SSP_Plan1_Screen> {
               border: Border.all(width: 1, color: gradient3),
               borderRadius: BorderRadius.circular(10),
             ),
-            child:Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
+            child:Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 10, bottom: 10,right: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        SingleTon().selectedActivePlan?.schemeName ?? "",
-                        style: rate2,
-                      ),
-                      SingleTon().selectedActivePlan?.schemeType == 0
-                          ?
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween, // Ensures space between elements
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            SingleTon().selectedActivePlan?.schemeName ?? "",
+                            style: rate2,
+                          ),
+                          SingleTon().selectedActivePlan?.schemeType == 0
+                              ?
 
-                      Container(
+                          Container(
                               width: MediaQuery.sizeOf(context).width / 2.8,
                               child: Text(
                                 'EMA from ₹${SingleTon().selectedActivePlan?.minimumAmount} /month',
                                 style: lighttext,
                               )
-                      )
-                          : Container(
+                          )
+                              : Container(
                               width: MediaQuery.sizeOf(context).width / 2.8,
                               child: Text(
                                 'EMA from ${SingleTon().selectedActivePlan?.minimumAmount} gm /month',
                                 style: lighttext,
-                              )),
-                      // Text(
-                      //   'Benefit (VA) 18%',
-                      //   style: rate2,
-                      // )
-                    ],
-                  ),
+                              )
+                          ),
+                          Text(
+                            'Tenure up to ${SingleTon().selectedActivePlan?.totalInstalment} months',
+                            style: lighttext,
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          SingleTon().selectedActivePlan?.allowJoin == true
+                              ? Paynowcommonbutton1(context, onPress: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        Grammage_Plan_Screen()));
+                          }, titleName: 'Join Now')
+                              : SizedBox.shrink(),
+
+                        ],
+                      ),
+                    )
+                  ],
                 ),
-
-                // const Spacer(),
-
-                //BOTTOM BAR CONTENTS
-                Flexible(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SingleTon().selectedActivePlan?.allowJoin == true
-                          ? Paynowcommonbutton1(context, onPress: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          Grammage_Plan_Screen()));
-                            }, titleName: 'Join Now')
-                          : SizedBox.shrink(),
-                      Text(
-                        'Tenure up to ${SingleTon().selectedActivePlan?.totalInstalment} months',
-                        style: lighttext,
-                      )
-                    ],
-                  ),
-                )
               ],
             ),
           ),
@@ -145,7 +142,7 @@ class _New_SSP_Plan1_ScreenState extends State<New_SSP_Plan1_Screen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         //PLAN HEADINGS AND CONTENTS
-                        Content(content: 'Terms & Conditions'),
+                        // Content(content: 'Terms & Conditions'),
 
                         Html(
                           data:

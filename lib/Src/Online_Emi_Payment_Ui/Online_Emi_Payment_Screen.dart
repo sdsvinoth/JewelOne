@@ -25,6 +25,7 @@ import 'package:jewelone/utilits/Text_Style.dart';
 
 class Online_Emi_Payment_Screen extends ConsumerStatefulWidget {
   int? selectedIndex = 0;
+
   Online_Emi_Payment_Screen({super.key, required this.selectedIndex});
 
   @override
@@ -38,6 +39,7 @@ class _Online_Emi_Payment_ScreenState
   int _count = 1;
   num totalAmount = 0;
   EmiOption? _selectedEmiOption;
+
   void _calculateTotalAmount() {
     totalAmount = _selectedEmiOption!.amount * _selectedEmiOption!.count;
   }
@@ -245,7 +247,7 @@ class _Online_Emi_Payment_ScreenState
 
         return Stack(children: [
           SingleChildScrollView(
-            child: Container(
+            child: SizedBox(
               width: MediaQuery.sizeOf(context).width,
               child: Form(
                 key: _formKey,
@@ -260,7 +262,7 @@ class _Online_Emi_Payment_ScreenState
                     }, error: (Object error, StackTrace stackTrace) {
                       return Text("$error");
                     }, loading: () {
-                      return CircularProgressIndicator();
+                      return const CircularProgressIndicator();
                     }),
 
                     Padding(
@@ -283,7 +285,7 @@ class _Online_Emi_Payment_ScreenState
                         itemCount: data?.data?.length ?? 0,
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         padding: EdgeInsets.zero,
                         itemBuilder: (context, index) {
                           int returnType = data?.data?[index].limitType ?? 1;
@@ -303,10 +305,10 @@ class _Online_Emi_Payment_ScreenState
                                   children: [
                                     Row(
                                       children: [
-                                        Container(
+                                        SizedBox(
                                           width: 20,
                                           child: Checkbox(
-                                            side: BorderSide(
+                                            side: const BorderSide(
                                                 width: 1, color: checkbox),
                                             value: data?.data?[index].isChecked,
                                             onChanged: (bool? value) {
@@ -326,7 +328,8 @@ class _Online_Emi_Payment_ScreenState
 
                                         //SCHEME NAME
                                         Container(
-                                          margin: EdgeInsets.only(left: 10),
+                                          margin:
+                                              const EdgeInsets.only(left: 10),
                                           child: Text(
                                             data?.data?[index].accountName ??
                                                 "",
@@ -339,13 +342,15 @@ class _Online_Emi_Payment_ScreenState
                                     ),
                                     data?.data?[index].limitType == 1
                                         ? Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
                                             children: [
-                                              Container(
-                                                  width: (MediaQuery.sizeOf(
-                                                                  context)
-                                                              .width /
-                                                          2) -
-                                                      30,
+                                              SizedBox(
+                                                  // width: (MediaQuery.sizeOf(
+                                                  //                 context)
+                                                  //             .width /
+                                                  //         2) -
+                                                  //     30,
                                                   child: Text(
                                                       "Min / Max Amount ",
                                                       style:
@@ -363,8 +368,9 @@ class _Online_Emi_Payment_ScreenState
                                             ],
                                           )
                                         : Row(
+                                     crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              Container(
+                                              SizedBox(
                                                 width:
                                                     (MediaQuery.sizeOf(context)
                                                                 .width /
@@ -390,106 +396,436 @@ class _Online_Emi_Payment_ScreenState
                                               )
                                             ],
                                           ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
                                     Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                          MainAxisAlignment.end,
                                       children: [
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                Container(
-                                                  width: (MediaQuery.sizeOf(
-                                                                  context)
-                                                              .width /
-                                                          2) -
-                                                      30,
-                                                  child: Text("Pay",
-                                                      style: planST2.copyWith(
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontSize: 15)),
+                                        SizedBox(
+                                          width: (MediaQuery.sizeOf(
+                                                          context)
+                                                      .width /
+                                                  2) -
+                                              30,
+                                          child: Text("Pay",
+                                              style: planST2.copyWith(
+                                                  fontWeight:
+                                                      FontWeight.w500,
+                                                  fontSize: 15)),
+                                        ),
+                                        (data?.data?[index].limitType ==
+                                                    1 &&
+                                                data?.data?[index]
+                                                        .denomType ==
+                                                    3)
+                                            ? SizedBox(
+                                                width: (MediaQuery.of(
+                                                                context)
+                                                            .size
+                                                            .width /
+                                                        2) -
+                                                    35,
+                                                height: 35,
+                                                child: TextFormField(
+                                                  keyboardType:
+                                                      TextInputType
+                                                          .number,
+                                                  validator: (value) {
+                                                    if (value == null ||
+                                                        value.isEmpty) {
+                                                      return 'Please enter amount';
+                                                    }
+                                                    final intValue =
+                                                        int.tryParse(
+                                                            value);
+                                                    if (intValue ==
+                                                        null) {
+                                                      return '';
+                                                    }
+                                                    if (intValue <=
+                                                            1000 ||
+                                                        intValue >=
+                                                            10000) {
+                                                      return '';
+                                                    }
+                                                    return null;
+                                                  },
+                                                  inputFormatters: [
+                                                    // LengthLimitingTextInputFormatter(
+                                                    //     5),7510618517
+                                                    FilteringTextInputFormatter
+                                                        .digitsOnly,
+                                                    TextInputFormatter
+                                                        .withFunction(
+                                                            (oldValue,
+                                                                newValue) {
+                                                      if (newValue.text
+                                                          .isEmpty) {
+                                                        return newValue; // Allow empty input
+                                                      }
+                                                      final int value =
+                                                          int.tryParse(
+                                                                  newValue
+                                                                      .text) ??
+                                                              0;
+                                                      if (value <=
+                                                          (data
+                                                                  ?.data?[
+                                                                      index]
+                                                                  .maximumPayable
+                                                                  ?.maxAmount ??
+                                                              0.0)) {
+                                                        return newValue; // Allow if value is less than or equal to 10000
+                                                      }
+                                                      return oldValue; // Reject the input if it exceeds 10000
+                                                    }),
+                                                  ],
+                                                  textAlign:
+                                                      TextAlign.left,
+                                                  enabled: (data
+                                                              ?.data?[
+                                                                  index]
+                                                              .isChecked ??
+                                                          false) &&
+                                                      data?.data?[index]
+                                                              .limitType ==
+                                                          1,
+                                                  decoration:
+                                                      InputDecoration(
+                                                    contentPadding:
+                                                        const EdgeInsets
+                                                            .symmetric(
+                                                            vertical:
+                                                                10.0,
+                                                            horizontal:
+                                                                10.0),
+                                                    hintText: "INR",
+                                                    border:
+                                                        OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius
+                                                              .circular(
+                                                                  5),
+                                                      borderSide:
+                                                          const BorderSide(
+                                                              color:
+                                                                  grey5),
+                                                    ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius
+                                                              .circular(
+                                                                  5),
+                                                      borderSide:
+                                                          const BorderSide(
+                                                              color:
+                                                                  grey5),
+                                                    ),
+                                                    fillColor:
+                                                        Colors.grey[50],
+                                                    filled: true,
+                                                  ),
+                                                  onChanged: (text) {
+                                                    var amount =
+                                                        text != ""
+                                                            ? int.parse(
+                                                                text)
+                                                            : 0;
+                                                    if ((data
+                                                                ?.data?[
+                                                                    index]
+                                                                .maximumPayable
+                                                                ?.maxAmount ??
+                                                            0.0) >=
+                                                        amount
+                                                            .toDouble()) {
+                                                      setState(() {
+                                                        amountCalculation(
+                                                            index,
+                                                            amount);
+
+                                                        // int.parse(
+                                                        //     data?.data?[index]
+                                                        //             .totalAmount ??
+                                                        //         "0");
+                                                      });
+                                                    } else {}
+                                                  },
                                                 ),
-                                                (data?.data?[index].limitType ==
-                                                            1 &&
-                                                        data?.data?[index]
-                                                                .denomType ==
-                                                            3)
+                                              )
+                                            : (data
+                                                            ?.data?[
+                                                                index]
+                                                            .amountDenom
+                                                            ?.length ??
+                                                        0) !=
+                                                    0
+                                                ? Container(
+                                                    height: 35,
+                                                    width: (MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width /
+                                                            2) -
+                                                        60,
+                                                    padding:
+                                                        const EdgeInsets
+                                                            .symmetric(
+                                                            horizontal:
+                                                                8.0),
+                                                    decoration:
+                                                        BoxDecoration(
+                                                      border: Border.all(
+                                                          color: Colors
+                                                              .grey),
+                                                      borderRadius:
+                                                          BorderRadius
+                                                              .circular(
+                                                                  5.0),
+                                                    ),
+                                                    child:
+                                                        DropdownButton<
+                                                            String>(
+                                                      isExpanded: true,
+                                                      underline:
+                                                          const SizedBox(),
+                                                      value:
+                                                          selectedAmount,
+                                                      icon: const Icon(Icons
+                                                          .keyboard_arrow_down_rounded),
+                                                      hint: const Text(
+                                                          "Amount"),
+                                                      items: amounts
+                                                          .map((String
+                                                              amount) {
+                                                        return DropdownMenuItem<
+                                                            String>(
+                                                          value: amount,
+                                                          child: Text(
+                                                              amount),
+                                                        );
+                                                      }).toList(),
+                                                      onChanged: ((data
+                                                                      ?.data?[
+                                                                          index]
+                                                                      .isChecked ??
+                                                                  false) &&
+                                                              data?.data?[index].limitType ==
+                                                                  1)
+                                                          ? (String?
+                                                              newValue) {
+                                                              setState(
+                                                                  () {
+                                                                selectedAmount =
+                                                                    newValue;
+
+                                                                data?.data?[index].selectedAmount =
+                                                                    newValue;
+                                                                var amount = newValue !=
+                                                                        ""
+                                                                    ? int.parse(newValue ??
+                                                                        "0")
+                                                                    : 0;
+
+                                                                amountCalculation(
+                                                                    index,
+                                                                    amount);
+                                                                // if ((data?.data?[index].maximumPayable?.maxAmount ??
+                                                                //         0.0) >=
+                                                                //     amount
+                                                                //         .toDouble()) {
+                                                                // data
+                                                                //     ?.data?[
+                                                                //         index]
+                                                                //     .enterAmount = "${amount}";
+                                                                // data
+                                                                //     ?.data?[
+                                                                //         index]
+                                                                //     .totalAmount = "${amount}";
+
+                                                                // totalAmount =
+                                                                //     double.parse(data
+                                                                //             ?.data?[
+                                                                //                 index]
+                                                                //             .totalAmount ??
+                                                                //         "0.0");
+                                                                // totalAmount = data
+                                                                //     ?.data!
+                                                                //     .map((item) => double.parse(item.totalAmount ??
+                                                                //         "0"))
+                                                                //     .reduce((a, b) =>
+                                                                //         a +
+                                                                //         b) as num;
+                                                                // }
+                                                              });
+                                                            }
+                                                          : null,
+                                                    ),
+                                                  )
+                                                : (data
+                                                                ?.data?[
+                                                                    index]
+                                                                .weightDenom
+                                                                ?.length ??
+                                                            0) !=
+                                                        0
                                                     ? Container(
-                                                        width: (MediaQuery.of(
-                                                                        context)
+                                                        height: 35,
+                                                        width: (MediaQuery.of(context)
                                                                     .size
                                                                     .width /
                                                                 2) -
-                                                            35,
+                                                            60,
+                                                        padding: const EdgeInsets
+                                                            .symmetric(
+                                                            horizontal:
+                                                                8.0),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          border: Border.all(
+                                                              color: Colors
+                                                                  .grey),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      5.0),
+                                                        ),
+                                                        child:
+                                                            DropdownButton<
+                                                                String>(
+                                                          isExpanded:
+                                                              true,
+                                                          underline:
+                                                              const SizedBox(),
+                                                          value: data
+                                                              ?.data?[
+                                                                  index]
+                                                              .selectedGram,
+                                                          icon: const Icon(
+                                                              Icons
+                                                                  .keyboard_arrow_down_rounded),
+                                                          hint: const Text(
+                                                              "Grams"),
+                                                          items: data!
+                                                              .data![
+                                                                  index]
+                                                              .weightDenom!
+                                                              .map((AmountDenom
+                                                                  amount) {
+                                                            return DropdownMenuItem<
+                                                                String>(
+                                                              value: amount
+                                                                  .value,
+                                                              child: Text(
+                                                                  amount.value ??
+                                                                      ""),
+                                                            );
+                                                          }).toList(),
+                                                          onChanged: ((data.data?[index].isChecked ??
+                                                                      false) &&
+                                                                  data.data?[index].limitType ==
+                                                                      2)
+                                                              ? (String?
+                                                                  newValue) {
+                                                                  setState(
+                                                                      () {
+                                                                    data.data?[index].selectedGram =
+                                                                        newValue;
+
+                                                                    double amount = newValue != ""
+                                                                        ? double.parse(newValue ?? "0.0")
+                                                                        : 0;
+
+                                                                    gramCalculation(index,
+                                                                        amount);
+                                                                    if ((data.data?[index].maximumPayable?.maxWeight ?? 0.0) >=
+                                                                        amount.toDouble()) {}
+                                                                  });
+                                                                }
+                                                              : null,
+                                                        ),
+                                                      )
+                                                    : SizedBox(
+                                                        width: (MediaQuery.of(context)
+                                                                    .size
+                                                                    .width /
+                                                                2) -
+                                                            60,
                                                         height: 35,
-                                                        child: TextFormField(
-                                                          keyboardType:
-                                                              TextInputType
-                                                                  .number,
-                                                          validator: (value) {
-                                                            if (value == null ||
-                                                                value.isEmpty) {
-                                                              return 'Please enter amount';
+                                                        child:
+                                                            TextFormField(
+                                                          validator:
+                                                              (value) {
+                                                            if (value ==
+                                                                    null ||
+                                                                value
+                                                                    .isEmpty) {
+                                                              return 'Please enter gram';
                                                             }
                                                             final intValue =
-                                                                int.tryParse(
+                                                                double.tryParse(
                                                                     value);
                                                             if (intValue ==
                                                                 null) {
                                                               return '';
                                                             }
                                                             if (intValue <=
-                                                                    1000 ||
+                                                                    1 ||
                                                                 intValue >=
-                                                                    10000) {
+                                                                    8) {
                                                               return '';
                                                             }
                                                             return null;
                                                           },
-                                                          inputFormatters: [
-                                                            // LengthLimitingTextInputFormatter(
-                                                            //     5),7510618517
-                                                            FilteringTextInputFormatter
-                                                                .digitsOnly,
-                                                            TextInputFormatter
-                                                                .withFunction(
-                                                                    (oldValue,
-                                                                        newValue) {
-                                                              if (newValue.text
-                                                                  .isEmpty) {
-                                                                return newValue; // Allow empty input
-                                                              }
-                                                              final int value =
-                                                                  int.tryParse(
-                                                                          newValue
-                                                                              .text) ??
-                                                                      0;
-                                                              if (value <=
-                                                                  (data
-                                                                          ?.data?[
-                                                                              index]
-                                                                          .maximumPayable
-                                                                          ?.maxAmount ??
-                                                                      0.0)) {
-                                                                return newValue; // Allow if value is less than or equal to 10000
-                                                              }
-                                                              return oldValue; // Reject the input if it exceeds 10000
-                                                            }),
-                                                          ],
+                                                          onChanged:
+                                                              (value) {
+                                                            double
+                                                                amount =
+                                                                value !=
+                                                                        ""
+                                                                    ? double.parse(value)
+                                                                    : 0;
+
+                                                            if ((data?.data?[index].maximumPayable?.maxWeight ??
+                                                                    0.0) >=
+                                                                amount
+                                                                    .toDouble()) {
+                                                              setState(
+                                                                  () {
+                                                                gramCalculation(
+                                                                    index,
+                                                                    amount);
+                                                                // data
+                                                                //     ?.data?[
+                                                                //         index]
+                                                                //     .enterAmount = "${amount}";
+                                                                // data
+                                                                //     ?.data?[
+                                                                //         index]
+                                                                //     .totalAmount = "${amount * (data.data?[index].todaysRate ?? 0.0)}";
+
+                                                                // // totalAmount =
+                                                                // //     double.parse(data
+                                                                // //             ?.data?[
+                                                                // //                 index]
+                                                                // //             .totalAmount ??
+                                                                // //         "0.0");
+                                                                // totalAmount = data
+                                                                //     ?.data!
+                                                                //     .map((item) => double.parse(item.totalAmount ??
+                                                                //         "0"))
+                                                                //     .reduce((a, b) =>
+                                                                //         a +
+                                                                //         b) as num;
+                                                              });
+                                                            }
+                                                          },
                                                           textAlign:
-                                                              TextAlign.left,
+                                                              TextAlign
+                                                                  .left,
                                                           enabled: (data
                                                                       ?.data?[
                                                                           index]
@@ -497,420 +833,78 @@ class _Online_Emi_Payment_ScreenState
                                                                   false) &&
                                                               data?.data?[index]
                                                                       .limitType ==
-                                                                  1,
+                                                                  2,
+                                                          keyboardType: const TextInputType
+                                                              .numberWithOptions(
+                                                              decimal:
+                                                                  true),
+                                                          inputFormatters: [
+                                                            FilteringTextInputFormatter
+                                                                .allow(RegExp(
+                                                                    r'^\d+\.?\d{0,3}')),
+                                                            TextInputFormatter.withFunction(
+                                                                (oldValue,
+                                                                    newValue) {
+                                                              if (newValue
+                                                                  .text
+                                                                  .isEmpty) {
+                                                                return newValue; // Allow empty input
+                                                              }
+                                                              final int
+                                                                  value =
+                                                                  int.tryParse(newValue.text) ??
+                                                                      0;
+                                                              if (value <=
+                                                                  (data?.data?[index].maximumPayable?.maxWeight ??
+                                                                      0.0)) {
+                                                                return newValue; // Allow if value is less than or equal to 10000
+                                                              }
+                                                              return oldValue; // Reject the input if it exceeds 10000
+                                                            }),
+                                                          ],
                                                           decoration:
                                                               InputDecoration(
-                                                            contentPadding:
-                                                                EdgeInsets.symmetric(
-                                                                    vertical:
-                                                                        10.0,
-                                                                    horizontal:
-                                                                        10.0),
-                                                            hintText: "INR",
+                                                            contentPadding: const EdgeInsets
+                                                                .symmetric(
+                                                                vertical:
+                                                                    10.0,
+                                                                horizontal:
+                                                                    10.0),
+                                                            hintText:
+                                                                "Enter gram",
                                                             border:
                                                                 OutlineInputBorder(
                                                               borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          5),
+                                                                  BorderRadius.circular(
+                                                                      5),
                                                               borderSide:
-                                                                  BorderSide(
-                                                                      color:
-                                                                          grey5),
+                                                                  const BorderSide(
+                                                                      color: grey5),
                                                             ),
                                                             enabledBorder:
                                                                 OutlineInputBorder(
                                                               borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          5),
+                                                                  BorderRadius.circular(
+                                                                      5),
                                                               borderSide:
-                                                                  BorderSide(
-                                                                      color:
-                                                                          grey5),
+                                                                  const BorderSide(
+                                                                      color: grey5),
                                                             ),
                                                             fillColor:
-                                                                Colors.grey[50],
-                                                            filled: true,
+                                                                Colors.grey[
+                                                                    50],
+                                                            filled:
+                                                                true,
                                                           ),
-                                                          onChanged: (text) {
-                                                            var amount =
-                                                                text != ""
-                                                                    ? int.parse(
-                                                                        text)
-                                                                    : 0;
-                                                            if ((data
-                                                                        ?.data?[
-                                                                            index]
-                                                                        .maximumPayable
-                                                                        ?.maxAmount ??
-                                                                    0.0) >=
-                                                                amount
-                                                                    .toDouble()) {
-                                                              setState(() {
-                                                                amountCalculation(
-                                                                    index,
-                                                                    amount);
-
-                                                                // int.parse(
-                                                                //     data?.data?[index]
-                                                                //             .totalAmount ??
-                                                                //         "0");
-                                                              });
-                                                            } else {}
-                                                          },
                                                         ),
-                                                      )
-                                                    : (data
-                                                                    ?.data?[
-                                                                        index]
-                                                                    .amountDenom
-                                                                    ?.length ??
-                                                                0) !=
-                                                            0
-                                                        ? Container(
-                                                            height: 35,
-                                                            width: (MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .width /
-                                                                    2) -
-                                                                60,
-                                                            padding: EdgeInsets
-                                                                .symmetric(
-                                                                    horizontal:
-                                                                        8.0),
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              border: Border.all(
-                                                                  color: Colors
-                                                                      .grey),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          5.0),
-                                                            ),
-                                                            child:
-                                                                DropdownButton<
-                                                                    String>(
-                                                              isExpanded: true,
-                                                              underline:
-                                                                  SizedBox(),
-                                                              value:
-                                                                  selectedAmount,
-                                                              icon: Icon(Icons
-                                                                  .keyboard_arrow_down_rounded),
-                                                              hint: Text(
-                                                                  "Amount"),
-                                                              items: amounts
-                                                                  .map((String
-                                                                      amount) {
-                                                                return DropdownMenuItem<
-                                                                    String>(
-                                                                  value: amount,
-                                                                  child: Text(
-                                                                      amount),
-                                                                );
-                                                              }).toList(),
-                                                              onChanged: ((data
-                                                                              ?.data?[
-                                                                                  index]
-                                                                              .isChecked ??
-                                                                          false) &&
-                                                                      data?.data?[index].limitType ==
-                                                                          1)
-                                                                  ? (String?
-                                                                      newValue) {
-                                                                      setState(
-                                                                          () {
-                                                                        selectedAmount =
-                                                                            newValue;
-
-                                                                        data?.data?[index].selectedAmount =
-                                                                            newValue;
-                                                                        var amount = newValue !=
-                                                                                ""
-                                                                            ? int.parse(newValue ??
-                                                                                "0")
-                                                                            : 0;
-
-                                                                        amountCalculation(
-                                                                            index,
-                                                                            amount);
-                                                                        // if ((data?.data?[index].maximumPayable?.maxAmount ??
-                                                                        //         0.0) >=
-                                                                        //     amount
-                                                                        //         .toDouble()) {
-                                                                        // data
-                                                                        //     ?.data?[
-                                                                        //         index]
-                                                                        //     .enterAmount = "${amount}";
-                                                                        // data
-                                                                        //     ?.data?[
-                                                                        //         index]
-                                                                        //     .totalAmount = "${amount}";
-
-                                                                        // totalAmount =
-                                                                        //     double.parse(data
-                                                                        //             ?.data?[
-                                                                        //                 index]
-                                                                        //             .totalAmount ??
-                                                                        //         "0.0");
-                                                                        // totalAmount = data
-                                                                        //     ?.data!
-                                                                        //     .map((item) => double.parse(item.totalAmount ??
-                                                                        //         "0"))
-                                                                        //     .reduce((a, b) =>
-                                                                        //         a +
-                                                                        //         b) as num;
-                                                                        // }
-                                                                      });
-                                                                    }
-                                                                  : null,
-                                                            ),
-                                                          )
-                                                        : (data
-                                                                        ?.data?[
-                                                                            index]
-                                                                        .weightDenom
-                                                                        ?.length ??
-                                                                    0) !=
-                                                                0
-                                                            ? Container(
-                                                                height: 35,
-                                                                width: (MediaQuery.of(context)
-                                                                            .size
-                                                                            .width /
-                                                                        2) -
-                                                                    60,
-                                                                padding: EdgeInsets
-                                                                    .symmetric(
-                                                                        horizontal:
-                                                                            8.0),
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  border: Border.all(
-                                                                      color: Colors
-                                                                          .grey),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              5.0),
-                                                                ),
-                                                                child:
-                                                                    DropdownButton<
-                                                                        String>(
-                                                                  isExpanded:
-                                                                      true,
-                                                                  underline:
-                                                                      SizedBox(),
-                                                                  value: data
-                                                                      ?.data?[
-                                                                          index]
-                                                                      .selectedGram,
-                                                                  icon: Icon(Icons
-                                                                      .keyboard_arrow_down_rounded),
-                                                                  hint: Text(
-                                                                      "Grams"),
-                                                                  items: data!
-                                                                      .data![
-                                                                          index]
-                                                                      .weightDenom!
-                                                                      .map((AmountDenom
-                                                                          amount) {
-                                                                    return DropdownMenuItem<
-                                                                        String>(
-                                                                      value: amount
-                                                                          .value,
-                                                                      child: Text(
-                                                                          amount.value ??
-                                                                              ""),
-                                                                    );
-                                                                  }).toList(),
-                                                                  onChanged: ((data.data?[index].isChecked ??
-                                                                              false) &&
-                                                                          data.data?[index].limitType ==
-                                                                              2)
-                                                                      ? (String?
-                                                                          newValue) {
-                                                                          setState(
-                                                                              () {
-                                                                            data.data?[index].selectedGram =
-                                                                                newValue;
-
-                                                                            double amount = newValue != ""
-                                                                                ? double.parse(newValue ?? "0.0")
-                                                                                : 0;
-
-                                                                            gramCalculation(index,
-                                                                                amount);
-                                                                            if ((data.data?[index].maximumPayable?.maxWeight ?? 0.0) >=
-                                                                                amount.toDouble()) {}
-                                                                          });
-                                                                        }
-                                                                      : null,
-                                                                ),
-                                                              )
-                                                            : Container(
-                                                                width: (MediaQuery.of(context)
-                                                                            .size
-                                                                            .width /
-                                                                        2) -
-                                                                    60,
-                                                                height: 35,
-                                                                child:
-                                                                    TextFormField(
-                                                                  validator:
-                                                                      (value) {
-                                                                    if (value ==
-                                                                            null ||
-                                                                        value
-                                                                            .isEmpty) {
-                                                                      return 'Please enter gram';
-                                                                    }
-                                                                    final intValue =
-                                                                        double.tryParse(
-                                                                            value);
-                                                                    if (intValue ==
-                                                                        null) {
-                                                                      return '';
-                                                                    }
-                                                                    if (intValue <=
-                                                                            1 ||
-                                                                        intValue >=
-                                                                            8) {
-                                                                      return '';
-                                                                    }
-                                                                    return null;
-                                                                  },
-                                                                  onChanged:
-                                                                      (value) {
-                                                                    double
-                                                                        amount =
-                                                                        value !=
-                                                                                ""
-                                                                            ? double.parse(value)
-                                                                            : 0;
-
-                                                                    if ((data?.data?[index].maximumPayable?.maxWeight ??
-                                                                            0.0) >=
-                                                                        amount
-                                                                            .toDouble()) {
-                                                                      setState(
-                                                                          () {
-                                                                        gramCalculation(
-                                                                            index,
-                                                                            amount);
-                                                                        // data
-                                                                        //     ?.data?[
-                                                                        //         index]
-                                                                        //     .enterAmount = "${amount}";
-                                                                        // data
-                                                                        //     ?.data?[
-                                                                        //         index]
-                                                                        //     .totalAmount = "${amount * (data.data?[index].todaysRate ?? 0.0)}";
-
-                                                                        // // totalAmount =
-                                                                        // //     double.parse(data
-                                                                        // //             ?.data?[
-                                                                        // //                 index]
-                                                                        // //             .totalAmount ??
-                                                                        // //         "0.0");
-                                                                        // totalAmount = data
-                                                                        //     ?.data!
-                                                                        //     .map((item) => double.parse(item.totalAmount ??
-                                                                        //         "0"))
-                                                                        //     .reduce((a, b) =>
-                                                                        //         a +
-                                                                        //         b) as num;
-                                                                      });
-                                                                    }
-                                                                  },
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .left,
-                                                                  enabled: (data
-                                                                              ?.data?[
-                                                                                  index]
-                                                                              .isChecked ??
-                                                                          false) &&
-                                                                      data?.data?[index]
-                                                                              .limitType ==
-                                                                          2,
-                                                                  keyboardType:
-                                                                      TextInputType.numberWithOptions(
-                                                                          decimal:
-                                                                              true),
-                                                                  inputFormatters: [
-                                                                    FilteringTextInputFormatter
-                                                                        .allow(RegExp(
-                                                                            r'^\d+\.?\d{0,3}')),
-                                                                    TextInputFormatter.withFunction(
-                                                                        (oldValue,
-                                                                            newValue) {
-                                                                      if (newValue
-                                                                          .text
-                                                                          .isEmpty) {
-                                                                        return newValue; // Allow empty input
-                                                                      }
-                                                                      final int
-                                                                          value =
-                                                                          int.tryParse(newValue.text) ??
-                                                                              0;
-                                                                      if (value <=
-                                                                          (data?.data?[index].maximumPayable?.maxWeight ??
-                                                                              0.0)) {
-                                                                        return newValue; // Allow if value is less than or equal to 10000
-                                                                      }
-                                                                      return oldValue; // Reject the input if it exceeds 10000
-                                                                    }),
-                                                                  ],
-                                                                  decoration:
-                                                                      InputDecoration(
-                                                                    contentPadding: EdgeInsets.symmetric(
-                                                                        vertical:
-                                                                            10.0,
-                                                                        horizontal:
-                                                                            10.0),
-                                                                    hintText:
-                                                                        "Enter gram",
-                                                                    border:
-                                                                        OutlineInputBorder(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              5),
-                                                                      borderSide:
-                                                                          BorderSide(
-                                                                              color: grey5),
-                                                                    ),
-                                                                    enabledBorder:
-                                                                        OutlineInputBorder(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              5),
-                                                                      borderSide:
-                                                                          BorderSide(
-                                                                              color: grey5),
-                                                                    ),
-                                                                    fillColor:
-                                                                        Colors.grey[
-                                                                            50],
-                                                                    filled:
-                                                                        true,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                              ],
-                                            ),
-                                            const SizedBox(height: 10),
-                                          ],
-                                        ),
+                                                      ),
                                       ],
                                     ),
+                                    const SizedBox(height: 10),
                                     data?.data?[index].convertToWeight == true
                                         ? Row(
                                             children: [
-                                              Container(
+                                              SizedBox(
                                                 width:
                                                     (MediaQuery.sizeOf(context)
                                                                 .width /
@@ -930,14 +924,14 @@ class _Online_Emi_Payment_ScreenState
                                               ),
                                             ],
                                           )
-                                        : SizedBox.shrink(),
+                                        : const SizedBox.shrink(),
                                     const SizedBox(height: 10),
 
                                     Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        Container(
+                                        SizedBox(
                                           width: (MediaQuery.sizeOf(context)
                                                       .width /
                                                   2) -
@@ -998,7 +992,7 @@ class _Online_Emi_Payment_ScreenState
                                                     });
                                                   }
                                                 },
-                                                child: Container(
+                                                child: SizedBox(
                                                   width:
                                                       ((MediaQuery.of(context)
                                                                       .size
@@ -1006,7 +1000,7 @@ class _Online_Emi_Payment_ScreenState
                                                                   2) -
                                                               35) /
                                                           3,
-                                                  child: Icon(
+                                                  child: const Icon(
                                                     Icons.remove,
                                                     size: 15,
                                                   ),
@@ -1088,7 +1082,7 @@ class _Online_Emi_Payment_ScreenState
                                                     }
                                                   }
                                                 },
-                                                child: Container(
+                                                child: SizedBox(
                                                   width:
                                                       ((MediaQuery.of(context)
                                                                       .size
@@ -1096,7 +1090,7 @@ class _Online_Emi_Payment_ScreenState
                                                                   2) -
                                                               35) /
                                                           3,
-                                                  child: Icon(
+                                                  child: const Icon(
                                                     Icons.add,
                                                     size: 15,
                                                   ),
@@ -1112,7 +1106,7 @@ class _Online_Emi_Payment_ScreenState
                                     data?.data?[index].discountValue != 0
                                         ? Row(
                                             children: [
-                                              Container(
+                                              SizedBox(
                                                 width:
                                                     (MediaQuery.sizeOf(context)
                                                                 .width /
@@ -1132,13 +1126,13 @@ class _Online_Emi_Payment_ScreenState
                                                       fontSize: 14)),
                                             ],
                                           )
-                                        : SizedBox.shrink(),
+                                        : const SizedBox.shrink(),
                                     const SizedBox(height: 8),
 
                                     data?.data?[index].taxPercentage != null
                                         ? Row(
                                             children: [
-                                              Container(
+                                              SizedBox(
                                                 width:
                                                     (MediaQuery.sizeOf(context)
                                                                 .width /
@@ -1158,7 +1152,7 @@ class _Online_Emi_Payment_ScreenState
                                               ),
                                             ],
                                           )
-                                        : SizedBox.shrink(),
+                                        : const SizedBox.shrink(),
                                     const SizedBox(height: 8),
 
                                     // Row(
@@ -1182,7 +1176,7 @@ class _Online_Emi_Payment_ScreenState
                                     // ),
                                     Row(
                                       children: [
-                                        Container(
+                                        SizedBox(
                                           width: (MediaQuery.sizeOf(context)
                                                       .width /
                                                   2) -
@@ -1212,7 +1206,8 @@ class _Online_Emi_Payment_ScreenState
                     // const SizedBox(height: 35),
                     // HelpContainer(context, Color: pink4),
                     // const SizedBox(height: 10),
-                    SizedBox(height: 200), // Add extra space at the bottom
+                    const SizedBox(height: 200),
+                    // Add extra space at the bottom
                   ],
                 ),
               ),
@@ -1228,7 +1223,7 @@ class _Online_Emi_Payment_ScreenState
               child: Column(
                 children: [
                   Total_Online(),
-                  totalAmount == 0 ? SizedBox(height: 50) : Container(),
+                  totalAmount == 0 ? const SizedBox(height: 50) : Container(),
                   totalAmount == 0
                       ? Container()
                       : Padding(
@@ -1340,7 +1335,7 @@ class _Online_Emi_Payment_ScreenState
       }, error: (Object error, StackTrace stackTrace) {
         return Text("ERROR, $error");
       }, loading: () {
-        return Center(child: CircularProgressIndicator());
+        return const Center(child: CircularProgressIndicator());
       }),
     );
   }

@@ -90,7 +90,7 @@ class _New_SSP_Plan4_ScreenState extends State<New_SSP_Plan4_Screen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Grammage_Plan_Screen()));
+                                builder: (context) => const Grammage_Plan_Screen()));
                         // showModalBottomSheet(context: (context), builder: (context)=>
                         //     Container(
                         //       height:MediaQuery.sizeOf(context).height/1,
@@ -262,7 +262,7 @@ class _New_SSP_Plan4_ScreenState extends State<New_SSP_Plan4_Screen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //PLAN HEADINGS AND CONTENTS
-                  Content(content: 'Terms & Conditions'),
+                  // Content(content: 'Terms & Conditions'),
 
                   TandCRow(heading1: 'VA Waiver', content1: '“0% VA “'),
                   TandCRow(
@@ -297,8 +297,8 @@ class _New_SSP_Plan4_ScreenState extends State<New_SSP_Plan4_Screen> {
               ),
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(top: 10, bottom: 10),
+            const Padding(
+              padding: EdgeInsets.only(top: 10, bottom: 10),
               child: Divider(
                 indent: 20,
                 endIndent: 20,
@@ -311,7 +311,7 @@ class _New_SSP_Plan4_ScreenState extends State<New_SSP_Plan4_Screen> {
                 Container(
                   height: 800,
                   width: MediaQuery.sizeOf(context).width,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       image: DecorationImage(
                           fit: BoxFit.fill,
                           image: AssetImage('lib/assets/stackimage.png'))),

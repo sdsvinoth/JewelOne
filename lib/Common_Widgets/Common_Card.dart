@@ -21,14 +21,13 @@ Widget Plan_Card(context, {required String Img, required String planT}) {
         ),
         Padding(
           padding: const EdgeInsets.only(left: 5, right: 5),
-          child: Container(
+          child: SizedBox(
               width: MediaQuery.sizeOf(context).width / 4,
               child: Text(
                 planT,
                 style: planST,
                 maxLines: 2,
                 textAlign: TextAlign.center,
-
               )),
         ),
       ],
@@ -48,13 +47,13 @@ Widget Wallet_Card(
   required void Function()? paynow,
   required void Function()? payMentHistory,
 }) {
-  return  Padding(
+  return Padding(
     padding: const EdgeInsets.only(left: 10),
     child: Card(
       elevation: 5,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Container(
-        width: width,
+        width: 305,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             border: Border.all(width: 1, color: gradient2),
@@ -76,31 +75,30 @@ Widget Wallet_Card(
                       customername,
                       style: UserST,
                     ),
-                    Container(
+                    const SizedBox(
                       width: 60,
-                      child: const Divider(
+                      child: Divider(
                         thickness: 2,
                         color: gradient2,
                       ),
                     ),
 
                     const SizedBox(height: 10),
-
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Container(
-                          width: (MediaQuery.sizeOf(context).width / 2) - 45,
+                        SizedBox(
+                          width: (MediaQuery.sizeOf(context).width / 2) - 70,
                           child: Row(
                             children: [
-                              Container(
+                              SizedBox(
                                   height: 25,
                                   width: 25,
                                   child: ImgPathPng('accountnum.png')),
                               Padding(
                                 padding:
-                                    const EdgeInsets.only(left: 5, right: 5),
+                                const EdgeInsets.only(left: 5, right: 5),
                                 child: Container(
                                   width: 3,
                                   color: gradient2,
@@ -111,7 +109,7 @@ Widget Wallet_Card(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Account Number',
+                                    'Account No',
                                     style: walletT3,
                                   ),
                                   Text(
@@ -127,7 +125,7 @@ Widget Wallet_Card(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(
+                            SizedBox(
                                 height: 25,
                                 width: 25,
                                 child: ImgPathPng('paidinstall.png')),
@@ -161,17 +159,17 @@ Widget Wallet_Card(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          width: (MediaQuery.sizeOf(context).width / 2) - 45,
+                        SizedBox(
+                          width: (MediaQuery.sizeOf(context).width / 2) - 70,
                           child: Row(
                             children: [
-                              Container(
+                              SizedBox(
                                   height: 25,
                                   width: 25,
                                   child: ImgPathPng('totalpaid.png')),
                               Padding(
                                 padding:
-                                    const EdgeInsets.only(left: 5, right: 5),
+                                const EdgeInsets.only(left: 5, right: 5),
                                 child: Container(
                                   width: 3,
                                   color: gradient2,
@@ -222,7 +220,6 @@ Widget Wallet_Card(
                         ),
                       ],
                     ),
-
                     const SizedBox(height: 10),
                   ],
                 ),
@@ -235,16 +232,16 @@ Widget Wallet_Card(
                     children: [
                       InkWell(
                         onTap: payMentHistory,
-                        child: Container(
-                            width: (MediaQuery.sizeOf(context).width / 2) - 50,
+                        child: SizedBox(
+                            // width: (MediaQuery.sizeOf(context).width / 2) - 15,
                             child: Center(
                                 child: Padding(
-                              padding: const EdgeInsets.only(bottom: 10),
-                              child: Text(
-                                "Payment History",
-                                style: ButtonT2,
-                              ),
-                            ))),
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: Text(
+                            "Payment History",
+                            style: ButtonT2,
+                          ),
+                        ))),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 10),
@@ -256,8 +253,8 @@ Widget Wallet_Card(
                       ),
                       InkWell(
                         onTap: paynow,
-                        child: Container(
-                            width: (MediaQuery.sizeOf(context).width / 2) - 70,
+                        child: SizedBox(
+                            width: (MediaQuery.sizeOf(context).width / 2) - 80,
                             child: Center(
                                 child: Padding(
                               padding: const EdgeInsets.only(bottom: 10),
@@ -270,8 +267,7 @@ Widget Wallet_Card(
                     ],
                   )
                 ],
-              ),
-
+              )
               // Container(
               //   margin: EdgeInsets.only(top: 20,bottom: 20),
               //   width:MediaQuery.sizeOf(context).width/2.5,

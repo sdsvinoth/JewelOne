@@ -16,10 +16,10 @@ class New_SSP_Plan2_Screen extends StatefulWidget {
 }
 
 class _New_SSP_Plan2_ScreenState extends State<New_SSP_Plan2_Screen> {
-  TextEditingController _amount = TextEditingController();
-  TextEditingController _MobileNumber = TextEditingController();
-  TextEditingController _message = TextEditingController();
-  TextEditingController _email = TextEditingController();
+  final TextEditingController _amount = TextEditingController();
+  final TextEditingController _MobileNumber = TextEditingController();
+  final TextEditingController _message = TextEditingController();
+  final TextEditingController _email = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

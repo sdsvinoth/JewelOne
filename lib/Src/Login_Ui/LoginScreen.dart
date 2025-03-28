@@ -12,6 +12,7 @@ import 'package:jewelone/utilits/Common_Colors.dart';
 import 'package:jewelone/utilits/Generic.dart';
 import 'package:jewelone/utilits/Loading_Overlay.dart';
 import 'package:jewelone/utilits/Text_Style.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -21,8 +22,8 @@ class LoginScreen extends ConsumerStatefulWidget {
 }
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
-  TextEditingController _phoneNumber = TextEditingController();
-  TextEditingController _password = TextEditingController();
+  final TextEditingController _phoneNumber = TextEditingController();
+  final TextEditingController _password = TextEditingController();
 
   bool _obscurePassword = true;
   bool _isChecked = false; // Initially hide the password
@@ -40,6 +41,35 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$])(?=.*[0-9]).*$');
   RegExp passwordLength =
       RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$])(?=.*[0-9]).{8,15}$');
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSavedCredentials();
+  }
+
+  void _loadSavedCredentials() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _isChecked = prefs.getBool('rememberMe') ?? false;
+      if (_isChecked) {
+        _phoneNumber.text = prefs.getString('phoneNumber') ?? "";
+        _password.text = prefs.getString('password') ?? "";
+      }
+    });
+  }
+  void _saveCredentials() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (_isChecked) {
+      await prefs.setString('phoneNumber', _phoneNumber.text);
+      await prefs.setString('password', _password.text);
+      await prefs.setBool('rememberMe', true);
+    } else {
+      await prefs.remove('phoneNumber');
+      await prefs.remove('password');
+      await prefs.setBool('rememberMe', false);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +96,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         // Your image goes here
-        SizedBox(
+        const SizedBox(
           height: 50,
         ),
         //SKIP
@@ -97,7 +127,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         //     ],
         //   ),
         // ),
-        SizedBox(
+        const SizedBox(
           height: 40,
         ),
         //LOGO
@@ -105,13 +135,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             child: Container(
                 height: MediaQuery.sizeOf(context).width / 3.5,
                 child: ImgPathPng("logo.png"))),
-        SizedBox(
+        const SizedBox(
           height: 50,
         ),
 
         //MOBILE NUMBER
         Heading_Text(context, Title: "Welcome Back!"),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         // Phone Number Text and TextField
@@ -134,12 +164,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               }
               return null;
             },
-            prefixIcon: Icon(
+            prefixIcon: const Icon(
               Icons.phone_android_sharp,
               color: white11,
             )),
 
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         // Password Text and TextField
@@ -164,7 +194,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           },
         ),
 
-        SizedBox(height: 15),
+        const SizedBox(height: 15),
 
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -174,6 +204,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               setState(() {
                 setState(() => _isChecked = !_isChecked);
               });
+              _saveCredentials();
             }, onTap: () {}, checkBoxText: 'Remember me', width: null),
             const Spacer(),
             InkWell(
@@ -181,7 +212,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => Forgot_Password_Screen()));
+                        builder: (context) => const Forgot_Password_Screen()));
               },
               child: Text(
                 'Forgot Password?',
@@ -190,7 +221,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             ),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
 
         // Login Button with Gradient
         CommonContainerButton(context, onPress: () async {
@@ -230,7 +261,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             }
           }
         }, titleName: 'Login'),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
 
         // Don't have an account? Sign Up Now Text
         Row(
@@ -245,7 +276,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => Create_Account_Screen()));
+                        builder: (context) => const Create_Account_Screen()));
               },
               child: Text(
                 'Sign Up Now',
@@ -254,7 +285,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             ),
           ],
         ),
-        SizedBox(height: 40),
+        const SizedBox(height: 40),
 
         // Trouble Logging in? Please call: Text
         // Center(

@@ -264,7 +264,7 @@ class _New_SSP_Plan3_ScreenState extends State<New_SSP_Plan3_Screen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //PLAN HEADINGS AND CONTENTS
-                  Content(content: 'Terms & Conditions'),
+                  // Content(content: 'Terms & Conditions'),
                   Heading(heading: 'A. The gold ornaments / coins / bars'),
                   Content(
                       content:

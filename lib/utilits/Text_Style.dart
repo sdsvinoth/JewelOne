@@ -63,7 +63,7 @@ TextStyle bottomotext = const TextStyle(
 //USER NAME ST
 TextStyle UserST = const TextStyle(
     fontFamily: 'Metropolis',
-    fontSize: 16,
+    fontSize: 18,
     color: Color.fromRGBO(255, 255, 255, 1),
     fontWeight: FontWeight.w800);
 
@@ -88,9 +88,9 @@ TextStyle walletT2 = const TextStyle(
 
 TextStyle walletT3 = const TextStyle(
     fontFamily: 'Inter',
-    fontSize: 14,
+    fontSize: 13,
     color: Color.fromRGBO(255, 255, 255, 1),
-    fontWeight: FontWeight.w500);
+    fontWeight: FontWeight.bold);
 
 TextStyle plandetailT = const TextStyle(
     fontFamily: 'Metropolis',
@@ -165,6 +165,12 @@ TextStyle delete = const TextStyle(
     color: Color.fromRGBO(255, 0, 0, 1),
     fontWeight: FontWeight.w500);
 
+TextStyle title1 = const TextStyle(
+    fontFamily: 'Metropolis',
+    fontSize: 15,
+    color: Colors.purple,
+    fontWeight: FontWeight.bold);
+
 TextStyle Textfield_Style = const TextStyle(
     fontFamily: 'Inter',
     fontSize: 14,
@@ -194,7 +200,7 @@ TextStyle ButtonT2 = const TextStyle(
     fontFamily: 'Inter',
     fontSize: 14,
     color: white1,
-    fontWeight: FontWeight.w600);
+    fontWeight: FontWeight.bold);
 
 TextStyle ButtonT3 = const TextStyle(
     fontFamily: 'Inter',
@@ -379,9 +385,9 @@ TextStyle rate = const TextStyle(
 
 TextStyle success = const TextStyle(
     fontFamily: 'Metropolis',
-    fontSize: 14,
+    fontSize: 13,
     color: Color.fromRGBO(12, 167, 80, 1),
-    fontWeight: FontWeight.w700);
+    fontWeight: FontWeight.bold);
 
 TextStyle rate2 = const TextStyle(
     fontFamily: 'Metropolis',
@@ -566,6 +572,11 @@ TextStyle TandC = const TextStyle(
 TextStyle GPlanT = const TextStyle(
     fontFamily: 'Metropolis',
     fontSize: 18,
+    color: Color.fromRGBO(159, 33, 44, 1),
+    fontWeight: FontWeight.w600);
+TextStyle GPlanT2 = const TextStyle(
+    fontFamily: 'Metropolis',
+    fontSize: 15,
     color: Color.fromRGBO(159, 33, 44, 1),
     fontWeight: FontWeight.w600);
 

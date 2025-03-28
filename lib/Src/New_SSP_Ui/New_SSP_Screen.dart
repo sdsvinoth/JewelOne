@@ -105,16 +105,16 @@ class _New_SSP_ScreenState extends ConsumerState<New_SSP_Screen> {
                       const SizedBox(
                         height: 10,
                       ),
-                      Center(
-                        child: AnimatedSmoothIndicator(
-                          activeIndex: myCurrentPage,
-                          count: carouselItems.length,
-                          effect: const ExpandingDotsEffect(
-                              dotHeight: 5,
-                              dotWidth: 5,
-                              activeDotColor: gradient1),
-                        ),
-                      ),
+                      // Center(
+                      //   child: AnimatedSmoothIndicator(
+                      //     activeIndex: myCurrentPage,
+                      //     count: carouselItems.length,
+                      //     effect: const ExpandingDotsEffect(
+                      //         dotHeight: 5,
+                      //         dotWidth: 5,
+                      //         activeDotColor: gradient1),
+                      //   ),
+                      // ),
                       const SizedBox(
                         height: 20,
                       ),

@@ -54,6 +54,7 @@ dependencies:
   win32: ^5.7.2
   flutter_screenutil: ^5.9.2
   shared_preferences: ^2.3.5
+  dropdown_button2:
 
 dev_dependencies:
   flutter_test:

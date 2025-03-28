@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jewelone/Common_Widgets/Common_Button.dart';
@@ -23,6 +24,7 @@ class Grammage_Plan_Screen extends ConsumerStatefulWidget {
 class _Grammage_Plan_ScreenState extends ConsumerState<Grammage_Plan_Screen> {
   bool? isCheked = false;
   String? name;
+
   //LOCATION
   String? locationval;
   int? branch_id;
@@ -55,6 +57,7 @@ class _Grammage_Plan_ScreenState extends ConsumerState<Grammage_Plan_Screen> {
     final activelocationdata = ref.watch(ActivelocationProvider);
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: white2,
       appBar: Custom_AppBar(
         isNav: true,
@@ -116,9 +119,12 @@ class _Grammage_Plan_ScreenState extends ConsumerState<Grammage_Plan_Screen> {
                             ),
                           ),
                           SSPtextFormField(
-                              Controller: customerNameController,
-                              hintText: "Eg: Your Daughter's name: “Meena”",
-                              keyboardtype: TextInputType.text),
+                            controller: customerNameController,
+                            hintText: "Eg: Your Daughter's name: “Meena”",
+                            keyboardtype: TextInputType.text,
+                            textCapitalization: TextCapitalization
+                                .words, // First letter of each word is capitalized
+                          ),
                         ],
                       ),
                     ),
@@ -167,54 +173,64 @@ class _Grammage_Plan_ScreenState extends ConsumerState<Grammage_Plan_Screen> {
                 //   ),
                 // ),
 
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-
-                activelocationdata.when(data: (data) {
-                  return Container(
-                    width: MediaQuery.sizeOf(context).width,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: white1,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Select Branch',
-                            style: radioST,
-                          ),
-
-                          const Spacer(),
-                          //SELECT LOCATION
-                          dropDownField(
-                            context,
-                            value: locationval,
-                            listValue: data?.data
-                                ?.map((toElement) => toElement.name ?? "")
-                                .toList(),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                locationval = newValue;
-                                branch_id = data?.data
-                                        ?.firstWhere(
-                                            (test) => test.name == newValue)
-                                        .id_branch ??
-                                    0;
-                              });
-                            },
-                          ),
-                        ],
+                activelocationdata.when(
+                  data: (data) {
+                    return Container(
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: white1,
                       ),
-                    ),
-                  );
-                }, error: (Object error, StackTrace stackTrace) {
-                  return Text("ERROR $error");
-                }, loading: () {
-                  return Center(child: CircularProgressIndicator());
-                }),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20, right: 10),
+                        child: Row(
+                          children: [
+                            // Select Branch Text
+                            Text(
+                              'Select Branch',
+                              style: radioST,
+                            ),
+                            const Spacer(),
+                            DropdownButtonHideUnderline(
+                              child: DropdownButton2<String>(
+                                value: locationval,
+                                items: (data?.data ?? [])
+                                    .map(
+                                        (toElement) => DropdownMenuItem<String>(
+                                              value: toElement.name ?? "",
+                                              child: Text(toElement.name ?? ""),
+                                            ))
+                                    .toList(),
+                                onChanged: (String? newValue) {
+                                  if (newValue != null) {
+                                    setState(() {
+                                      locationval = newValue;
+                                      branch_id = data?.data
+                                              ?.firstWhere((test) =>
+                                                  test.name == newValue)
+                                              .id_branch ??
+                                          0;
+                                    });
+                                  }
+                                },
+                              style: GPlanT2,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                  error: (Object error, StackTrace stackTrace) {
+                    return Text("ERROR: $error");
+                  },
+                  loading: () {
+                    return const Center(child: CircularProgressIndicator());
+                  },
+                ),
 
                 //INFO
                 Padding(
@@ -224,7 +240,9 @@ class _Grammage_Plan_ScreenState extends ConsumerState<Grammage_Plan_Screen> {
                     children: [
                       ImgPathSvg('info2.svg'),
                       Padding(
-                        padding: const EdgeInsets.only(left: 1,),
+                        padding: const EdgeInsets.only(
+                          left: 1,
+                        ),
                         child: Text(
                           'Tenure for the scheme completion is 11 month',
                           style: radioST,
@@ -237,30 +255,33 @@ class _Grammage_Plan_ScreenState extends ConsumerState<Grammage_Plan_Screen> {
 
                 //CHECK BOX
                 Row(
-                    mainAxisAlignment: MainAxisAlignment.start, // Align everything to the left
-                    children: [
-                      Checkbox(
-                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        visualDensity: VisualDensity(horizontal: -4, vertical: -4),
-                        side: BorderSide(width: 1, color: checkbox),
-                        value: isCheked,
-                        activeColor: gradient1,
-                        onChanged: (newvalue) {
-                          setState(() {
-                            isCheked = newvalue!;
-                          });
-                        },
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  // Align everything to the left
+                  children: [
+                    Checkbox(
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      visualDensity:
+                          const VisualDensity(horizontal: -4, vertical: -4),
+                      side: const BorderSide(width: 1, color: checkbox),
+                      value: isCheked,
+                      activeColor: gradient1,
+                      onChanged: (newvalue) {
+                        setState(() {
+                          isCheked = newvalue!;
+                        });
+                      },
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 1,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 1,),
-                        child: Text(
-                          'I agree with terms & conditions',
-                          style: radioST,
-                        ),
+                      child: Text(
+                        'I agree with terms & conditions',
+                        style: radioST,
                       ),
-                    ],
-                  ),
-
+                    ),
+                  ],
+                ),
 
                 // Row(
                 //   mainAxisAlignment: MainAxisAlignment.start,

@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:jewelone/Common_Widgets/Image_Path.dart';
@@ -685,21 +686,22 @@ Widget dropDownField(
   );
 }
 
-Widget SSPtextFormField(
-    {TextEditingController? Controller,
-      String? Function(String?)? validating,
-      bool? isEnabled,
-      void Function(String)? onChanged,
-      required String hintText,
-      Widget? prefixIcon,
-      List<TextInputFormatter>? inputFormatters,
-      required TextInputType keyboardtype}) {
+Widget SSPtextFormField({
+  TextEditingController? controller,
+  String? Function(String?)? validating,
+  bool? isEnabled,
+  void Function(String)? onChanged,
+  required String hintText,
+  Widget? prefixIcon,
+  List<TextInputFormatter>? inputFormatters,
+  required TextInputType keyboardtype,
+  TextCapitalization textCapitalization = TextCapitalization.sentences, // Corrected type
+}) {
   return Container(
-    // height: 50,
     child: TextFormField(
       enabled: isEnabled,
-      controller: Controller,
-      textCapitalization: TextCapitalization.none,
+      controller: controller,
+      textCapitalization: textCapitalization, // Corrected usage
       inputFormatters: inputFormatters,
       validator: validating,
       decoration: InputDecoration(
@@ -725,6 +727,7 @@ Widget SSPtextFormField(
     ),
   );
 }
+
 
 Widget dropDownFieldprofileedit(
     context, {
@@ -772,8 +775,8 @@ Widget dropDownFieldprofileedit(
 }
 
 Widget dropDownFieldRightArrow(
-    context, {
-      required dynamic width,
+    BuildContext context, {
+      required double width,
       required String? value,
       required List<String>? listValue,
       required void Function(String?)? onChanged,
@@ -782,39 +785,43 @@ Widget dropDownFieldRightArrow(
   return Container(
     height: 45,
     width: width,
-    decoration:
-    BoxDecoration(
+    decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(5),
       color: backGroundColor,
-      border: Border.all(width: 1,color: borderclr),
+      border: Border.all(width: 1, color: borderclr),
     ),
-    child: DropdownButtonFormField<String>(
-      value: value,
-      isExpanded: true,
-      decoration: InputDecoration(
-        border: InputBorder.none,
-        contentPadding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-        hintStyle: lighttext,
-        hintText: hintT,
-      ),
-      icon: const Padding(
-        padding: EdgeInsets.only(right: 10,),
-        child: Icon(
-          Icons.arrow_forward_ios,
-          color: Colors.black,
-          size: 20,
+    child: DropdownButtonHideUnderline(
+      child: DropdownButton2<String>(
+        value: value,
+        isExpanded: true,
+        hint: Text(hintT, style: lighttext),
+        items: listValue?.map((String option) {
+          return DropdownMenuItem<String>(
+            value: option,
+            child: Center(child: Text(option, style: radioST)),
+          );
+        }).toList(),
+        onChanged: onChanged,
+        buttonStyleData: ButtonStyleData(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          width: width,
+          decoration: BoxDecoration(
+            color: backGroundColor,
+            borderRadius: BorderRadius.circular(5),
+          ),
+        ),
+        iconStyleData: const IconStyleData(
+          icon: Icon(
+            Icons.arrow_forward_ios, // Right arrow icon
+            color: Colors.black,
+            size: 20,
+          ),
         ),
       ),
-      items: listValue?.map((String option) {
-        return DropdownMenuItem<String>(
-          value: option,
-          child: Center(child: Text(option,style: radioST,)),
-        );
-      }).toList(),
-      onChanged: onChanged,
     ),
   );
 }
+
 
 Widget homedropDownFieldprofileedit(
     context, {

@@ -61,135 +61,84 @@ class _CloseAccountScreenState extends ConsumerState<CloseAccountScreen> {
                               child: Padding(
                                 padding: const EdgeInsets.only(
                                     left: 15, right: 15, top: 10, bottom: 10),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                child:      Column(
                                   children: [
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween, // Ensures space between elements
                                       children: [
-                                        Text(
-                                          data?.data?[index].schemeName ?? "",
-                                          style: Goldweight,
+                                        Row(
+                                          children: [
+                                            Text(
+                                              data?.data?[index].schemeName ?? "",
+                                              style: Goldweight,
+                                            ),
+                                          ],
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              top: 10, bottom: 10),
-                                          child: Row(
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 10),
-                                                child: ImgPathSvg(
-                                                    'Greenright.svg'),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 10),
-                                                child: Text(
-                                                  data?.data?[index]
-                                                          .closingAmount ??
-                                                      "",
-                                                  style: bottomotext,
-                                                ),
-                                              ),
-                                              Container(
-                                                //width: MediaQuery.sizeOf(context).width/8,
-                                                decoration: BoxDecoration(
-                                                    color: grey5,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            50)),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 10,
-                                                          right: 10,
-                                                          top: 5,
-                                                          bottom: 5),
-                                                  child: Center(
-                                                      child: Text(
-                                                    "Closed",
-                                                    style: success,
-                                                  )),
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        Text(
-                                          'Gold Rate : ${data?.data?[index].closingWeight ?? ""}',
-                                          style: planST,
-                                        ),
-                                      ],
-                                    ),
-                                    const Spacer(),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      //crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
                                         Text(
                                           data?.data?[index].schemeAccNumber ??
                                               "",
                                           style: rate2,
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              top: 10, bottom: 10),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.end,
-                                            children: [
-                                              Text(
-                                                data?.data?[index]
-                                                        .closingDate ??
-                                                    "",
-                                                style: planST,
-                                              ),
-                                              // Container(
-                                              //   margin:
-                                              //       EdgeInsets.only(left: 10),
-                                              //   //width: MediaQuery.sizeOf(context).width/8,
-                                              //   decoration: BoxDecoration(
-                                              //       color: grey5,
-                                              //       borderRadius:
-                                              //           BorderRadius.circular(
-                                              //               50)),
-                                              //   child: Padding(
-                                              //     padding:
-                                              //         const EdgeInsets.only(
-                                              //             left: 15,
-                                              //             right: 15,
-                                              //             top: 2,
-                                              //             bottom: 2),
-                                              //     child: Center(
-                                              //         child: Text(
-                                              //       data?.data?[index]
-                                              //               .accountName ??
-                                              //           "",
-                                              //       style: planST,
-                                              //     )),
-                                              //   ),
-                                              // ),
-                                            ],
+                                      ],
+                                    ),
+                                    const SizedBox(height: 5),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween, // Ensures space between elements
+                                      children: [
+                                        Row(
+                                          children: [
+                                            ImgPathSvg('Greenright.svg'),
+                                            const SizedBox(width: 20), // Space between image and text
+                                            Text(
+                                              data?.data?[index]
+                                                  .closingAmount ??
+                                                  "",
+                                              style: bottomotext,
+                                            ),
+                                          ],
+                                        ),
+                                        Container(
+                                          width: MediaQuery.sizeOf(context).width / 5,
+                                          decoration: BoxDecoration(
+                                            color: grey5,
+                                            borderRadius: BorderRadius.circular(50),
                                           ),
+                                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                          child:  Center(
+                                              child: Text(
+                                                "Closed",
+                                                style: success,
+                                              )),
+                                        ),
+                                        Text(
+                                          data?.data?[index]
+                                              .closingDate ??
+                                              "",
+                                          style: planST,
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 5),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween, // Ensures space between elements
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Gold Rate : ${data?.data?[index].closingWeight ?? ""}',
+                                              style: planST,
+                                            ),
+                                          ],
                                         ),
                                         Text(
                                           'Gold Weight : ${data?.data?[index].closingWeight ?? ""} g',
                                           style: planST,
                                         )
                                       ],
-                                    )
+                                    ),
                                   ],
                                 ),
+
                               ),
                             ),
                           );

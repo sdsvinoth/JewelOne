@@ -20,7 +20,7 @@ class Forgot_Password_Screen extends ConsumerStatefulWidget {
 
 class _Forgot_Password_ScreenState extends ConsumerState<Forgot_Password_Screen> {
 
-  TextEditingController _email = TextEditingController();
+  final TextEditingController _phoneNumber = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -64,24 +64,28 @@ class _Forgot_Password_ScreenState extends ConsumerState<Forgot_Password_Screen>
 
         Padding(
           padding: const EdgeInsets.only(top: 30,bottom: 30),
-          child: textFormField(
-              hintText: 'Enter your Email',
-              keyboardtype: TextInputType.text,
-              inputFormatters: null,
-              Controller: _email,
+          child:  textFormField(
+            // isEnabled: false,
+              hintText: "Phone Number",
+              keyboardtype: TextInputType.phone,
+              Controller: _phoneNumber,
+              inputFormatters: [
+                LengthLimitingTextInputFormatter(10),
+                FilteringTextInputFormatter.digitsOnly
+              ],
+              onChanged: null,
               validating: (value) {
                 if (value!.isEmpty) {
-                  return "Please Enter a Email Address";
-                } else if (!RegExp(
-                    r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
-                    .hasMatch(value)) {
-                  return "Please Enter a Valid Email Address";
+                  return 'Please Enter a Phone Number';
+                } else if (!RegExp(r'^[0-9]{10}$').hasMatch(value)) {
+                  return 'Please enter a valid 10-digit Phone Number';
                 }
                 return null;
               },
-              onChanged: null,
-              prefixIcon: Icon(Icons.mail,color: grey1,)
-          ),
+              prefixIcon: const Icon(
+                Icons.phone_android_sharp,
+                color: white11,
+              )),
         ),
 
         // BUTTON
@@ -91,7 +95,7 @@ class _Forgot_Password_ScreenState extends ConsumerState<Forgot_Password_Screen>
             LoadingOverlay.show(context);
 
             Map<String, dynamic> formData = {
-              "user": _email.text
+              "user": _phoneNumber.text
             };
 
             final result = await ref.read(ForgotpasswordPostProvider(formData).future);
@@ -102,7 +106,7 @@ class _Forgot_Password_ScreenState extends ConsumerState<Forgot_Password_Screen>
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => Verify_OTP_Screen(Email_id: _email.text,)));
+                      builder: (context) => Verify_OTP_Screen(Mobile_no: _phoneNumber.text,)));
             } else {
               // Handle failure
               ShowToastMessage("Invalid Email");

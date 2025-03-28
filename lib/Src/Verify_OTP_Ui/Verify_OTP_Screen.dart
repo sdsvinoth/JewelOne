@@ -1,11 +1,10 @@
 import 'dart:async';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jewelone/Common_Widgets/Common_Button.dart';
 import 'package:jewelone/Common_Widgets/Image_Path.dart';
-import 'package:jewelone/Common_Widgets/Text_Form_Field.dart';
 import 'package:jewelone/Src/Create_New_Password_Ui/Create_Password_Screen.dart';
 import 'package:jewelone/utilits/ApiProvider.dart';
 import 'package:jewelone/utilits/Common_Colors.dart';
@@ -14,8 +13,8 @@ import 'package:jewelone/utilits/Loading_Overlay.dart';
 import 'package:jewelone/utilits/Text_Style.dart';
 
 class Verify_OTP_Screen extends ConsumerStatefulWidget {
-  final String Email_id;
-   Verify_OTP_Screen({super.key,required this.Email_id});
+  final String Mobile_no;
+   Verify_OTP_Screen({super.key,required this.Mobile_no});
 
   @override
   ConsumerState<Verify_OTP_Screen> createState() => _Verify_OTP_ScreenState();
@@ -45,7 +44,7 @@ class _Verify_OTP_ScreenState extends ConsumerState<Verify_OTP_Screen> {
       _isTimerActive = true;
     });
 
-    Timer.periodic(Duration(seconds: 1), (Timer timer) {
+    Timer.periodic(const Duration(seconds: 1), (Timer timer) {
       if (_isTimerActive) {
         _tick();
       } else {
@@ -67,12 +66,12 @@ class _Verify_OTP_ScreenState extends ConsumerState<Verify_OTP_Screen> {
 
   // var controllers;
   var output;
-  TextEditingController _OTP1 = TextEditingController();
-  TextEditingController _OTP2 = TextEditingController();
-  TextEditingController _OTP3 = TextEditingController();
-  TextEditingController _OTP4 = TextEditingController();
-  TextEditingController _OTP5 = TextEditingController();
-  TextEditingController _OTP6 = TextEditingController();
+  final _OTP1 = TextEditingController();
+  final TextEditingController _OTP2 = TextEditingController();
+  final TextEditingController _OTP3 = TextEditingController();
+  final TextEditingController _OTP4 = TextEditingController();
+  final TextEditingController _OTP5 = TextEditingController();
+  final TextEditingController _OTP6 = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -94,7 +93,7 @@ class _Verify_OTP_ScreenState extends ConsumerState<Verify_OTP_Screen> {
         onChanged: (value) {
           if (value.length == 1) {
             FocusScope.of(context).nextFocus();
-          } if (value.length == 0) {
+          } if (value.isEmpty) {
             setState(() {
               FocusScope.of(context).previousFocus();
             });
@@ -110,12 +109,12 @@ class _Verify_OTP_ScreenState extends ConsumerState<Verify_OTP_Screen> {
         ],
         decoration: InputDecoration(
           fillColor: white1,
-          counter: Offstage(),
+          counter: const Offstage(),
           enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(width: 1, color: white1),
+              borderSide: const BorderSide(width: 1, color: white1),
               borderRadius: BorderRadius.circular(10)),
           focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(width: 1, color: white1),
+              borderSide: const BorderSide(width: 1, color: white1),
               borderRadius: BorderRadius.circular(10)),
         ),
       ),
@@ -168,7 +167,7 @@ class _Verify_OTP_ScreenState extends ConsumerState<Verify_OTP_Screen> {
 
         Container(
           // color: Colors.green,
-          margin: EdgeInsets.only(bottom: 40),
+          margin: const EdgeInsets.only(bottom: 40),
           width: MediaQuery.of(context).size.width,
           alignment: Alignment.centerLeft,
           height: 50,
@@ -195,7 +194,7 @@ class _Verify_OTP_ScreenState extends ConsumerState<Verify_OTP_Screen> {
 
             Map<String, dynamic> formData = {
               "otp": '${_OTP1.text}${_OTP2.text}${_OTP3.text}${_OTP4.text}${_OTP5.text}${_OTP6.text}',
-              "email":widget.Email_id,
+              "email":widget.Mobile_no,
               "forgotpass_otp":true,
             };
 
@@ -207,7 +206,7 @@ class _Verify_OTP_ScreenState extends ConsumerState<Verify_OTP_Screen> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => Create_Password_Screen()));
+                      builder: (context) => const Create_Password_Screen()));
             } else {
               // Handle failure
               ShowToastMessage("Incorrect OTP");
@@ -245,11 +244,17 @@ class _Verify_OTP_ScreenState extends ConsumerState<Verify_OTP_Screen> {
               _isTimerActive? "00:$_timeLeft":
               "",
               // style: changeT,
-              style:TextStyle(color: red1)
+              style:const TextStyle(color: red1)
           ),
         ),
 
       ],
     );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty<TextEditingController>('_OTP1', _OTP1));
   }
 }

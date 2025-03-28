@@ -69,11 +69,19 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                   MaterialPageRoute(builder: (context) => Menu_Screen()));
             },
             child: const Icon(Icons.menu_outlined)),
-        centerTitle: true,
-        title: App_Logo(context),
+        // centerTitle: true,
+        // title: App_Logo(context),
+        title: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Shiningdawn', style: title1),
+            const SizedBox(width: 5),
+            Text('Jewellery', style: title1),
+          ],
+        ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 10, left: 15),
+            padding: const EdgeInsets.only(right: 10, left: 10),
             child: InkWell(
                 onTap: () {
                   Navigator.push(
@@ -120,9 +128,9 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                     //CARD
                     myplandata.when(data: (data) {
                       if (data?.data?.isNotEmpty ?? false) {
-                        return Container (
+                        return Container(
                           width: MediaQuery.sizeOf(context).width,
-                          height: 238,
+                          height: 250,
                           child: ListView.builder(
                               itemCount: data?.data?.length ?? 0,
                               physics: const ScrollPhysics(),
@@ -131,7 +139,7 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                               itemBuilder: (BuildContext context, int index) {
                                 final cardWidth = data?.data?.length == 1
                                     ? MediaQuery.sizeOf(context).width / 1.1
-                                    : MediaQuery.sizeOf(context).width / 1.2;
+                                    : MediaQuery.sizeOf(context).width / 1.3;
                                 return Padding(
                                   padding: const EdgeInsets.only(
                                       top: 10, bottom: 10),
@@ -142,7 +150,8 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                         data?.data?[index].accountName ?? "",
                                     Acnumval:
                                         "${data?.data?[index].idSchemeAccount ?? ""}",
-                                    totalpaidval: '₹${data?.data?[index].paidAmount?.toStringAsFixed(2) ?? ""}',
+                                    totalpaidval:
+                                        '₹${data?.data?[index].paidAmount?.toStringAsFixed(2) ?? ""}',
                                     totaccval: data?.data?[index].paidWeight
                                             ?.toStringAsFixed(3) ??
                                         "",
@@ -466,13 +475,13 @@ class _GoldScrollPriceWidgetState extends ConsumerState<GoldScrollPriceWidget> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+          Row(
             children: [
               Text(
-                '1 GM (22KT) Gold',
+                '1 GM Gold',
                 style: gramST, // Style for the title
               ),
+              const SizedBox(width: 5),
               Text(
                 '₹ ${widget.data?.data?.gold22ct ?? ""}', // Display the price
                 style: gramrateST, // Style for the price
@@ -480,7 +489,8 @@ class _GoldScrollPriceWidgetState extends ConsumerState<GoldScrollPriceWidget> {
             ],
           ),
           double.parse((widget.data?.data?.goldRateDifference ?? "0.0")
-                      .replaceAll(',', '')) < 0
+                      .replaceAll(',', '')) <
+                  0
               ? const Icon(
                   Icons.arrow_downward_outlined,
                   color: Colors.black,
@@ -492,14 +502,13 @@ class _GoldScrollPriceWidgetState extends ConsumerState<GoldScrollPriceWidget> {
                   size: 18,
                 ),
           const Spacer(),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
+          Row(
             children: [
               Text(
-                '1 (GM) Silver',
+                '1 Silver',
                 style: gramST,
               ),
+              const SizedBox(width: 5),
               Text(
                 '₹ ${widget.data?.data?.silverG ?? ""}',
                 style: gramrateST,
