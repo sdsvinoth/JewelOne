@@ -74,9 +74,7 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
         title: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Shiningdawn', style: title1),
-            const SizedBox(width: 5),
-            Text('Jewellery', style: title1),
+            Text('Shaining dawn Jewellery', style: title1),
           ],
         ),
         actions: [
@@ -138,8 +136,8 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                               shrinkWrap: true,
                               itemBuilder: (BuildContext context, int index) {
                                 final cardWidth = data?.data?.length == 1
-                                    ? MediaQuery.sizeOf(context).width / 1.1
-                                    : MediaQuery.sizeOf(context).width / 1.3;
+                                    ? MediaQuery.sizeOf(context).width / 1.5
+                                    : MediaQuery.sizeOf(context).width / 1.5;
                                 return Padding(
                                   padding: const EdgeInsets.only(
                                       top: 10, bottom: 10),

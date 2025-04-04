@@ -65,6 +65,11 @@ const Color blue3 = Color.fromRGBO(0, 70, 139, 1);
 const Color blue4 = Color.fromRGBO(36, 71, 139, 1);
 const Color blue5 = Color.fromRGBO(0, 114, 176, 1);
 const Color blue6 = Color.fromRGBO(228, 241, 255, 1);
+const brandGoldLightColor = Color(0xFFF6F4F0);
+const brandGreySoftColor = Color(0x996D717F);
+const brandGreyColor = Color(0xFF6D717F);
+
+
 
 //PINK
 const Color pink1 = Color.fromRGBO(243, 236, 231, 1);

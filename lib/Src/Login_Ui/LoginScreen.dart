@@ -78,7 +78,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
-          child: Container(
+          child: SizedBox(
             width: MediaQuery.sizeOf(context).width,
             child: Padding(
               padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
@@ -127,25 +127,18 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         //     ],
         //   ),
         // ),
-        const SizedBox(
-          height: 40,
-        ),
+        const SizedBox(height: 40,),
         //LOGO
         Center(
-            child: Container(
+            child: SizedBox(
                 height: MediaQuery.sizeOf(context).width / 3.5,
                 child: ImgPathPng("logo.png"))),
-        const SizedBox(
-          height: 50,
-        ),
-
+        const SizedBox(height: 50,),
         //MOBILE NUMBER
         Heading_Text(context, Title: "Welcome Back!"),
-        const SizedBox(
-          height: 20,
-        ),
+        const SizedBox(height: 20),
         // Phone Number Text and TextField
-        // Title_Style(Title: 'Phone Number', isStatus: null),
+        Title_Style(Title: 'Phone Number', isStatus: null),
         textFormField(
             // isEnabled: false,
             hintText: "Phone Number",
@@ -174,7 +167,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         ),
         // Password Text and TextField
         // Phone Number Text and TextField
-        // Title_Style(Title: 'Password', isStatus: null),
+        Title_Style(Title: 'Password', isStatus: null),
         textFieldPassword(
           Controller: _password,
           obscure: _obscurePassword,

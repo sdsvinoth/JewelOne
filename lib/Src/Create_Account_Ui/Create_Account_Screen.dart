@@ -76,19 +76,13 @@ class _Create_Account_ScreenState extends ConsumerState<Create_Account_Screen> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Back_Logo(context),
-
         //LOGO
         Center(child: Logo(context)),
-        const SizedBox(
-          height: 20,
-        ),
-
+        const SizedBox(height: 20,),
         Heading_Text(context, Title: "Join Our Savings Scheme"),
-
         //FULL NAME
-        // Title_Style(Title: 'Full name', isStatus: false),
         const SizedBox(height: 10),
-
+        Title_Style(Title: 'Full name', isStatus: false),
         textFormField(
             hintText: 'Enter your first name',
             keyboardtype: TextInputType.text,
@@ -104,15 +98,14 @@ class _Create_Account_ScreenState extends ConsumerState<Create_Account_Screen> {
               return null;
             },
             onChanged: null,
-            prefixIcon: Icon(
+            prefixIcon: const Icon(
               Icons.person,
               color: grey1,
             )),
 
         //LAST NAME
-        // Title_Style(Title: 'Last name', isStatus: false),
         const SizedBox(height: 10),
-
+        Title_Style(Title: 'Last name', isStatus: false),
         textFormField(
             hintText: 'Enter your last name',
             keyboardtype: TextInputType.text,
@@ -128,15 +121,14 @@ class _Create_Account_ScreenState extends ConsumerState<Create_Account_Screen> {
               return null;
             },
             onChanged: null,
-            prefixIcon: Icon(
+            prefixIcon: const Icon(
               Icons.person,
               color: grey1,
             )),
 
         //Email
-        // Title_Style(Title: 'Email', isStatus: false),
         const SizedBox(height: 10),
-
+        Title_Style(Title: 'Email', isStatus: false),
         textFormField(
             hintText: 'Enter your Email',
             keyboardtype: TextInputType.text,
@@ -152,15 +144,14 @@ class _Create_Account_ScreenState extends ConsumerState<Create_Account_Screen> {
               return null;
             },
             onChanged: null,
-            prefixIcon: Icon(
+            prefixIcon: const Icon(
               Icons.mail,
               color: grey1,
             )),
 
         // Phone Number Text and TextField
-        // Title_Style(Title: 'Phone Number', isStatus: null),
         const SizedBox(height: 10),
-
+        Title_Style(Title: 'Phone Number', isStatus: null),
         textFormField(
             // isEnabled: false,
             hintText: "Enter your mobile number",
@@ -179,15 +170,14 @@ class _Create_Account_ScreenState extends ConsumerState<Create_Account_Screen> {
               }
               return null;
             },
-            prefixIcon: Icon(
+            prefixIcon: const Icon(
               Icons.phone_android_sharp,
               color: grey1,
             )),
 
         //DATE OF BIRTH
-        // Title_Style(Title: 'Date of Birth', isStatus: true),
         const SizedBox(height: 10),
-
+        Title_Style(Title: 'Date of Birth', isStatus: true),
         TextFieldDatePickerF(
           context,
           Controller: _Dateofbirth,
@@ -232,11 +222,8 @@ class _Create_Account_ScreenState extends ConsumerState<Create_Account_Screen> {
             }
           },
         ),
-
-        //ENTER NEW PASSWORD
-        // Title_Style(Title: 'Password', isStatus: true),
         const SizedBox(height: 10),
-
+        Title_Style(Title: 'Password', isStatus: true),
         textFormField(
             hintText: 'Password',
             keyboardtype: TextInputType.text,
@@ -254,11 +241,12 @@ class _Create_Account_ScreenState extends ConsumerState<Create_Account_Screen> {
             onChanged: (value) {
               NewPassword = value;
             },
-            prefixIcon: Icon(
+            prefixIcon: const Icon(
               Icons.lock,
               color: grey1,
             )),
         const SizedBox(height: 10),
+        Title_Style(Title: 'Confirm Password', isStatus: true),
         textFormField(
             hintText: 'Confirm Password',
             keyboardtype: TextInputType.text,
@@ -276,7 +264,7 @@ class _Create_Account_ScreenState extends ConsumerState<Create_Account_Screen> {
             onChanged: (value) {
               ReEnterPassword = value;
             },
-            prefixIcon: Icon(
+            prefixIcon: const Icon(
               Icons.lock,
               color: grey1,
             )),
@@ -291,7 +279,7 @@ class _Create_Account_ScreenState extends ConsumerState<Create_Account_Screen> {
             checkBoxText: 'I agree with the terms&condition',
             width: MediaQuery.sizeOf(context).width / 1.4),
 
-        SizedBox(height: 15),
+        const SizedBox(height: 15),
 
         // Sign up Button with Gradient
         CommonContainerButton(context, onPress: () async {
@@ -313,7 +301,7 @@ class _Create_Account_ScreenState extends ConsumerState<Create_Account_Screen> {
               ShowToastMessage(result?.message ?? "");
               Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
                   (route) => false);
             } else {
               // Handle failure
@@ -321,7 +309,7 @@ class _Create_Account_ScreenState extends ConsumerState<Create_Account_Screen> {
             }
           }
         }, titleName: 'Sign Up'),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
 
         // Don't have an account? Sign Up Now Text
         Row(
@@ -334,7 +322,7 @@ class _Create_Account_ScreenState extends ConsumerState<Create_Account_Screen> {
             InkWell(
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()));
+                    MaterialPageRoute(builder: (context) => const LoginScreen()));
               },
               child: Text(
                 'Login',
@@ -353,7 +341,7 @@ class _Create_Account_ScreenState extends ConsumerState<Create_Account_Screen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Alert"),
+          title: const Text("Alert"),
           content: Text(message),
           actions: [
             TextButton(
@@ -361,7 +349,7 @@ class _Create_Account_ScreenState extends ConsumerState<Create_Account_Screen> {
                 _Dateofbirth.text = "";
                 Navigator.of(context).pop();
               },
-              child: Text("OK"),
+              child: const Text("OK"),
             ),
           ],
         );

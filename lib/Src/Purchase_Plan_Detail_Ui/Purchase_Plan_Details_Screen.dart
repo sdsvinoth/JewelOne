@@ -25,13 +25,13 @@ class _Purchase_Plan_detail_ScreeenState
       appBar: AppBar(
         backgroundColor: white2,
         leading: Container(
-          margin: EdgeInsets.all(12.5),
-          decoration: BoxDecoration(shape: BoxShape.circle, color: white1),
+          margin: const EdgeInsets.all(12.5),
+          decoration: const BoxDecoration(shape: BoxShape.circle, color: white1),
           child: InkWell(
             onTap: () {
               Navigator.pop(context);
             },
-            child: Icon(Icons.arrow_back_ios_new),
+            child: const Icon(Icons.arrow_back_ios_new),
           ),
         ),
         title: Text(
@@ -51,7 +51,7 @@ class _Purchase_Plan_detail_ScreeenState
                     Container(
                       height: 50,
                       width: MediaQuery.sizeOf(context).width,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         gradient: appGradient,
                       ),
                       child: Padding(
@@ -231,7 +231,7 @@ class _Purchase_Plan_detail_ScreeenState
       }, error: (Object error, StackTrace stackTrace) {
         return Text("ERROR, $error");
       }, loading: () {
-        return Center(child: CircularProgressIndicator());
+        return const Center(child: CircularProgressIndicator());
       }),
     );
   }

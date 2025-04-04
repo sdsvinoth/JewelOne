@@ -306,9 +306,16 @@ class _Profile_Details_ScreenState extends State<Profile_Details_Screen> {
                           height: 45,
                           width: MediaQuery.sizeOf(context).width/2.3,
                           decoration: BoxDecoration(
-                            color: white1,
-                            borderRadius: BorderRadius.circular(5),
-                            border: Border.all(width: 1,color: borderclr)
+                            color: brandGoldLightColor,
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: Colors.white, width: 3), // White outer border
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black26,
+                                blurRadius: 5,
+                                offset: Offset(0, 1),
+                              ),
+                            ],
                           ),
                           child: Padding(
                             padding: const EdgeInsets.only(top: 1,bottom: 5,),

@@ -15,11 +15,11 @@ import 'package:jewelone/utilits/Generic.dart';
 import 'package:jewelone/utilits/Text_Style.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 class Menu_Screen extends ConsumerStatefulWidget {
   Menu_Screen({
     super.key,
   });
+
   @override
   ConsumerState<Menu_Screen> createState() => _Menu_ScreenState();
 }
@@ -44,11 +44,10 @@ class _Menu_ScreenState extends ConsumerState<Menu_Screen> {
     getDetails();
   }
 
-
   void _clearSearch() {
-    setState(() {
-    });
+    setState(() {});
   }
+
   Future<void> _handleLogout() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.clear();
@@ -325,14 +324,11 @@ class _Menu_ScreenState extends ConsumerState<Menu_Screen> {
                     Padding(
                       padding:
                           const EdgeInsets.only(left: 20, right: 20, top: 20),
-                      child: buttonIcon(context, onPress: ()  {
+                      child: buttonIcon(context, onPress: () {
                         _handleLogout;
                         {
-                          Routes("false");
-                          Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(builder: (context) => const LoginScreen()),
-                                (Route<dynamic> route) => false, // Removes all previous routes
-                          );
+                          _showExitConfirmation(context);
+// Removes all previous route
                         }
                       }, titleName: 'Logout'),
                     ),
@@ -398,17 +394,49 @@ Widget NavContainer(
           ImgPathSvg(image1),
           Padding(
             padding: const EdgeInsets.only(left: 15),
-            child: Text(planST,
-              style:  const TextStyle(
+            child: Text(
+              planST,
+              style: const TextStyle(
+                fontFamily: 'JosefinSans',
                 fontSize: 14,
                 color: Colors.black,
                 fontWeight: FontWeight.bold, // Optional for emphasis
-              ),),
+              ),
+            ),
           ),
           const Spacer(),
           ImgPathSvg('rightarrow2.svg')
         ],
       ),
     ),
+  );
+}
+
+void _showExitConfirmation(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text("Logout",style: TextStyle(color: Colors.black,fontFamily: 'JosefinSans',fontSize: 14,)),
+        content: const Text("Are you sure you want to logout from Shaining dawn Jewellers?",style: TextStyle(color: Colors.black,fontFamily: 'JosefinSans',fontSize: 14,)),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context); // Close the dialog
+            },
+            child: const Text("Cancel",style: TextStyle(color: Colors.red,fontFamily: 'JosefinSans',fontSize: 15,)),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
+                (Route<dynamic> route) => false, // Removes all previous routes
+              );
+            },
+            child: const Text("Yes ", style: TextStyle(color: Colors.red,fontFamily: 'JosefinSans',fontSize: 15,)),
+          ),
+        ],
+      );
+    },
   );
 }

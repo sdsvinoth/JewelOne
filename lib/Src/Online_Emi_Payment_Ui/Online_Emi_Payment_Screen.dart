@@ -280,7 +280,7 @@ class _Online_Emi_Payment_ScreenState
                     // Container(child: Plan_List()),
 
                     Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      padding: const EdgeInsets.only(left: 15, right: 15),
                       child: ListView.builder(
                         itemCount: data?.data?.length ?? 0,
                         shrinkWrap: true,
@@ -292,6 +292,7 @@ class _Online_Emi_Payment_ScreenState
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 10),
                             child: Container(
+                              // width: (MediaQuery.sizeOf(context).width / 2) - 1,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
                                 border: Border.all(color: arrow, width: 2),
@@ -342,8 +343,7 @@ class _Online_Emi_Payment_ScreenState
                                     ),
                                     data?.data?[index].limitType == 1
                                         ? Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
+                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                                             children: [
                                               SizedBox(
                                                   // width: (MediaQuery.sizeOf(
@@ -926,7 +926,6 @@ class _Online_Emi_Payment_ScreenState
                                           )
                                         : const SizedBox.shrink(),
                                     const SizedBox(height: 10),
-
                                     Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,

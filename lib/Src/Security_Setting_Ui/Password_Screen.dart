@@ -162,6 +162,6 @@ class _Password_ScreenState extends State<Password_Screen> {
 Widget H_texts ({required String text}){
   return Padding(
     padding: const EdgeInsets.only(bottom: 5),
-    child: Text(text,style: password2,),
+    child: Text(text,style: password2),
   );
 }

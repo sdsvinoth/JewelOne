@@ -32,9 +32,17 @@ Widget CommonContainerButton(context,{ required void Function()? onPress,require
     onTap: onPress,
     child: Container(
         height: 50,
+
       width: MediaQuery.sizeOf(context).width,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: const[
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 10,
+              offset: Offset(0, 5),
+            ),
+          ],
         gradient: const LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.topRight,
@@ -88,7 +96,14 @@ Widget buttonIcon(context,{ required void Function()? onPress,required String ti
         height: 50,
         width: MediaQuery.sizeOf(context).width,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: const[
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 10,
+              offset: Offset(0, 5),
+            ),
+          ],
           gradient: const LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.topRight,

@@ -53,7 +53,7 @@ Widget Wallet_Card(
       elevation: 5,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Container(
-        width: 305,
+        width: 325,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             border: Border.all(width: 1, color: gradient2),
@@ -89,7 +89,7 @@ Widget Wallet_Card(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         SizedBox(
-                          width: (MediaQuery.sizeOf(context).width / 2) - 70,
+                          width: (MediaQuery.sizeOf(context).width / 2) - 60,
                           child: Row(
                             children: [
                               SizedBox(
@@ -123,7 +123,7 @@ Widget Wallet_Card(
                         ),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             SizedBox(
                                 height: 25,
@@ -160,7 +160,7 @@ Widget Wallet_Card(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          width: (MediaQuery.sizeOf(context).width / 2) - 70,
+                          width: (MediaQuery.sizeOf(context).width / 2) - 60,
                           child: Row(
                             children: [
                               SizedBox(
