@@ -74,6 +74,12 @@ TextStyle planST = const TextStyle(
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.bold);
 
+TextStyle planST5 =  TextStyle(
+    fontFamily: 'JosefinSans',
+    fontSize: 13,
+    color: Colors.yellow[800],
+    fontWeight: FontWeight.bold);
+
 TextStyle planST2 = const TextStyle(
     fontFamily: 'JosefinSans',
     fontSize: 12,

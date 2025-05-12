@@ -233,7 +233,7 @@ Widget Wallet_Card(
                       InkWell(
                         onTap: payMentHistory,
                         child: SizedBox(
-                            // width: (MediaQuery.sizeOf(context).width / 2) - 15,
+                            width: (MediaQuery.sizeOf(context).width / 2) - 15,
                             child: Center(
                                 child: Padding(
                           padding: const EdgeInsets.only(bottom: 10),
@@ -283,6 +283,35 @@ Widget Wallet_Card(
     ),
   );
 }
+
+InputDecoration boxWalletCardInputDecoration(String label) {
+  return InputDecoration(
+    labelText: label,
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10),
+      borderSide: const BorderSide(
+        color: Colors.red,
+      ),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10),
+      borderSide: const BorderSide(
+        color: Colors.red,
+      ),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10),
+      borderSide: const BorderSide(
+        color: Colors.red,
+        width: 2.0,
+      ),
+    ),
+  );
+}
+
+
+
+
 
 Widget New_SSP_Images(context, {required String image}) {
   return Container(

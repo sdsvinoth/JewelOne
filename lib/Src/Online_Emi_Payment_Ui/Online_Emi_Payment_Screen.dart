@@ -343,7 +343,8 @@ class _Online_Emi_Payment_ScreenState
                                     ),
                                     data?.data?[index].limitType == 1
                                         ? Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
                                             children: [
                                               SizedBox(
                                                   // width: (MediaQuery.sizeOf(
@@ -353,12 +354,10 @@ class _Online_Emi_Payment_ScreenState
                                                   //     30,
                                                   child: Text(
                                                       "Min / Max Amount ",
-                                                      style:
-                                                          planST2.copyWith(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              fontSize: 15))),
+                                                      style: planST2.copyWith(
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontSize: 15))),
                                               Text(
                                                 "₹ ${(data?.data?[index].minimumPayable?.minAmount ?? 0.0).toStringAsFixed(2)} / ${(data?.data?[index].maximumPayable?.maxAmount ?? 0.0).toStringAsFixed(2)}",
                                                 style: planST.copyWith(
@@ -368,7 +367,8 @@ class _Online_Emi_Payment_ScreenState
                                             ],
                                           )
                                         : Row(
-                                     crossAxisAlignment: CrossAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               SizedBox(
                                                 width:
@@ -400,54 +400,39 @@ class _Online_Emi_Payment_ScreenState
                                       height: 10,
                                     ),
                                     Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.end,
+                                      mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         SizedBox(
-                                          width: (MediaQuery.sizeOf(
-                                                          context)
+                                          width: (MediaQuery.sizeOf(context)
                                                       .width /
                                                   2) -
                                               30,
                                           child: Text("Pay",
                                               style: planST2.copyWith(
-                                                  fontWeight:
-                                                      FontWeight.w500,
+                                                  fontWeight: FontWeight.w500,
                                                   fontSize: 15)),
                                         ),
-                                        (data?.data?[index].limitType ==
-                                                    1 &&
-                                                data?.data?[index]
-                                                        .denomType ==
+                                        (data?.data?[index].limitType == 1 &&
+                                                data?.data?[index].denomType ==
                                                     3)
                                             ? SizedBox(
-                                                width: (MediaQuery.of(
-                                                                context)
-                                                            .size
-                                                            .width /
-                                                        2) -
-                                                    35,
+                                                width: (MediaQuery.of(context).size.width / 2) - 35,
                                                 height: 35,
                                                 child: TextFormField(
                                                   keyboardType:
-                                                      TextInputType
-                                                          .number,
+                                                      TextInputType.number,
                                                   validator: (value) {
                                                     if (value == null ||
                                                         value.isEmpty) {
                                                       return 'Please enter amount';
                                                     }
                                                     final intValue =
-                                                        int.tryParse(
-                                                            value);
-                                                    if (intValue ==
-                                                        null) {
+                                                        int.tryParse(value);
+                                                    if (intValue == null) {
                                                       return '';
                                                     }
-                                                    if (intValue <=
-                                                            1000 ||
-                                                        intValue >=
-                                                            10000) {
+                                                    if (intValue <= 1000 ||
+                                                        intValue >= 10000) {
                                                       return '';
                                                     }
                                                     return null;
@@ -458,22 +443,19 @@ class _Online_Emi_Payment_ScreenState
                                                     FilteringTextInputFormatter
                                                         .digitsOnly,
                                                     TextInputFormatter
-                                                        .withFunction(
-                                                            (oldValue,
-                                                                newValue) {
-                                                      if (newValue.text
-                                                          .isEmpty) {
+                                                        .withFunction((oldValue,
+                                                            newValue) {
+                                                      if (newValue
+                                                          .text.isEmpty) {
                                                         return newValue; // Allow empty input
                                                       }
                                                       final int value =
-                                                          int.tryParse(
-                                                                  newValue
-                                                                      .text) ??
+                                                          int.tryParse(newValue
+                                                                  .text) ??
                                                               0;
                                                       if (value <=
                                                           (data
-                                                                  ?.data?[
-                                                                      index]
+                                                                  ?.data?[index]
                                                                   .maximumPayable
                                                                   ?.maxAmount ??
                                                               0.0)) {
@@ -482,70 +464,53 @@ class _Online_Emi_Payment_ScreenState
                                                       return oldValue; // Reject the input if it exceeds 10000
                                                     }),
                                                   ],
-                                                  textAlign:
-                                                      TextAlign.left,
-                                                  enabled: (data
-                                                              ?.data?[
-                                                                  index]
+                                                  textAlign: TextAlign.left,
+                                                  enabled: (data?.data?[index]
                                                               .isChecked ??
                                                           false) &&
                                                       data?.data?[index]
                                                               .limitType ==
                                                           1,
-                                                  decoration:
-                                                      InputDecoration(
+                                                  decoration: InputDecoration(
                                                     contentPadding:
                                                         const EdgeInsets
                                                             .symmetric(
-                                                            vertical:
-                                                                10.0,
-                                                            horizontal:
-                                                                10.0),
+                                                            vertical: 10.0,
+                                                            horizontal: 10.0),
                                                     hintText: "INR",
-                                                    border:
-                                                        OutlineInputBorder(
+                                                    border: OutlineInputBorder(
                                                       borderRadius:
-                                                          BorderRadius
-                                                              .circular(
-                                                                  5),
+                                                          BorderRadius.circular(
+                                                              5),
                                                       borderSide:
                                                           const BorderSide(
-                                                              color:
-                                                                  grey5),
+                                                              color: grey5),
                                                     ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderRadius:
-                                                          BorderRadius
-                                                              .circular(
-                                                                  5),
+                                                          BorderRadius.circular(
+                                                              5),
                                                       borderSide:
                                                           const BorderSide(
-                                                              color:
-                                                                  grey5),
+                                                              color: grey5),
                                                     ),
-                                                    fillColor:
-                                                        Colors.grey[50],
+                                                    fillColor: Colors.grey[50],
                                                     filled: true,
                                                   ),
                                                   onChanged: (text) {
-                                                    var amount =
-                                                        text != ""
-                                                            ? int.parse(
-                                                                text)
-                                                            : 0;
+                                                    var amount = text != ""
+                                                        ? int.parse(text)
+                                                        : 0;
                                                     if ((data
-                                                                ?.data?[
-                                                                    index]
+                                                                ?.data?[index]
                                                                 .maximumPayable
                                                                 ?.maxAmount ??
                                                             0.0) >=
-                                                        amount
-                                                            .toDouble()) {
+                                                        amount.toDouble()) {
                                                       setState(() {
                                                         amountCalculation(
-                                                            index,
-                                                            amount);
+                                                            index, amount);
 
                                                         // int.parse(
                                                         //     data?.data?[index]
@@ -556,56 +521,44 @@ class _Online_Emi_Payment_ScreenState
                                                   },
                                                 ),
                                               )
-                                            : (data
-                                                            ?.data?[
-                                                                index]
-                                                            .amountDenom
+                                            : (data?.data?[index].amountDenom
                                                             ?.length ??
                                                         0) !=
                                                     0
                                                 ? Container(
                                                     height: 35,
-                                                    width: (MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            2) -
-                                                        60,
-                                                    padding:
-                                                        const EdgeInsets
-                                                            .symmetric(
-                                                            horizontal:
-                                                                8.0),
-                                                    decoration:
-                                                        BoxDecoration(
+                                                    width:
+                                                        (MediaQuery.of(context)
+                                                                    .size
+                                                                    .width /
+                                                                2) -
+                                                            60,
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                        horizontal: 8.0),
+                                                    decoration: BoxDecoration(
                                                       border: Border.all(
-                                                          color: Colors
-                                                              .grey),
+                                                          color: Colors.grey),
                                                       borderRadius:
-                                                          BorderRadius
-                                                              .circular(
-                                                                  5.0),
+                                                          BorderRadius.circular(
+                                                              5.0),
                                                     ),
                                                     child:
-                                                        DropdownButton<
-                                                            String>(
+                                                        DropdownButton<String>(
                                                       isExpanded: true,
                                                       underline:
                                                           const SizedBox(),
-                                                      value:
-                                                          selectedAmount,
+                                                      value: selectedAmount,
                                                       icon: const Icon(Icons
                                                           .keyboard_arrow_down_rounded),
-                                                      hint: const Text(
-                                                          "Amount"),
+                                                      hint:
+                                                          const Text("Amount"),
                                                       items: amounts
-                                                          .map((String
-                                                              amount) {
+                                                          .map((String amount) {
                                                         return DropdownMenuItem<
                                                             String>(
                                                           value: amount,
-                                                          child: Text(
-                                                              amount),
+                                                          child: Text(amount),
                                                         );
                                                       }).toList(),
                                                       onChanged: ((data
@@ -613,21 +566,24 @@ class _Online_Emi_Payment_ScreenState
                                                                           index]
                                                                       .isChecked ??
                                                                   false) &&
-                                                              data?.data?[index].limitType ==
+                                                              data?.data?[index]
+                                                                      .limitType ==
                                                                   1)
-                                                          ? (String?
-                                                              newValue) {
-                                                              setState(
-                                                                  () {
+                                                          ? (String? newValue) {
+                                                              setState(() {
                                                                 selectedAmount =
                                                                     newValue;
 
-                                                                data?.data?[index].selectedAmount =
+                                                                data
+                                                                        ?.data?[
+                                                                            index]
+                                                                        .selectedAmount =
                                                                     newValue;
                                                                 var amount = newValue !=
                                                                         ""
-                                                                    ? int.parse(newValue ??
-                                                                        "0")
+                                                                    ? int.parse(
+                                                                        newValue ??
+                                                                            "0")
                                                                     : 0;
 
                                                                 amountCalculation(
@@ -666,103 +622,110 @@ class _Online_Emi_Payment_ScreenState
                                                     ),
                                                   )
                                                 : (data
-                                                                ?.data?[
-                                                                    index]
+                                                                ?.data?[index]
                                                                 .weightDenom
                                                                 ?.length ??
                                                             0) !=
                                                         0
                                                     ? Container(
                                                         height: 35,
-                                                        width: (MediaQuery.of(context)
+                                                        width: (MediaQuery.of(
+                                                                        context)
                                                                     .size
                                                                     .width /
                                                                 2) -
                                                             60,
-                                                        padding: const EdgeInsets
-                                                            .symmetric(
-                                                            horizontal:
-                                                                8.0),
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .symmetric(
+                                                                horizontal:
+                                                                    8.0),
                                                         decoration:
                                                             BoxDecoration(
                                                           border: Border.all(
-                                                              color: Colors
-                                                                  .grey),
+                                                              color:
+                                                                  Colors.grey),
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(
                                                                       5.0),
                                                         ),
-                                                        child:
-                                                            DropdownButton<
-                                                                String>(
-                                                          isExpanded:
-                                                              true,
+                                                        child: DropdownButton<
+                                                            String>(
+                                                          isExpanded: true,
                                                           underline:
                                                               const SizedBox(),
                                                           value: data
-                                                              ?.data?[
-                                                                  index]
+                                                              ?.data?[index]
                                                               .selectedGram,
-                                                          icon: const Icon(
-                                                              Icons
-                                                                  .keyboard_arrow_down_rounded),
+                                                          icon: const Icon(Icons
+                                                              .keyboard_arrow_down_rounded),
                                                           hint: const Text(
                                                               "Grams"),
                                                           items: data!
-                                                              .data![
-                                                                  index]
+                                                              .data![index]
                                                               .weightDenom!
                                                               .map((AmountDenom
                                                                   amount) {
                                                             return DropdownMenuItem<
                                                                 String>(
-                                                              value: amount
-                                                                  .value,
-                                                              child: Text(
-                                                                  amount.value ??
-                                                                      ""),
+                                                              value:
+                                                                  amount.value,
+                                                              child: Text(amount
+                                                                      .value ??
+                                                                  ""),
                                                             );
                                                           }).toList(),
-                                                          onChanged: ((data.data?[index].isChecked ??
+                                                          onChanged: ((data
+                                                                          .data?[
+                                                                              index]
+                                                                          .isChecked ??
                                                                       false) &&
-                                                                  data.data?[index].limitType ==
+                                                                  data
+                                                                          .data?[
+                                                                              index]
+                                                                          .limitType ==
                                                                       2)
                                                               ? (String?
                                                                   newValue) {
-                                                                  setState(
-                                                                      () {
-                                                                    data.data?[index].selectedGram =
-                                                                        newValue;
+                                                                  setState(() {
+                                                                    data
+                                                                        .data?[
+                                                                            index]
+                                                                        .selectedGram = newValue;
 
-                                                                    double amount = newValue != ""
-                                                                        ? double.parse(newValue ?? "0.0")
-                                                                        : 0;
+                                                                    double
+                                                                        amount =
+                                                                        newValue !=
+                                                                                ""
+                                                                            ? double.parse(newValue ??
+                                                                                "0.0")
+                                                                            : 0;
 
-                                                                    gramCalculation(index,
+                                                                    gramCalculation(
+                                                                        index,
                                                                         amount);
-                                                                    if ((data.data?[index].maximumPayable?.maxWeight ?? 0.0) >=
-                                                                        amount.toDouble()) {}
+                                                                    if ((data.data?[index].maximumPayable?.maxWeight ??
+                                                                            0.0) >=
+                                                                        amount
+                                                                            .toDouble()) {}
                                                                   });
                                                                 }
                                                               : null,
                                                         ),
                                                       )
                                                     : SizedBox(
-                                                        width: (MediaQuery.of(context)
+                                                        width: (MediaQuery.of(
+                                                                        context)
                                                                     .size
                                                                     .width /
                                                                 2) -
                                                             60,
                                                         height: 35,
-                                                        child:
-                                                            TextFormField(
-                                                          validator:
-                                                              (value) {
-                                                            if (value ==
-                                                                    null ||
-                                                                value
-                                                                    .isEmpty) {
+                                                        child: TextFormField(
+                                                          validator: (value) {
+                                                            if (value == null ||
+                                                                value.isEmpty) {
                                                               return 'Please enter gram';
                                                             }
                                                             final intValue =
@@ -772,29 +735,29 @@ class _Online_Emi_Payment_ScreenState
                                                                 null) {
                                                               return '';
                                                             }
-                                                            if (intValue <=
-                                                                    1 ||
-                                                                intValue >=
-                                                                    8) {
+                                                            if (intValue <= 1 ||
+                                                                intValue >= 8) {
                                                               return '';
                                                             }
                                                             return null;
                                                           },
-                                                          onChanged:
-                                                              (value) {
-                                                            double
-                                                                amount =
-                                                                value !=
-                                                                        ""
-                                                                    ? double.parse(value)
+                                                          onChanged: (value) {
+                                                            double amount =
+                                                                value != ""
+                                                                    ? double
+                                                                        .parse(
+                                                                            value)
                                                                     : 0;
 
-                                                            if ((data?.data?[index].maximumPayable?.maxWeight ??
+                                                            if ((data
+                                                                        ?.data?[
+                                                                            index]
+                                                                        .maximumPayable
+                                                                        ?.maxWeight ??
                                                                     0.0) >=
                                                                 amount
                                                                     .toDouble()) {
-                                                              setState(
-                                                                  () {
+                                                              setState(() {
                                                                 gramCalculation(
                                                                     index,
                                                                     amount);
@@ -824,8 +787,7 @@ class _Online_Emi_Payment_ScreenState
                                                             }
                                                           },
                                                           textAlign:
-                                                              TextAlign
-                                                                  .left,
+                                                              TextAlign.left,
                                                           enabled: (data
                                                                       ?.data?[
                                                                           index]
@@ -834,28 +796,34 @@ class _Online_Emi_Payment_ScreenState
                                                               data?.data?[index]
                                                                       .limitType ==
                                                                   2,
-                                                          keyboardType: const TextInputType
-                                                              .numberWithOptions(
-                                                              decimal:
-                                                                  true),
+                                                          keyboardType:
+                                                              const TextInputType
+                                                                  .numberWithOptions(
+                                                                  decimal:
+                                                                      true),
                                                           inputFormatters: [
                                                             FilteringTextInputFormatter
                                                                 .allow(RegExp(
                                                                     r'^\d+\.?\d{0,3}')),
-                                                            TextInputFormatter.withFunction(
-                                                                (oldValue,
-                                                                    newValue) {
-                                                              if (newValue
-                                                                  .text
+                                                            TextInputFormatter
+                                                                .withFunction(
+                                                                    (oldValue,
+                                                                        newValue) {
+                                                              if (newValue.text
                                                                   .isEmpty) {
                                                                 return newValue; // Allow empty input
                                                               }
-                                                              final int
-                                                                  value =
-                                                                  int.tryParse(newValue.text) ??
+                                                              final int value =
+                                                                  int.tryParse(
+                                                                          newValue
+                                                                              .text) ??
                                                                       0;
                                                               if (value <=
-                                                                  (data?.data?[index].maximumPayable?.maxWeight ??
+                                                                  (data
+                                                                          ?.data?[
+                                                                              index]
+                                                                          .maximumPayable
+                                                                          ?.maxWeight ??
                                                                       0.0)) {
                                                                 return newValue; // Allow if value is less than or equal to 10000
                                                               }
@@ -864,37 +832,40 @@ class _Online_Emi_Payment_ScreenState
                                                           ],
                                                           decoration:
                                                               InputDecoration(
-                                                            contentPadding: const EdgeInsets
-                                                                .symmetric(
-                                                                vertical:
-                                                                    10.0,
-                                                                horizontal:
-                                                                    10.0),
+                                                            contentPadding:
+                                                                const EdgeInsets
+                                                                    .symmetric(
+                                                                    vertical:
+                                                                        10.0,
+                                                                    horizontal:
+                                                                        10.0),
                                                             hintText:
                                                                 "Enter gram",
                                                             border:
                                                                 OutlineInputBorder(
                                                               borderRadius:
-                                                                  BorderRadius.circular(
-                                                                      5),
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5),
                                                               borderSide:
                                                                   const BorderSide(
-                                                                      color: grey5),
+                                                                      color:
+                                                                          grey5),
                                                             ),
                                                             enabledBorder:
                                                                 OutlineInputBorder(
                                                               borderRadius:
-                                                                  BorderRadius.circular(
-                                                                      5),
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5),
                                                               borderSide:
                                                                   const BorderSide(
-                                                                      color: grey5),
+                                                                      color:
+                                                                          grey5),
                                                             ),
                                                             fillColor:
-                                                                Colors.grey[
-                                                                    50],
-                                                            filled:
-                                                                true,
+                                                                Colors.grey[50],
+                                                            filled: true,
                                                           ),
                                                         ),
                                                       ),

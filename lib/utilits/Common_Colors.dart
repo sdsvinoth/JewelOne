@@ -87,11 +87,15 @@ const Color eye = Color.fromRGBO(168, 168, 168, 1);
 const Color backGroundColor = Color.fromRGBO(255, 255, 255, 1);
 const Gradient appGradient =
     LinearGradient(begin: Alignment.topLeft, end: Alignment.topRight, colors: [
-  gradient1,
-  gradient2,
+      gradient1,
+      gradient2,
 ]);
 
+
 //GRADIENT COLOR
-const Color gradient2 = Color.fromRGBO(248, 146, 28, 1);
-const Color gradient1 = Color.fromRGBO(1, 42, 122, 1);
+const Color gradient2 = Color(0xFFB77E21);
+const Color gradient1 = Color(0xFF9F212C);
 const Color gradient3 = Color.fromRGBO(174, 134, 86, 1);
+const Color gradient5 = Color(0xFFB77E21); // Golden brown
+
+

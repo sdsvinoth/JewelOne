@@ -7,8 +7,11 @@ import 'package:jewelone/Common_Widgets/Image_Path.dart';
 import 'package:jewelone/Model/GoldRateMmodel.dart';
 import 'package:jewelone/Model/LoginModel.dart';
 import 'package:jewelone/Src/Close_Account_UI/CloseAccountScreen.dart';
+import 'package:jewelone/Src/Join_Digit_Gold_Scheme/Join_Digit_Gold.dart';
 import 'package:jewelone/Src/Menu_Ui/Menu_Screen.dart';
 import 'package:jewelone/Src/My_SSP_Ui/My_SSP_Screen.dart';
+import 'package:jewelone/Src/New_SSP_Ui/Grammage_Plan_Screen.dart';
+import 'package:jewelone/Src/New_SSP_Ui/New_SSP_Plan1_Screen.dart';
 import 'package:jewelone/Src/New_SSP_Ui/New_SSP_Screen.dart';
 import 'package:jewelone/Src/Notification_Ui/Notification_Screen.dart';
 import 'package:jewelone/Src/Online_Emi_Payment_Ui/Online_Emi_Payment_Screen.dart';
@@ -18,7 +21,6 @@ import 'package:jewelone/utilits/Common_Colors.dart';
 import 'package:jewelone/utilits/Generic.dart';
 import 'package:jewelone/utilits/Text_Style.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
 import '../Payment_History_Ui/payment_History_Screen.dart';
 
 class Home_DashBoard_Screen extends ConsumerStatefulWidget {
@@ -35,6 +37,7 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
   // final List<String> items = ['Coimbatore', 'Salem', 'Chennai'];
   // String selectedItem = 'Coimbatore';
   int myCurrentPage = 0;
+  int selectedIndex = -1;
 
   String? location;
   List<String> locationoption = ["Pollachi"];
@@ -49,7 +52,6 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
   }
 
   void initState() {
-    // TODO: implement initState
     super.initState();
     getDetails();
   }
@@ -74,7 +76,7 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
         title: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Shaining dawn Jewellery', style: title1),
+            Text('Shining dawn', style: title1),
           ],
         ),
         actions: [
@@ -261,7 +263,6 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                         ],
                       ),
                     ),
-
                     Padding(
                       padding: const EdgeInsets.only(
                           left: 20, right: 20, bottom: 25),
@@ -311,6 +312,122 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                         ],
                       ),
                     ),
+
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Card(
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(width: 1, color: gradient2),
+                            gradient: appGradient,
+                            image: const DecorationImage(
+                              image: AssetImage('assets/Group.png'),
+                              fit: BoxFit.cover, // Adjust fit as needed
+                              opacity: 0.4, // Optional: make it faint under gradient
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Stack(
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Image.asset(
+                                        'assets/sha1.png',
+                                        height: 50,
+                                        width: 50,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 30, right: 10),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text("DIGI GOLD Savings", style: walletT3),
+                                          Text("Easy | Flexibility", style: walletT3),
+                                          Text("Convenient", style: walletT3),
+                                        ],
+                                      ),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          ElevatedButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                selectedIndex = 0;
+                                              });
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) => const Grammage_Plan_Screen(),
+                                                ),
+                                              );
+                                            },
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor: selectedIndex == 0 ? Colors.yellow : Colors.white,
+                                              foregroundColor: Colors.black,
+                                              side: BorderSide(color: Colors.yellow.shade700),
+                                              elevation: 2,
+                                            ),
+                                            child: Text('Join Now', style: planST),
+                                          ),
+                                          ElevatedButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                selectedIndex = 1;
+                                              });
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) => const JoinDigitGold(),
+                                                ),
+                                              );
+                                            },
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor: selectedIndex == 1 ? Colors.yellow : Colors.white,
+                                              foregroundColor: Colors.black,
+                                              side: BorderSide(color: Colors.yellow.shade700),
+                                              elevation: 2,
+                                            ),
+                                            child: Text('Know More', style: gramST),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+
+                                  ],
+                                ),
+                                Positioned(
+                                  top: 2,
+                                  right: 10,
+                                  child: Image.asset(
+                                    'assets/sha1.png',
+                                    fit: BoxFit.cover,
+                                    // height: 50,
+                                    // width: 50,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+
+
+
+
+
                     bannerimagedata.when(data: (data) {
                       List<Widget> carouselItems =
                           data?.data?.map<Widget>((item) {
