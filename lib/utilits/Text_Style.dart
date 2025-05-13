@@ -97,6 +97,16 @@ TextStyle walletT3 = const TextStyle(
     fontSize: 13,
     color: Color.fromRGBO(255, 255, 255, 1),
     fontWeight: FontWeight.bold);
+TextStyle walletT31 = const TextStyle(
+    fontFamily: 'JosefinSans',
+    fontSize: 12,
+    color: Color.fromRGBO(255, 255, 255, 1),
+    fontWeight: FontWeight.w100);
+TextStyle walletT32 = const TextStyle(
+    fontFamily: 'JosefinSans',
+    fontSize: 12,
+    color: Color.fromRGBO(255, 255, 255, 1),
+    fontWeight: FontWeight.bold);
 
 TextStyle plandetailT = const TextStyle(
     fontFamily: 'JosefinSans',
@@ -269,6 +279,13 @@ TextStyle TBlack2 = const TextStyle(
     fontSize: 24,
     color: Color.fromRGBO(0, 0, 0, 1),
     fontWeight: FontWeight.w600);
+
+
+TextStyle Black22 = const TextStyle(
+    fontFamily: 'JosefinSans',
+    fontSize: 13,
+    color: Color.fromRGBO(0, 0, 0, 1),
+    fontWeight: FontWeight.w500);
 
 TextStyle Goldweight = const TextStyle(
     fontFamily: 'JosefinSans',

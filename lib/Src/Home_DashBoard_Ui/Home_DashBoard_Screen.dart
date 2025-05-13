@@ -11,7 +11,6 @@ import 'package:jewelone/Src/Join_Digit_Gold_Scheme/Join_Digit_Gold.dart';
 import 'package:jewelone/Src/Menu_Ui/Menu_Screen.dart';
 import 'package:jewelone/Src/My_SSP_Ui/My_SSP_Screen.dart';
 import 'package:jewelone/Src/New_SSP_Ui/Grammage_Plan_Screen.dart';
-import 'package:jewelone/Src/New_SSP_Ui/New_SSP_Plan1_Screen.dart';
 import 'package:jewelone/Src/New_SSP_Ui/New_SSP_Screen.dart';
 import 'package:jewelone/Src/Notification_Ui/Notification_Screen.dart';
 import 'package:jewelone/Src/Online_Emi_Payment_Ui/Online_Emi_Payment_Screen.dart';
@@ -37,8 +36,8 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
   // final List<String> items = ['Coimbatore', 'Salem', 'Chennai'];
   // String selectedItem = 'Coimbatore';
   int myCurrentPage = 0;
-  int selectedIndex = -1;
-
+  bool backhome = false;
+  bool dell = false;
   String? location;
   List<String> locationoption = ["Pollachi"];
 
@@ -345,17 +344,17 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 30, right: 10),
+                                      padding: const EdgeInsets.only(top:1,left: 30, right: 10),
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text("DIGI GOLD Savings", style: walletT3),
+                                          Text("DIGI GOLD Savings", style: UserST ),
                                           Text("Easy | Flexibility", style: walletT3),
                                           Text("Convenient", style: walletT3),
                                         ],
                                       ),
                                     ),
-                                    const SizedBox(height: 10),
+                                    const SizedBox(height: 15),
                                     Padding(
                                       padding: const EdgeInsets.all(10),
                                       child: Row(
@@ -364,7 +363,8 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                           ElevatedButton(
                                             onPressed: () {
                                               setState(() {
-                                                selectedIndex = 0;
+                                                backhome = true;
+                                                dell = false;
                                               });
                                               Navigator.push(
                                                 context,
@@ -374,7 +374,7 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                               );
                                             },
                                             style: ElevatedButton.styleFrom(
-                                              backgroundColor: selectedIndex == 0 ? Colors.yellow : Colors.white,
+                                              backgroundColor: backhome ? Colors.yellow : Colors.white,
                                               foregroundColor: Colors.black,
                                               side: BorderSide(color: Colors.yellow.shade700),
                                               elevation: 2,
@@ -384,7 +384,8 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                           ElevatedButton(
                                             onPressed: () {
                                               setState(() {
-                                                selectedIndex = 1;
+                                                dell = true;
+                                                backhome = false;
                                               });
                                               Navigator.push(
                                                 context,
@@ -394,7 +395,7 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                               );
                                             },
                                             style: ElevatedButton.styleFrom(
-                                              backgroundColor: selectedIndex == 1 ? Colors.yellow : Colors.white,
+                                              backgroundColor: dell ? Colors.yellow : Colors.white,
                                               foregroundColor: Colors.black,
                                               side: BorderSide(color: Colors.yellow.shade700),
                                               elevation: 2,
@@ -404,17 +405,16 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                         ],
                                       ),
                                     ),
-
                                   ],
                                 ),
                                 Positioned(
-                                  top: 2,
-                                  right: 10,
+                                  top: 20,
+                                  right: 30,
                                   child: Image.asset(
                                     'assets/sha1.png',
-                                    fit: BoxFit.cover,
-                                    // height: 50,
-                                    // width: 50,
+                                    fit: BoxFit.contain,
+                                    height: 150,
+                                    width: 150,
                                   ),
                                 ),
                               ],

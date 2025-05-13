@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jewelone/Common_Widgets/Common_Card.dart';
+import 'package:jewelone/Src/Join_Digit_Gold_Scheme/Bottom_Bar/Bottom_Bar_1.dart';
+import 'package:jewelone/Src/Join_Digit_Gold_Scheme/Bottom_Bar/Bottom_Bar_2.dart';
+import 'package:jewelone/Src/Join_Digit_Gold_Scheme/Digit_Gold_Card.dart';
 import 'package:jewelone/utilits/Common_Colors.dart';
 import 'package:jewelone/utilits/Text_Style.dart';
 
-class JoinDigitGold extends StatefulWidget {
+class JoinDigitGold extends ConsumerStatefulWidget {
   static const routeName = '/join';
-
   const JoinDigitGold({super.key});
 
   @override
-  State<JoinDigitGold> createState() => _JoinDigitGoldState();
+  ConsumerState<JoinDigitGold> createState() => _JoinDigitGoldState();
 }
 
-class _JoinDigitGoldState extends State<JoinDigitGold> {
+class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
   bool agreeToTerms = false;
   int? selectedIndex;
 
@@ -128,6 +131,8 @@ class _JoinDigitGoldState extends State<JoinDigitGold> {
                           child: Row(
                             children: [
                               Expanded(
+                                child: GestureDetector(
+                                  onTap: () => _showBottomSheet1(context),
                                 child: Container(
                                   padding: const EdgeInsets.all(10),
                                   margin:
@@ -137,47 +142,52 @@ class _JoinDigitGoldState extends State<JoinDigitGold> {
                                     color: white1,
                                     border: Border.all(color: Colors.yellow),
                                   ),
-                                  child: GestureDetector(
-                                    onTap: () => _showBottomSheet1(context),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "Key Benefits",
+                                        style: follow,
+                                      ),
+                                      const Icon(
+                                        Icons.arrow_forward_ios,
+                                        size: 16,
+                                        color: Colors.black,
+                                      ),
+                                    ],
+                                  ),
+                                ),),
+                              ),
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () => _showBottomSheet2(context),
+                                child: Container(
+                                  padding: const EdgeInsets.all(10),
+                                  margin:
+                                      const EdgeInsets.symmetric(horizontal: 8),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: white1,
+                                    border: Border.all(color: Colors.yellow),
+                                  ),
+
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          "Key Benefits",
-                                          style: follow,
-                                        ),
-                                        const Icon(Icons.arrow_forward_ios, size: 16,color: Colors.black,),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Container(
-                                  padding: const EdgeInsets.all(10),
-                                  margin:
-                                      const EdgeInsets.symmetric(horizontal: 8),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: white1,
-                                    border: Border.all(color: Colors.yellow),
-                                  ),
-                                  child: GestureDetector(
-                                    onTap: () => _showBottomSheet2(context),
-                                    child:  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
                                           "Know More",
-                                          style:planST,
+                                          style: planST,
                                         ),
-                                        const Icon(Icons.arrow_forward_ios, size: 16,color: Colors.black,),
+                                        const Icon(
+                                          Icons.arrow_forward_ios,
+                                          size: 16,
+                                          color: Colors.black,
+                                        ),
                                       ],
                                     ),
-                                  ),
-                                ),
+                                ),),
                               ),
                             ],
                           ),
@@ -186,7 +196,7 @@ class _JoinDigitGoldState extends State<JoinDigitGold> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                   Padding(
+                  Padding(
                     padding: const EdgeInsets.all(10),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -217,7 +227,7 @@ class _JoinDigitGoldState extends State<JoinDigitGold> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                       Text('Amount',style: planST5),
+                                      Text('Amount', style: planST5),
                                       const SizedBox(height: 10),
                                       SizedBox(
                                         width: 150,
@@ -234,7 +244,8 @@ class _JoinDigitGoldState extends State<JoinDigitGold> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       SizedBox(height: 30),
-                                      Icon(Icons.import_contacts_sharp),
+                                      Icon(Icons.swap_horiz_outlined,
+                                          color: Colors.black),
                                     ],
                                   ),
 
@@ -243,7 +254,7 @@ class _JoinDigitGoldState extends State<JoinDigitGold> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text('Grams',style: planST5),
+                                      Text('Grams', style: planST5),
                                       const SizedBox(height: 10),
                                       SizedBox(
                                         width: 150,
@@ -258,14 +269,50 @@ class _JoinDigitGoldState extends State<JoinDigitGold> {
                                 ],
                               ),
                               const SizedBox(height: 5),
-                              const Row(
+                              Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text('You Get: 5'),
-                                  SizedBox(width: 10),
-                                  Text('|', style: TextStyle(fontSize: 24)),
-                                  Text('You Get: 0.001 gms'),
+                                  RichText(
+                                    text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                          text: 'You Get: ',
+                                          style: Black22,
+                                        ),
+                                        const TextSpan(
+                                          text: '5',
+                                          style: TextStyle(
+                                              fontFamily: 'JosefinSans',
+                                              fontSize: 15,
+                                              color: Colors.green,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  const Text('|',
+                                      style: TextStyle(
+                                          fontSize: 18, color: Colors.grey)),
+                                  RichText(
+                                    text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                          text: 'You Get: ',
+                                          style: Black22,
+                                        ),
+                                        const TextSpan(
+                                          text: '0.001 gms',
+                                          style: TextStyle(
+                                              fontFamily: 'JosefinSans',
+                                              fontSize: 15,
+                                              color: Colors.green,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  )
                                 ],
                               ),
                             ],
@@ -279,7 +326,7 @@ class _JoinDigitGoldState extends State<JoinDigitGold> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text('Quantity you saved'),
+                        Text('Quantity you saved', style: planST),
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -287,25 +334,31 @@ class _JoinDigitGoldState extends State<JoinDigitGold> {
                             border: Border.all(color: Colors.yellow),
                           ),
                           width: 150,
-                          child: const TextField(
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: '0.116 gms',
+                          child: SizedBox(
+                            width: 150,
+                            child: TextField(
+                              decoration:
+                                  boxWalletCardInputDecoration('0.116 gms'),
                             ),
                           ),
                         ),
                       ],
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.all(10),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                            'Benefits subject to redemption after date of maturity'),
-                        SizedBox(height: 10),
-                        Text('Name Your Scheme'),
+                        Row(
+                          children: [
+                            Text(
+                                'Benefits subject to redemption after date of maturity',
+                                style: Black22),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Text('Name Your Scheme', style: planST),
                       ],
                     ),
                   ),
@@ -317,15 +370,15 @@ class _JoinDigitGoldState extends State<JoinDigitGold> {
                         color: Colors.grey[100], // White background
                       ),
                       padding: const EdgeInsets.symmetric(horizontal: 12),
-                      child: const TextField(
+                      child: TextField(
                         decoration: InputDecoration(
                           labelText: 'Enter Your Name',
-                          labelStyle: TextStyle(color: Colors.grey),
+                          labelStyle: Black22,
                           // visible label color
                           border: InputBorder.none,
                         ),
-                        style:
-                            TextStyle(color: Colors.black), // Input text color
+                        style: const TextStyle(
+                            color: Colors.black), // Input text color
                       ),
                     ),
                   ),
@@ -335,7 +388,12 @@ class _JoinDigitGoldState extends State<JoinDigitGold> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Date of Maturity: 30-Apr-2025'),
+                        Text('Date of Maturity: 30-Apr-2025',
+                            style: TextStyle(
+                                fontFamily: 'JosefinSans',
+                                fontSize: 14,
+                                color: Font_Primary_Color,
+                                fontWeight: FontWeight.bold)),
                       ],
                     ),
                   ),
@@ -351,12 +409,11 @@ class _JoinDigitGoldState extends State<JoinDigitGold> {
                             });
                           },
                         ),
-                        const Expanded(
+                        Expanded(
                           child: Row(
                             children: [
-                              Text('I agree to the scheme '),
-                              Text('Terms and Conditions',
-                                  style: TextStyle(color: Colors.yellow)),
+                              Text('I agree to the scheme ', style: Black22),
+                              Text('Terms and Conditions', style: planST5),
                             ],
                           ),
                         ),
@@ -377,7 +434,7 @@ class _JoinDigitGoldState extends State<JoinDigitGold> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const JoinDigitGold()));
+                                          const DigitGoldCard()));
                             });
                           },
                           style: ElevatedButton.styleFrom(
@@ -419,87 +476,6 @@ class _JoinDigitGoldState extends State<JoinDigitGold> {
   }
 }
 
-// BOTTOM SHEET 1
-class Bottombar1 extends StatelessWidget {
-  const Bottombar1({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Key Benefits',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 16),
-          Row(
-            children: [
-              Icon(Icons.check_circle, color: Colors.green),
-              SizedBox(width: 10),
-              Expanded(child: Text('Save gold in small quantities.')),
-            ],
-          ),
-          SizedBox(height: 10),
-          Row(
-            children: [
-              Icon(Icons.check_circle, color: Colors.green),
-              SizedBox(width: 10),
-              Expanded(child: Text('Pay anytime, anywhere.')),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
 
-// BOTTOM SHEET 2
-class Bottombar2 extends StatelessWidget {
-  const Bottombar2({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Text(
-              'Know More',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 16),
-            Row(
-              children: [
-                Icon(Icons.circle, size: 8),
-                SizedBox(width: 10),
-                Expanded(
-                    child: Text(
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit.')),
-              ],
-            ),
-            SizedBox(height: 10),
-            Row(
-              children: [
-                Icon(Icons.circle, size: 8),
-                SizedBox(width: 10),
-                Expanded(child: Text('Pay any time, flexible deposits.')),
-              ],
-            ),
-            SizedBox(height: 10),
-            Row(
-              children: [
-                Icon(Icons.circle, size: 8),
-                SizedBox(width: 10),
-                Expanded(child: Text('1 to 75 Days - 5% benefit')),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
