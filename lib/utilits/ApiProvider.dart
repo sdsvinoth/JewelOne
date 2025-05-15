@@ -3,6 +3,7 @@ import 'package:jewelone/Model/ActiveLocationMOdel.dart';
 import 'package:jewelone/Model/ActivePlanModel.dart';
 import 'package:jewelone/Model/BannerModel.dart';
 import 'package:jewelone/Model/ClosedAccountModel.dart';
+import 'package:jewelone/Model/DigiSchemeModel.dart';
 import 'package:jewelone/Model/ForgotPasswwordModel.dart';
 import 'package:jewelone/Model/GoldRateMmodel.dart';
 import 'package:jewelone/Model/LoginModel.dart';
@@ -74,8 +75,7 @@ final setTargetDigiProvider =
 
 //DIGI SCHEME
 
-final getDigiSchemeProvider =
-    FutureProvider.autoDispose<MyPlanModel?>((ref) async {
+final getDigiSchemeProvider = FutureProvider<DigiSchemeModel?>((ref) async {
   return ref.watch(apiServiceProvider).DigiSchemeApi();
 });
 

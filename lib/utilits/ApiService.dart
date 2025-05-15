@@ -4,6 +4,7 @@ import 'package:jewelone/Model/ActiveLocationMOdel.dart';
 import 'package:jewelone/Model/ActivePlanModel.dart';
 import 'package:jewelone/Model/BannerModel.dart';
 import 'package:jewelone/Model/ClosedAccountModel.dart';
+import 'package:jewelone/Model/DigiSchemeModel.dart';
 import 'package:jewelone/Model/ForgotPasswwordModel.dart';
 import 'package:jewelone/Model/GoldRateMmodel.dart';
 import 'package:jewelone/Model/LoginModel.dart';
@@ -235,17 +236,19 @@ class ApiService {
   }
 
   //DIGI SCHEME
-  Future<MyPlanModel> DigiSchemeApi() async {
+  Future<DigiSchemeModel> DigiSchemeApi() async {
     final result =
         await requestPOST5(url: ConstantApi.digiSchemeApi, dio: _dio);
 
     if (result["success"] == true) {
       print("resultOTP:$result");
       print("resultOTPsss:${result["success"]}");
-      return MyPlanModel?.fromJson(result["response"]);
+      var resultval = DigiSchemeModel.fromJson(result["response"]);
+
+      return resultval;
     } else {
       try {
-        var resultval = MyPlanModel.fromJson(result["response"]);
+        var resultval = DigiSchemeModel.fromJson(result["response"]);
         // Toast.show(resultval.message.toString(), context);
         print(result["response"]);
         return resultval;
@@ -254,7 +257,7 @@ class ApiService {
         // Toast.show(result["response"], context);
       }
     }
-    return MyPlanModel();
+    return DigiSchemeModel();
   }
 
   //DIGI SCHEME SET TARGET
