@@ -234,6 +234,59 @@ class ApiService {
     return MyPlanModel();
   }
 
+  //DIGI SCHEME
+  Future<MyPlanModel> DigiSchemeApi() async {
+    final result =
+        await requestPOST5(url: ConstantApi.digiSchemeApi, dio: _dio);
+
+    if (result["success"] == true) {
+      print("resultOTP:$result");
+      print("resultOTPsss:${result["success"]}");
+      return MyPlanModel?.fromJson(result["response"]);
+    } else {
+      try {
+        var resultval = MyPlanModel.fromJson(result["response"]);
+        // Toast.show(resultval.message.toString(), context);
+        print(result["response"]);
+        return resultval;
+      } catch (e) {
+        print(result["response"]);
+        // Toast.show(result["response"], context);
+      }
+    }
+    return MyPlanModel();
+  }
+
+  //DIGI SCHEME SET TARGET
+  Future<SignUpModel> digiSchemeSetTargetApi(
+      Map<String, dynamic> formData) async {
+    // var formData = <String, dynamic>{
+    //   "customerId": 2,
+    //   "accountId": 51,
+    //   "targetWeight": 80.00
+    // };
+
+    final result = await requestPOST(
+        url: ConstantApi.digiSchemeSetTargetApi, formData: formData, dio: _dio);
+
+    if (result["success"] == true) {
+      print("resultOTP:$result");
+      print("resultOTPsss:${result["success"]}");
+      return SignUpModel?.fromJson(result["response"]);
+    } else {
+      try {
+        var resultval = SignUpModel.fromJson(result["response"]);
+        // Toast.show(resultval.message.toString(), context);
+        print(result["response"]);
+        return resultval;
+      } catch (e) {
+        print(result["response"]);
+        // Toast.show(result["response"], context);
+      }
+    }
+    return SignUpModel();
+  }
+
   //ACTIVE PLANS
   Future<ActivePlanModel> ActiveplanApi() async {
     final result = await requestGET(url: ConstantApi.activeplanUrl, dio: _dio);

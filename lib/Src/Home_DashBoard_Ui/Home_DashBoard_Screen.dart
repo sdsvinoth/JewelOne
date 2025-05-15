@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,6 +21,7 @@ import 'package:jewelone/utilits/Common_Colors.dart';
 import 'package:jewelone/utilits/Generic.dart';
 import 'package:jewelone/utilits/Text_Style.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
 import '../Payment_History_Ui/payment_History_Screen.dart';
 
 class Home_DashBoard_Screen extends ConsumerStatefulWidget {
@@ -60,6 +62,8 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
     final priceRate = ref.watch(GoldrateProvider);
     final bannerimagedata = ref.watch(BannerDataProvider);
     final myplandata = ref.watch(MyplanProvider);
+    final digiSchemedata = ref.watch(getDigiSchemeProvider);
+
     return Scaffold(
       backgroundColor: backGroundColor,
       appBar: AppBar(
@@ -312,121 +316,148 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                       ),
                     ),
 
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Card(
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(width: 1, color: gradient2),
-                            gradient: appGradient,
-                            image: const DecorationImage(
-                              image: AssetImage('assets/Group.png'),
-                              fit: BoxFit.cover, // Adjust fit as needed
-                              opacity: 0.4, // Optional: make it faint under gradient
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: Stack(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                    digiSchemedata.when(data: (data) {
+                      if (data?.data?.isNotEmpty ?? false) {
+                        return Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Card(
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(width: 1, color: gradient2),
+                                gradient: appGradient,
+                                image: const DecorationImage(
+                                  image: AssetImage('assets/Group.png'),
+                                  fit: BoxFit.cover, // Adjust fit as needed
+                                  opacity:
+                                      0.4, // Optional: make it faint under gradient
+                                ),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 10),
+                                child: Stack(
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(10),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(10),
+                                          child: Image.asset(
+                                            'assets/sha1.png',
+                                            height: 50,
+                                            width: 50,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 1, left: 30, right: 10),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text("DIGI GOLD Savings",
+                                                  style: UserST),
+                                              Text("Easy | Flexibility",
+                                                  style: walletT3),
+                                              Text("Convenient",
+                                                  style: walletT3),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(height: 15),
+                                        Padding(
+                                          padding: const EdgeInsets.all(10),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              ElevatedButton(
+                                                onPressed: () {
+                                                  setState(() {
+                                                    backhome = true;
+                                                    dell = false;
+                                                  });
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          const Grammage_Plan_Screen(),
+                                                    ),
+                                                  );
+                                                },
+                                                style: ElevatedButton.styleFrom(
+                                                  backgroundColor: backhome
+                                                      ? Colors.yellow
+                                                      : Colors.white,
+                                                  foregroundColor: Colors.black,
+                                                  side: BorderSide(
+                                                      color: Colors
+                                                          .yellow.shade700),
+                                                  elevation: 2,
+                                                ),
+                                                child: Text('Join Now',
+                                                    style: planST),
+                                              ),
+                                              ElevatedButton(
+                                                onPressed: () {
+                                                  setState(() {
+                                                    dell = true;
+                                                    backhome = false;
+                                                  });
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          const JoinDigitGold(),
+                                                    ),
+                                                  );
+                                                },
+                                                style: ElevatedButton.styleFrom(
+                                                  backgroundColor: dell
+                                                      ? Colors.yellow
+                                                      : Colors.white,
+                                                  foregroundColor: Colors.black,
+                                                  side: BorderSide(
+                                                      color: Colors
+                                                          .yellow.shade700),
+                                                  elevation: 2,
+                                                ),
+                                                child: Text('Know More',
+                                                    style: gramST),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Positioned(
+                                      top: 20,
+                                      right: 30,
                                       child: Image.asset(
                                         'assets/sha1.png',
-                                        height: 50,
-                                        width: 50,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top:1,left: 30, right: 10),
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text("DIGI GOLD Savings", style: UserST ),
-                                          Text("Easy | Flexibility", style: walletT3),
-                                          Text("Convenient", style: walletT3),
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(height: 15),
-                                    Padding(
-                                      padding: const EdgeInsets.all(10),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                        children: [
-                                          ElevatedButton(
-                                            onPressed: () {
-                                              setState(() {
-                                                backhome = true;
-                                                dell = false;
-                                              });
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) => const Grammage_Plan_Screen(),
-                                                ),
-                                              );
-                                            },
-                                            style: ElevatedButton.styleFrom(
-                                              backgroundColor: backhome ? Colors.yellow : Colors.white,
-                                              foregroundColor: Colors.black,
-                                              side: BorderSide(color: Colors.yellow.shade700),
-                                              elevation: 2,
-                                            ),
-                                            child: Text('Join Now', style: planST),
-                                          ),
-                                          ElevatedButton(
-                                            onPressed: () {
-                                              setState(() {
-                                                dell = true;
-                                                backhome = false;
-                                              });
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) => const JoinDigitGold(),
-                                                ),
-                                              );
-                                            },
-                                            style: ElevatedButton.styleFrom(
-                                              backgroundColor: dell ? Colors.yellow : Colors.white,
-                                              foregroundColor: Colors.black,
-                                              side: BorderSide(color: Colors.yellow.shade700),
-                                              elevation: 2,
-                                            ),
-                                            child: Text('Know More', style: gramST),
-                                          ),
-                                        ],
+                                        fit: BoxFit.contain,
+                                        height: 150,
+                                        width: 150,
                                       ),
                                     ),
                                   ],
                                 ),
-                                Positioned(
-                                  top: 20,
-                                  right: 30,
-                                  child: Image.asset(
-                                    'assets/sha1.png',
-                                    fit: BoxFit.contain,
-                                    height: 150,
-                                    width: 150,
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                    ),
-
-
-
-
+                        );
+                      } else {
+                        return const SizedBox(height: 10);
+                      }
+                    }, error: (Object error, StackTrace stackTrace) {
+                      return const Text('');
+                    }, loading: () {
+                      return const CircularProgressIndicator();
+                    }),
 
                     bannerimagedata.when(data: (data) {
                       List<Widget> carouselItems =

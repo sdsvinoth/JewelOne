@@ -65,6 +65,20 @@ final MyplanProvider = FutureProvider.autoDispose<MyPlanModel?>((ref) async {
   return ref.watch(apiServiceProvider).MyplanApi();
 });
 
+//SET TARGET
+final setTargetDigiProvider =
+    FutureProvider.family<SignUpModel?, Map<String, dynamic>>(
+        (ref, body) async {
+  return ref.watch(apiServiceProvider).digiSchemeSetTargetApi(body);
+});
+
+//DIGI SCHEME
+
+final getDigiSchemeProvider =
+    FutureProvider.autoDispose<MyPlanModel?>((ref) async {
+  return ref.watch(apiServiceProvider).DigiSchemeApi();
+});
+
 //Buy New Plan
 final buyplanProvider =
     FutureProvider.family<SignUpModel?, Map<String, dynamic>>(

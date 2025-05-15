@@ -17,6 +17,12 @@ class ConstantApi {
   static String paymentSuccessUrl =
       SERVER_ONE + "payment/payment_status_update/";
 
+  static String digiSchemeApi =
+      SERVER_ONE + "managescheme/customer_digi_scheme/";
+
+  static String digiSchemeSetTargetApi =
+      SERVER_ONE + "managescheme/set_target_digi_scheme/";
+
   static String buynewplanUrl = SERVER_ONE + "managescheme/scheme_account/";
 
   static String accountCloseUrl =

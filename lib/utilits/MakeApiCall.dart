@@ -312,6 +312,77 @@ Future<dynamic> requestPOST4(
   }
 }
 
+Future<dynamic> requestPOST5(
+    {required String url, required http.Client dio}) async {
+  try {
+    String? accessToken = await getToken();
+
+    final headers = {
+      // 'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Token $accessToken'
+    };
+
+    final response = await dio.post(Uri.parse(url), headers: headers);
+    print(response);
+    switch (response.statusCode) {
+      case 200:
+        final decodedBody = utf8.decode(response.bodyBytes);
+
+        final Map<String, dynamic> responseDecode = jsonDecode(decodedBody);
+
+        final jsonResponse = {'success': true, 'response': responseDecode};
+        return jsonResponse;
+      case 201:
+        final Map<String, dynamic> responseDecode = jsonDecode(response.body);
+
+        final jsonResponse = {'success': true, 'response': responseDecode};
+        return jsonResponse;
+      // case 400:
+      //   final result = jsonDee.body);
+      //   final jsonResponse = {'success': false, 'response': result};
+      //   return jsonResponse;
+      // case 401:
+      //   final jsonResponse = {
+      //     'success': false,
+      //     'response': ConstantApi.UNAUTHORIZED
+      //   };
+      //   return jsonResponse;
+      // case 500:
+      // case 501:
+      // case 502:
+      //   final jsonResponse = {
+      //     'success': false,
+      //     'response': ConstantApi.SOMETHING_WRONG
+      //   };
+      //   return jsonResponse;
+      default:
+        final Map<String, dynamic> responseDecode = jsonDecode(response.body);
+
+        final jsonResponse = {'success': false, 'response': responseDecode};
+        return jsonResponse;
+    }
+  } on SocketException {
+    final jsonResponse = {
+      'success': false,
+      'response': ConstantApi.NO_INTERNET
+    };
+    return jsonResponse;
+  } on FormatException {
+    final jsonResponse = {
+      'success': false,
+      'response': ConstantApi.BAD_RESPONSE
+    };
+    return jsonResponse;
+  } on HttpException {
+    final jsonResponse = {
+      'success': false,
+      'response': ConstantApi.SOMETHING_WRONG //Server not responding
+    };
+    return jsonResponse;
+  }
+}
+
 Future<dynamic> requestMultiPart({
   required String url,
   required Map<String, dynamic> formData,
