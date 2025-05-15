@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jewelone/Src/Home_DashBoard_Ui/Home_DashBoard_Screen.dart';
 import 'package:jewelone/utilits/Common_Colors.dart';
 import 'package:jewelone/utilits/Text_Style.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
-class DigitGoldCard extends StatefulWidget {
+class DigitGoldCard extends ConsumerStatefulWidget {
   const DigitGoldCard({super.key});
 
   @override
-  State<DigitGoldCard> createState() => _DigitGoldCardState();
+  ConsumerState<DigitGoldCard> createState() => _DigitGoldCardState();
 }
 
-class _DigitGoldCardState extends State<DigitGoldCard> {
+class _DigitGoldCardState extends ConsumerState<DigitGoldCard> {
   bool backhome = false;
   bool dell = false;
 
@@ -44,7 +46,7 @@ class _DigitGoldCardState extends State<DigitGoldCard> {
                         image: DecorationImage(
                           image: AssetImage('assets/Group.png'),
                           fit: BoxFit.cover,
-                          opacity: 0.4,
+                          opacity: 0.2,
                         ),
                       ),
                       child: Padding(
@@ -54,6 +56,7 @@ class _DigitGoldCardState extends State<DigitGoldCard> {
                           children: [
                             Column(
                               children: [
+                                const SizedBox(height: 15),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -132,7 +135,7 @@ class _DigitGoldCardState extends State<DigitGoldCard> {
                                       child: Column(
                                         children: [
                                           Text(
-                                            "DIGI GOLD",
+                                            "Weight Saved",
                                             style: walletT3?.copyWith(
                                               fontFamily: 'JosefinSans',
                                               fontWeight: FontWeight.w500,
@@ -189,115 +192,138 @@ class _DigitGoldCardState extends State<DigitGoldCard> {
                             const Divider(
                                 color: Colors.yellow, thickness: 1, height: 20),
                             Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 1, left: 30, right: 10),
+                              padding: const EdgeInsets.only(top: 1, left: 30, right: 10),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Expanded(
-                                        child: Container(
-                                          width: 100,
-                                          height: 100,
-                                          decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Colors.white,
-                                          ),
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            "Total\nGold\nSaved",
-                                            style: UserST.copyWith(
-                                                color: Colors.red,
-                                                fontSize: 13),
-                                            textAlign: TextAlign.center,
-                                          ),
+                                      // Circle container: use fixed size but no Expanded
+                                      Container(
+                                        width: 110,
+                                        height: 110,
+                                        decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Colors.white,
                                         ),
-                                      ),
-                                      Expanded(
+                                        alignment: Alignment.center,
                                         child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            Text("Date of Maturity",
-                                                style: walletT3),
-                                            const SizedBox(height: 5),
-                                            const Text(
-                                              '10-Apr-2025',
-                                              style: TextStyle(
-                                                fontSize: 12,
-                                                color: Colors.white,
+                                            const SizedBox(height: 10),
+                                            Text(
+                                              "Total\nGold Saved",
+                                              style: UserST.copyWith(
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                                fontFamily: 'JosefinSans',
+                                                fontWeight: FontWeight.w400,
                                               ),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                            const SizedBox(height: 5),
+                                            Text(
+                                              "0.016 g",
+                                              style: UserST.copyWith(
+                                                color: Colors.red,
+                                                fontSize: 20,
+                                                fontFamily: 'JosefinSans',
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              textAlign: TextAlign.center,
                                             ),
                                           ],
                                         ),
                                       ),
+
+                                      const SizedBox(width: 5),
+
+                                      // Middle column: use Flexible or Expanded for flexible width
                                       Expanded(
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 10, horizontal: 16),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            color: Colors.brown[700],
-                                          ),
-                                          child: Text("Set Target Now",
-                                              style: walletT3.copyWith(
-                                                  color: Colors.white)),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 0),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      Text("Progress", style: walletT3),
-                                      const SizedBox(height: 5),
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(10),
-                                        child: LinearProgressIndicator(
-                                          value: 0.7, // 75% progress
-                                          minHeight: 5,
-                                          backgroundColor: Colors.grey[300],
-                                          valueColor:
-                                              const AlwaysStoppedAnimation<
-                                                  Color>(Colors.yellow),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 5),
-                                      ElevatedButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            backhome = true;
-                                            dell = false;
-                                          });
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  Home_DashBoard_Screen(),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Text("Date of Maturity", style: walletT3),
+                                              ],
                                             ),
-                                          );
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.amber[800],
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 40, vertical: 12),
+                                            const SizedBox(height: 5),
+                                            const Text(
+                                              '10-Apr-2025',
+                                              style: TextStyle(fontSize: 12, color: Colors.white),
+                                            ),
+                                          ],
                                         ),
-                                        child: Text('Join Now', style: planST),
+                                      ),
+
+                                      const SizedBox(width: 5),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.end,
+                                          children: [
+                                            Container(
+                                              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(30),
+                                                color: Colors.white,
+                                              ),
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    "Set Target Now",
+                                                    style: walletT3.copyWith(color: Colors.red),
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            const SizedBox(height: 10),
+                                            Center(child: Text("0.0%", style: walletT3)),
+                                            const SizedBox(height: 5),
+                                            LayoutBuilder(
+                                              builder: (context, constraints) {
+                                                return LinearPercentIndicator(
+                                                  width: constraints.maxWidth,
+                                                  lineHeight: 10,
+                                                  percent: 0.3,
+                                                  progressColor: Colors.amber,
+                                                  backgroundColor: Colors.grey[300],
+                                                  barRadius: const Radius.circular(10),
+                                                  animation: true,
+                                                );
+                                              },
+                                            ),
+                                            const SizedBox(height: 10),
+                                            ElevatedButton(
+                                              onPressed: () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(builder: (context) => Home_DashBoard_Screen()),
+                                                );
+                                              },
+                                              style: ElevatedButton.styleFrom(
+                                                backgroundColor: Colors.yellow[800],
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(30),
+                                                ),
+                                              ),
+                                              child: Row(
+                                                children: [
+                                                  Text('Pay Now', style: planST),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ],
                                   ),
                                 ],
                               ),
                             )
+
                           ],
                         ),
                       ),

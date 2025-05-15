@@ -4,11 +4,11 @@ import 'package:jewelone/Common_Widgets/Common_Card.dart';
 import 'package:jewelone/Src/Join_Digit_Gold_Scheme/Bottom_Bar/Bottom_Bar_1.dart';
 import 'package:jewelone/Src/Join_Digit_Gold_Scheme/Bottom_Bar/Bottom_Bar_2.dart';
 import 'package:jewelone/Src/Join_Digit_Gold_Scheme/Digit_Gold_Card.dart';
+import 'package:jewelone/Src/Scheme_Passbook/New_Passbook_Scheme.dart';
 import 'package:jewelone/utilits/Common_Colors.dart';
 import 'package:jewelone/utilits/Text_Style.dart';
 
 class JoinDigitGold extends ConsumerStatefulWidget {
-  static const routeName = '/join';
   const JoinDigitGold({super.key});
 
   @override
@@ -277,7 +277,7 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                                     text: TextSpan(
                                       children: [
                                         TextSpan(
-                                          text: 'You Get: ',
+                                          text: 'You Get:',
                                           style: Black22,
                                         ),
                                         const TextSpan(
@@ -312,7 +312,7 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                                         ),
                                       ],
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ],
@@ -451,6 +451,11 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                           onPressed: () {
                             setState(() {
                               selectedIndex = 1;
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                      const NewPassbookScheme()));
                             });
                           },
                           style: ElevatedButton.styleFrom(
@@ -461,7 +466,7 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                             side: BorderSide(color: Colors.yellow.shade700),
                             elevation: 2,
                           ),
-                          child: Text('Play Now', style: gramST),
+                          child: Text('Pay Now', style: gramST),
                         ),
                       ],
                     ),

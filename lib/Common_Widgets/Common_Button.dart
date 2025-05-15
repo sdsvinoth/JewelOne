@@ -15,9 +15,7 @@ Widget CommonElevatedButton(
       backgroundColor: brown1,
       minimumSize: const Size(double.infinity, 50),
       elevation: 9,
-      shape: RoundedRectangleBorder(
-        
-          borderRadius: BorderRadius.circular(25)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
     ),
     onPressed: onPress,
     child: Text(
@@ -27,69 +25,8 @@ Widget CommonElevatedButton(
   );
 }
 
-Widget CommonContainerButton(context,{ required void Function()? onPress,required String titleName}){
-  return InkWell(
-    onTap: onPress,
-    child: Container(
-        height: 50,
-
-      width: MediaQuery.sizeOf(context).width,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          boxShadow: const[
-            BoxShadow(
-              color: Colors.black26,
-              blurRadius: 10,
-              offset: Offset(0, 5),
-            ),
-          ],
-        gradient: const LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.topRight,
-        colors: [
-          gradient1,
-          gradient2,
-        ]
-    ),
-    ),
-      child:
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(child: Text(titleName,style: ButtonT,)),
-        ],
-      )
-
-    ),
-  );
-}
-Widget CommonContainerButton2(context,{ required void Function()? onPress,required String titleName}){
-  return InkWell(
-    onTap: onPress,
-    child: Container(
-      width: MediaQuery.sizeOf(context).width,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25),
-        gradient: const LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.topRight,
-        colors: [
-          gradient1,
-          gradient2,
-        ]
-    ),
-    ),
-      child:
-      Padding(
-        padding: const EdgeInsets.only(top: 10,bottom: 10),
-        child: Center(child: Text(titleName,style: ButtonT2,)),
-      )
-
-    ),
-  );
-}
-
-Widget buttonIcon(context,{ required void Function()? onPress,required String titleName}){
+Widget CommonContainerButton(context,
+    {required void Function()? onPress, required String titleName}) {
   return InkWell(
     onTap: onPress,
     child: Container(
@@ -97,7 +34,7 @@ Widget buttonIcon(context,{ required void Function()? onPress,required String ti
         width: MediaQuery.sizeOf(context).width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          boxShadow: const[
+          boxShadow: const [
             BoxShadow(
               color: Colors.black26,
               blurRadius: 10,
@@ -110,33 +47,27 @@ Widget buttonIcon(context,{ required void Function()? onPress,required String ti
               colors: [
                 gradient1,
                 gradient2,
-              ]
-          ),
+              ]),
         ),
-        child:
-        Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 8),
-              child: ImgPathSvg('logout.svg')
-            ),
-            Center(child: Text(titleName,style: ButtonT,)),
+            Center(
+                child: Text(
+              titleName,
+              style: ButtonT,
+            )),
           ],
-        )
-
-    ),
+        )),
   );
 }
 
-Widget Paynowcommonbutton1 (context,{ required void Function()? onPress,required String titleName}){
+Widget CommonContainerButton2(context,
+    {required void Function()? onPress, required String titleName}) {
   return InkWell(
     onTap: onPress,
-    child: Padding(
-      padding: const EdgeInsets.only(top: 10),
-      child: Container(
-        height: 40,
-        width: MediaQuery.sizeOf(context).width/4.5,
+    child: Container(
+        width: MediaQuery.sizeOf(context).width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
           gradient: const LinearGradient(
@@ -145,35 +76,114 @@ Widget Paynowcommonbutton1 (context,{ required void Function()? onPress,required
               colors: [
                 gradient1,
                 gradient2,
-              ]
-          ),
+              ]),
         ),
-        child: Center(child: Text(titleName,style: ButtonT2,)),
-      ),
-    ),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 10, bottom: 10),
+          child: Center(
+              child: Text(
+            titleName,
+            style: ButtonT2,
+          )),
+        )),
   );
 }
 
-Widget Paynowcommonbutton2 (context,{ required void Function()? onPress,required String titleName}){
+Widget buttonIcon(context,
+    {required void Function()? onPress, required String titleName}) {
+  return InkWell(
+    onTap: onPress,
+    child: Container(
+        height: 50,
+        width: MediaQuery.sizeOf(context).width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 10,
+              offset: Offset(0, 5),
+            ),
+          ],
+          gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.topRight,
+              colors: [
+                gradient1,
+                gradient2,
+              ]),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: ImgPathSvg('logout.svg')),
+            Center(
+                child: Text(
+              titleName,
+              style: ButtonT,
+            )),
+          ],
+        )),
+  );
+}
+
+Widget Paynowcommonbutton1(context,
+    {required void Function()? onPress, required String titleName}) {
   return InkWell(
     onTap: onPress,
     child: Padding(
       padding: const EdgeInsets.only(top: 10),
       child: Container(
         height: 40,
-        width: MediaQuery.sizeOf(context).width/3,
+        width: MediaQuery.sizeOf(context).width / 4.5,
         decoration: BoxDecoration(
-          border: Border.all(width: 1,color: gradient2),
           borderRadius: BorderRadius.circular(25),
-          color: white1,
+          gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.topRight,
+              colors: [
+                gradient1,
+                gradient2,
+              ]),
         ),
-        child: Center(child: Text(titleName,style: ButtonT3,)),
+        child: Center(
+            child: Text(
+          titleName,
+          style: ButtonT2,
+        )),
       ),
     ),
   );
 }
 
-Widget bottombutton (context,{ required void Function()? onPress,required String titleName}){
+Widget Paynowcommonbutton2(context,
+    {required void Function()? onPress, required String titleName}) {
+  return InkWell(
+    onTap: onPress,
+    child: Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: Container(
+        height: 40,
+        width: MediaQuery.sizeOf(context).width / 3,
+        decoration: BoxDecoration(
+          border: Border.all(width: 1, color: gradient2),
+          borderRadius: BorderRadius.circular(25),
+          color: white1,
+        ),
+        child: Center(
+            child: Text(
+          titleName,
+          style: ButtonT3,
+        )),
+      ),
+    ),
+  );
+}
+
+Widget bottombutton(context,
+    {required void Function()? onPress, required String titleName}) {
   return InkWell(
     onTap: onPress,
     child: Container(
@@ -187,20 +197,24 @@ Widget bottombutton (context,{ required void Function()? onPress,required String
             colors: [
               gradient1,
               gradient2,
-            ]
-        ),
+            ]),
       ),
-      child: Center(child: Text(titleName,style: ButtonT,)),
+      child: Center(
+          child: Text(
+        titleName,
+        style: ButtonT,
+      )),
     ),
   );
 }
 
-Widget upload (context,{ required void Function()? onPress,required String titleName}){
+Widget upload(context,
+    {required void Function()? onPress, required String titleName}) {
   return InkWell(
     onTap: onPress,
     child: Container(
       height: 45,
-      width: MediaQuery.sizeOf(context).width/3,
+      width: MediaQuery.sizeOf(context).width / 3,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
         gradient: const LinearGradient(
@@ -209,25 +223,33 @@ Widget upload (context,{ required void Function()? onPress,required String title
             colors: [
               gradient1,
               gradient2,
-            ]
-        ),
+            ]),
       ),
-      child: Center(child: Text(titleName,style: ButtonT,)),
+      child: Center(
+          child: Text(
+        titleName,
+        style: ButtonT,
+      )),
     ),
   );
 }
 
-Widget cancel (context,{ required void Function()? onPress,required String titleName}){
+Widget cancel(context,
+    {required void Function()? onPress, required String titleName}) {
   return InkWell(
     onTap: onPress,
     child: Container(
       height: 45,
-      width: MediaQuery.sizeOf(context).width/2.7,
+      width: MediaQuery.sizeOf(context).width / 2.7,
       decoration: BoxDecoration(
-        border: Border.all(width: 1,color: grey5),
+        border: Border.all(width: 1, color: grey5),
         borderRadius: BorderRadius.circular(25),
       ),
-      child: Center(child: Text(titleName,style: lighttext,)),
+      child: Center(
+          child: Text(
+        titleName,
+        style: lighttext,
+      )),
     ),
   );
 }

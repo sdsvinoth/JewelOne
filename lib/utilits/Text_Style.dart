@@ -99,9 +99,9 @@ TextStyle walletT3 = const TextStyle(
     fontWeight: FontWeight.bold);
 TextStyle walletT31 = const TextStyle(
     fontFamily: 'JosefinSans',
-    fontSize: 12,
+    fontSize: 14,
     color: Color.fromRGBO(255, 255, 255, 1),
-    fontWeight: FontWeight.w100);
+    fontWeight: FontWeight.w500);
 TextStyle walletT32 = const TextStyle(
     fontFamily: 'JosefinSans',
     fontSize: 12,
