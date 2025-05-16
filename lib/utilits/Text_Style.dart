@@ -49,10 +49,9 @@ TextStyle skip_ST = const TextStyle(
     fontWeight: FontWeight.w500);
 
 TextStyle follow = const TextStyle(
-    fontFamily: 'JosefinSans',
     fontSize: 15,
     color: Color.fromRGBO(45, 45, 45, 1),
-    fontWeight: FontWeight.w400);
+    fontWeight: FontWeight.bold);
 
 TextStyle bottomotext = const TextStyle(
     fontFamily: 'JosefinSans',
@@ -66,22 +65,22 @@ TextStyle UserST = const TextStyle(
     fontSize: 18,
     color: Color.fromRGBO(255, 255, 255, 1),
     fontWeight: FontWeight.w800);
-
+TextStyle UserST1 = const TextStyle(
+    fontSize: 15,
+    color: Color.fromRGBO(255, 255, 255, 1),
+    fontWeight: FontWeight.w800);
 //PLAN STYLE
 TextStyle planST = const TextStyle(
-    fontFamily: 'JosefinSans',
     fontSize: 13,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.bold);
 
 TextStyle planST5 =  TextStyle(
-    fontFamily: 'JosefinSans',
-    fontSize: 13,
-    color: Colors.yellow[800],
+    fontSize: 15,
+    color: gradient2,
     fontWeight: FontWeight.bold);
 
 TextStyle planST2 = const TextStyle(
-    fontFamily: 'JosefinSans',
     fontSize: 12,
     color: Color.fromRGBO(113, 121, 126, 1),
     fontWeight: FontWeight.w800);
@@ -93,7 +92,6 @@ TextStyle walletT2 = const TextStyle(
     fontWeight: FontWeight.w500);
 
 TextStyle walletT3 = const TextStyle(
-    fontFamily: 'JosefinSans',
     fontSize: 13,
     color: Color.fromRGBO(255, 255, 255, 1),
     fontWeight: FontWeight.bold);
@@ -116,26 +114,22 @@ TextStyle plandetailT = const TextStyle(
 
 //GRAM
 TextStyle gramST = const TextStyle(
-    fontFamily: 'JosefinSans',
     fontSize: 16,
     color: Colors.black,
     fontWeight: FontWeight.bold);
 
 TextStyle gramrateST = const TextStyle(
-    fontFamily: 'JosefinSans',
     fontSize: 16,
     color: Colors.green,
     fontWeight: FontWeight.w700);
 
 //RADIO T
 TextStyle radioST = const TextStyle(
-    fontFamily: 'JosefinSans',
     fontSize: 14,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w400);
 
 TextStyle radioST1 = const TextStyle(
-    fontFamily: 'JosefinSans',
     fontSize: 14,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w400);
@@ -194,7 +188,6 @@ TextStyle Textfield_Style = const TextStyle(
     fontWeight: FontWeight.w400);
 
 TextStyle TextField_Title = const TextStyle(
-    fontFamily: 'JosefinSans',
     fontSize: 16,
     color: Color.fromRGBO(0, 0, 0, 1),
     fontWeight: FontWeight.w500);
@@ -282,13 +275,11 @@ TextStyle TBlack2 = const TextStyle(
 
 
 TextStyle Black22 = const TextStyle(
-    fontFamily: 'JosefinSans',
-    fontSize: 13,
+    fontSize: 14,
     color: Color.fromRGBO(0, 0, 0, 1),
     fontWeight: FontWeight.w500);
 
 TextStyle Goldweight = const TextStyle(
-    fontFamily: 'JosefinSans',
     fontSize: 13,
     color: Color.fromRGBO(145, 26, 29, 1),
     fontWeight: FontWeight.w500);

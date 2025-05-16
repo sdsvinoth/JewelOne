@@ -315,7 +315,6 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                         ],
                       ),
                     ),
-
                     digiSchemedata.when(data: (data) {
                       if (data?.data?.isNotEmpty ?? false) {
                         return Padding(
@@ -346,11 +345,19 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.all(10),
-                                          child: Image.asset(
-                                            'assets/sha1.png',
-                                            height: 50,
-                                            width: 50,
+                                          child: Row(
+                                            children: [
+                                              Image.asset(
+                                                'lib/assets/logo.png',
+                                                height: 50,
+                                                width: 50,
+                                              ),
+                                              const SizedBox(width: 5),
+                                              Text("Shining dawn",
+                                                  style: UserST1),
+                                            ],
                                           ),
+
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(
@@ -436,7 +443,7 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                     ),
                                     Positioned(
                                       top: 20,
-                                      right: 30,
+                                      right: 10,
                                       child: Image.asset(
                                         'assets/sha1.png',
                                         fit: BoxFit.contain,

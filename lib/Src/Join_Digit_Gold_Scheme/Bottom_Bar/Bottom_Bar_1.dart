@@ -6,7 +6,7 @@ class Bottombar1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   Padding(
+    return Padding(
       padding: const EdgeInsets.all(0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -17,7 +17,7 @@ class Bottombar1 extends StatelessWidget {
               height: 80,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [gradient1, gradient2],// Gold to Orange
+                  colors: [gradient1, gradient2], // Gold to Orange
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                 ),
@@ -26,34 +26,45 @@ class Bottombar1 extends StatelessWidget {
                   topRight: Radius.circular(16),
                 ),
               ),
-              child:const Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      'Benefits',
-                      style: TextStyle(
-                        fontFamily: 'JosefinSans',
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                      ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: const [
+                        Text(
+                          'Benefits',
+                          style: TextStyle(
+                            fontFamily: 'JosefinSans',
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(height: 4),
+                        Text(
+                          'Digi Gold Scheme',
+                          style: TextStyle(
+                            fontFamily: 'JosefinSans',
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
                     ),
-                    SizedBox(height: 4), // optional spacing between texts
-                    Text(
-                      'Digi Gold Scheme',
-                      style: TextStyle(
-                        fontFamily: 'JosefinSans',
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.close, color: Colors.white),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
               ),
-
-            ),
+            )
           ),
           const SizedBox(height: 16),
           const Row(

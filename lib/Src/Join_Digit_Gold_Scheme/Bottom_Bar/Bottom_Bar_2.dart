@@ -27,32 +27,44 @@ class Bottombar2 extends StatelessWidget {
                     topRight: Radius.circular(16),
                   ),
                 ),
-                child:const Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'Know More',
-                        style: TextStyle(
-                          fontFamily: 'JosefinSans',
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(child:
+                    Column(
+                      children: [
+                        SizedBox(height: 10), // optional spacing
+                        Text(
+                          'Know More',
+                          style: TextStyle(
+                            fontFamily: 'JosefinSans',
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 4), // optional spacing between texts
-                      Text(
-                        'Digi Gold Scheme',
-                        style: TextStyle(
-                          fontFamily: 'JosefinSans',
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                        SizedBox(height: 4), // optional spacing between texts
+                        Text(
+                          'Digi Gold Scheme',
+                          style: TextStyle(
+                            fontFamily: 'JosefinSans',
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+
+                      ],
+                    ),),
+                    IconButton(
+                      icon: const Icon(Icons.close, color: Colors.white),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ],
                 ),
+
 
               ),
             ),

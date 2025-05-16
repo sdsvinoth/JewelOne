@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jewelone/Src/Home_DashBoard_Ui/Home_DashBoard_Screen.dart';
+import 'package:jewelone/Src/Join_Digit_Gold_Scheme/Bottom_Bar/Bottom_Bar_1.dart';
+import 'package:jewelone/Src/Join_Digit_Gold_Scheme/Bottom_Bar/Bottom_Bar_2.dart';
+import 'package:jewelone/Src/Join_Digit_Gold_Scheme/Bottom_Bar/Common_bar.dart';
 import 'package:jewelone/utilits/Common_Colors.dart';
 import 'package:jewelone/utilits/Text_Style.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -31,7 +34,7 @@ class _DigitGoldCardState extends ConsumerState<DigitGoldCard> {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(width: 1, color: Colors.yellow),
+                  border: Border.all(width: 1, color: Colors.white),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,7 +92,7 @@ class _DigitGoldCardState extends ConsumerState<DigitGoldCard> {
                                             Row(
                                               children: [
                                                 Container(
-                                                  height: 20,
+                                                  height: 30,
                                                   decoration:
                                                       const BoxDecoration(
                                                     borderRadius:
@@ -99,13 +102,16 @@ class _DigitGoldCardState extends ConsumerState<DigitGoldCard> {
                                                     shape: BoxShape
                                                         .rectangle, // or BoxShape.circle if you want a dot
                                                   ),
-                                                  child: Text(
-                                                    "Active",
-                                                    style: walletT3?.copyWith(
-                                                      fontFamily: 'JosefinSans',
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      color: Colors.white,
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.all(5),
+                                                    child: Text(
+                                                      "Active",
+                                                      style: walletT3?.copyWith(
+                                                        fontFamily: 'JosefinSans',
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        color: Colors.white,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
@@ -128,7 +134,7 @@ class _DigitGoldCardState extends ConsumerState<DigitGoldCard> {
                                   child: Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
-                                      color: Colors.brown[700],
+                                      color: Colors.brown[600],
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
@@ -160,7 +166,7 @@ class _DigitGoldCardState extends ConsumerState<DigitGoldCard> {
                                   child: Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
-                                      color: Colors.brown[700],
+                                      color: Colors.brown[600],
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
@@ -192,14 +198,13 @@ class _DigitGoldCardState extends ConsumerState<DigitGoldCard> {
                             const Divider(
                                 color: Colors.yellow, thickness: 1, height: 20),
                             Padding(
-                              padding: const EdgeInsets.only(top: 1, left: 30, right: 10),
+                              padding: const EdgeInsets.all(10),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      // Circle container: use fixed size but no Expanded
                                       Container(
                                         width: 110,
                                         height: 110,
@@ -236,10 +241,6 @@ class _DigitGoldCardState extends ConsumerState<DigitGoldCard> {
                                           ],
                                         ),
                                       ),
-
-                                      const SizedBox(width: 5),
-
-                                      // Middle column: use Flexible or Expanded for flexible width
                                       Expanded(
                                         child: Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -257,14 +258,12 @@ class _DigitGoldCardState extends ConsumerState<DigitGoldCard> {
                                           ],
                                         ),
                                       ),
-
-                                      const SizedBox(width: 5),
                                       Expanded(
                                         child: Column(
                                           crossAxisAlignment: CrossAxisAlignment.end,
                                           children: [
                                             Container(
-                                              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                                              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 1),
                                               decoration: BoxDecoration(
                                                 borderRadius: BorderRadius.circular(30),
                                                 color: Colors.white,
@@ -335,7 +334,7 @@ class _DigitGoldCardState extends ConsumerState<DigitGoldCard> {
                           children: [
                             Expanded(
                               child: GestureDetector(
-                                onTap: () {},
+                                onTap: () => showCustomBottomSheet1(context, const Bottombar1()),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -354,9 +353,7 @@ class _DigitGoldCardState extends ConsumerState<DigitGoldCard> {
                             ),
                             Expanded(
                               child: GestureDetector(
-                                onTap: () {
-                                  // Add your logic here
-                                },
+                                onTap: () => showCustomBottomSheet2(context, const Bottombar2()),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [

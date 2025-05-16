@@ -284,9 +284,42 @@ Widget Wallet_Card(
   );
 }
 
-InputDecoration boxWalletCardInputDecoration(String label) {
+InputDecoration boxWalletCardInputDecoration(String hint) {
   return InputDecoration(
-    labelText: label,
+    hintText: hint,
+    hintStyle: const TextStyle(
+      color: Colors.black,
+      fontSize: 16,
+    ),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10),
+      borderSide: const BorderSide(
+        color: Colors.green,
+      ),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10),
+      borderSide: const BorderSide(
+        color: Colors.green,
+      ),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10),
+      borderSide: const BorderSide(
+        color: Colors.green,
+        width: 2.0,
+      ),
+    ),
+  );
+}
+InputDecoration boxWalletCardInputDecoration1(String hint) {
+  return InputDecoration(
+    hintText: hint, // ✅ Use hintText instead of labelText
+    hintStyle: const TextStyle(
+      color: Colors.black,
+      fontSize: 16,
+    ),
+
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
       borderSide: const BorderSide(
@@ -308,7 +341,6 @@ InputDecoration boxWalletCardInputDecoration(String label) {
     ),
   );
 }
-
 
 
 
