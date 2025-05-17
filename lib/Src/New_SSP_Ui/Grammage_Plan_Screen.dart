@@ -178,51 +178,60 @@ class _Grammage_Plan_ScreenState extends ConsumerState<Grammage_Plan_Screen> {
                 ),
                 activelocationdata.when(
                   data: (data) {
-                    return Container(
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: white1,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20, right: 10),
-                        child: Row(
-                          children: [
-                            // Select Branch Text
-                            Text(
-                              'Select Branch',
-                              style: radioST,
-                            ),
-                            const Spacer(),
-                            DropdownButtonHideUnderline(
-                              child: DropdownButton2<String>(
-                                value: locationval,
-                                items: (data?.data ?? [])
-                                    .map(
-                                        (toElement) => DropdownMenuItem<String>(
-                                              value: toElement.name ?? "",
-                                              child: Text(toElement.name ?? ""),
-                                            ))
-                                    .toList(),
-                                onChanged: (String? newValue) {
-                                  if (newValue != null) {
-                                    setState(() {
-                                      locationval = newValue;
-                                      branch_id = data?.data
-                                              ?.firstWhere((test) =>
-                                                  test.name == newValue)
-                                              .id_branch ??
-                                          0;
-                                    });
-                                  }
-                                },
-                              style: GPlanT2,
+                    return GestureDetector(
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: white1,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20, right: 10),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Select Branch',
+                                style: radioST,
                               ),
-                            ),
-                          ],
+                              const Spacer(),
+                              Expanded(
+                                flex: 5,
+                                child: DropdownButtonHideUnderline(
+                                  child: DropdownButton2<String>(
+                                    isExpanded: true, // Ensures full width usage
+                                    value: locationval,
+                                    items: (data?.data ?? [])
+                                        .map(
+                                          (toElement) => DropdownMenuItem<String>(
+                                        value: toElement.name ?? "",
+                                        child: Text(
+                                          toElement.name ?? "",
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    )
+                                        .toList(),
+                                    onChanged: (String? newValue) {
+                                      if (newValue != null) {
+                                        setState(() {
+                                          locationval = newValue;
+                                          branch_id = data?.data
+                                              ?.firstWhere((test) => test.name == newValue)
+                                              .id_branch ??
+                                              0;
+                                        });
+                                      }
+                                    },
+                                    style: GPlanT2,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );
+
                   },
                   error: (Object error, StackTrace stackTrace) {
                     return Text("ERROR: $error");

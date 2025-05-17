@@ -21,18 +21,21 @@ class _DigitGoldCardState extends ConsumerState<DigitGoldCard> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+      backgroundColor: backGroundColor,
       body: Padding(
         padding: const EdgeInsets.all(0),
         child: Column(
           children: [
-            const SizedBox(height: 100),
+            const SizedBox(height: 80),
             Card(
-              elevation: 5,
+              elevation: 1,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20)),
               child: Container(
                 decoration: BoxDecoration(
+                  color:backGroundColor ,
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(width: 1, color: Colors.white),
                 ),
@@ -59,17 +62,19 @@ class _DigitGoldCardState extends ConsumerState<DigitGoldCard> {
                           children: [
                             Column(
                               children: [
-                                const SizedBox(height: 15),
                                 Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text("APP25JODG239165",
-                                            style: walletT31),
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.white,
+                                            )),
                                         Text("VINOTH KUMAR", style: walletT32),
                                       ],
                                     ),
@@ -92,22 +97,20 @@ class _DigitGoldCardState extends ConsumerState<DigitGoldCard> {
                                             Row(
                                               children: [
                                                 Container(
-                                                  height: 30,
                                                   decoration:
-                                                      const BoxDecoration(
+                                                       BoxDecoration(
                                                     borderRadius:
                                                         BorderRadius.all(
                                                             Radius.circular(5)),
-                                                    color: Colors.green,
+                                                    color: Colors.green[700],
                                                     shape: BoxShape
                                                         .rectangle, // or BoxShape.circle if you want a dot
                                                   ),
                                                   child: Padding(
-                                                    padding: const EdgeInsets.all(5),
+                                                    padding: const EdgeInsets.all(3),
                                                     child: Text(
                                                       "Active",
-                                                      style: walletT3?.copyWith(
-                                                        fontFamily: 'JosefinSans',
+                                                      style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w500,
                                                         color: Colors.white,
@@ -126,7 +129,7 @@ class _DigitGoldCardState extends ConsumerState<DigitGoldCard> {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 10),
+                            const SizedBox(height: 5),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -195,8 +198,7 @@ class _DigitGoldCardState extends ConsumerState<DigitGoldCard> {
                                 ),
                               ],
                             ),
-                            const Divider(
-                                color: Colors.yellow, thickness: 1, height: 20),
+                            const Divider(color: Colors.yellow, thickness: 1),
                             Padding(
                               padding: const EdgeInsets.all(10),
                               child: Column(
@@ -206,8 +208,8 @@ class _DigitGoldCardState extends ConsumerState<DigitGoldCard> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Container(
-                                        width: 110,
-                                        height: 110,
+                                        width: 80,
+                                        height: 80,
                                         decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
                                           color: Colors.white,
@@ -216,24 +218,20 @@ class _DigitGoldCardState extends ConsumerState<DigitGoldCard> {
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            const SizedBox(height: 10),
                                             Text(
                                               "Total\nGold Saved",
-                                              style: UserST.copyWith(
+                                              style: TextStyle(
                                                 color: Colors.black,
-                                                fontSize: 15,
-                                                fontFamily: 'JosefinSans',
+                                                fontSize: 14,
                                                 fontWeight: FontWeight.w400,
                                               ),
                                               textAlign: TextAlign.center,
                                             ),
-                                            const SizedBox(height: 5),
                                             Text(
                                               "0.016 g",
-                                              style: UserST.copyWith(
+                                              style: TextStyle(
                                                 color: Colors.red,
-                                                fontSize: 20,
-                                                fontFamily: 'JosefinSans',
+                                                fontSize: 15,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                               textAlign: TextAlign.center,
@@ -241,19 +239,25 @@ class _DigitGoldCardState extends ConsumerState<DigitGoldCard> {
                                           ],
                                         ),
                                       ),
+                                      const SizedBox(width: 10),
+
                                       Expanded(
                                         child: Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Row(
                                               children: [
-                                                Text("Date of Maturity", style: walletT3),
+                                                Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text("Date of Purchase", style: walletT3),
+                                                    Text(
+                                                      '10-Apr-2025',
+                                                      style: TextStyle(fontSize: 12, color: Colors.white),
+                                                    ),
+                                                  ],
+                                                ),
                                               ],
-                                            ),
-                                            const SizedBox(height: 5),
-                                            const Text(
-                                              '10-Apr-2025',
-                                              style: TextStyle(fontSize: 12, color: Colors.white),
                                             ),
                                           ],
                                         ),
@@ -278,9 +282,7 @@ class _DigitGoldCardState extends ConsumerState<DigitGoldCard> {
                                                 ],
                                               ),
                                             ),
-                                            const SizedBox(height: 10),
                                             Center(child: Text("0.0%", style: walletT3)),
-                                            const SizedBox(height: 5),
                                             LayoutBuilder(
                                               builder: (context, constraints) {
                                                 return LinearPercentIndicator(
@@ -294,7 +296,6 @@ class _DigitGoldCardState extends ConsumerState<DigitGoldCard> {
                                                 );
                                               },
                                             ),
-                                            const SizedBox(height: 10),
                                             ElevatedButton(
                                               onPressed: () {
                                                 Navigator.push(
@@ -322,7 +323,6 @@ class _DigitGoldCardState extends ConsumerState<DigitGoldCard> {
                                 ],
                               ),
                             )
-
                           ],
                         ),
                       ),

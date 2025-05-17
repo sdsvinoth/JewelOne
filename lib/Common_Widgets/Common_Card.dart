@@ -53,7 +53,7 @@ Widget Wallet_Card(
       elevation: 5,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Container(
-        width: 325,
+        width: 320,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             border: Border.all(width: 1, color: gradient2),
@@ -226,7 +226,7 @@ Widget Wallet_Card(
               ),
               Column(
                 children: [
-                  const Divider(thickness: 1.5, color: Colors.white),
+                  const Divider(thickness: 1.5, color: gradient2),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -289,7 +289,7 @@ InputDecoration boxWalletCardInputDecoration(String hint) {
     hintText: hint,
     hintStyle: const TextStyle(
       color: Colors.black,
-      fontSize: 16,
+      fontSize: 15,
     ),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
@@ -317,7 +317,7 @@ InputDecoration boxWalletCardInputDecoration1(String hint) {
     hintText: hint, // ✅ Use hintText instead of labelText
     hintStyle: const TextStyle(
       color: Colors.black,
-      fontSize: 16,
+      fontSize: 15,
     ),
 
     border: OutlineInputBorder(

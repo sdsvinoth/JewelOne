@@ -38,8 +38,7 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
   // final List<String> items = ['Coimbatore', 'Salem', 'Chennai'];
   // String selectedItem = 'Coimbatore';
   int myCurrentPage = 0;
-  bool backhome = false;
-  bool dell = false;
+
   String? location;
   List<String> locationoption = ["Pollachi"];
 
@@ -66,36 +65,43 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
 
     return Scaffold(
       backgroundColor: backGroundColor,
-      appBar: AppBar(
-        backgroundColor: white2,
-        leading: InkWell(
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Menu_Screen()));
-            },
-            child: const Icon(Icons.menu_outlined)),
-        // centerTitle: true,
-        // title: App_Logo(context),
-        title: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Shining dawn', style: title1),
-          ],
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10, left: 10),
-            child: InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const Notification_Screen()));
-                },
-                child: ImgPathSvg("notification.svg")),
-          ),
-        ],
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: white2,
+      //   leading: InkWell(
+      //       onTap: () {
+      //         Navigator.push(context,
+      //             MaterialPageRoute(builder: (context) => Menu_Screen()));
+      //       },
+      //       child: const Icon(Icons.menu_outlined)),
+      //   // centerTitle: true,
+      //   // title: App_Logo(context),
+      //   title:  Column(
+      //     children: [
+      //       Padding(
+      //         padding: const EdgeInsets.all(10),
+      //         child: SizedBox(
+      //           height:100,
+      //           child: ImgPathPng("logo.png"), // Your custom image widget
+      //         ),
+      //       ),
+      //       const SizedBox(width: 10),
+      //       Text('Saravana Nagai Maligai', style: title1),
+      //     ],
+      //   ),
+      //   actions: [
+      //     Padding(
+      //       padding: const EdgeInsets.only(right: 10, left: 10),
+      //       child: InkWell(
+      //           onTap: () {
+      //             Navigator.push(
+      //                 context,
+      //                 MaterialPageRoute(
+      //                     builder: (context) => const Notification_Screen()));
+      //           },
+      //           child: ImgPathSvg("notification.svg")),
+      //     ),
+      //   ],
+      // ),
       body: SingleChildScrollView(
         child: Container(
           width: MediaQuery.sizeOf(context).width,
@@ -113,7 +119,57 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
               //  }),
 
               //GOLD PRICE
-
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: const BoxDecoration(
+                  color: white2,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 30),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        InkWell(
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => Menu_Screen()));
+                            },
+                            child: const Icon(Icons.menu_outlined)),
+                        SizedBox(width: 50),
+                        Expanded(child: Column(
+                          children: [
+                            Center(
+                              child: SizedBox(
+                                height:100,
+                                child: ImgPathPng("logo.png"), // Your custom image widget
+                              ),
+                            ),
+                          ],
+                        ),),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10, left: 10),
+                          child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const Notification_Screen()));
+                              },
+                              child: ImgPathSvg("notification.svg")),
+                        ),
+                      ],
+                    ),
+                    // Center(child: Text('Saravana Nagai Maligai', style: title1)),
+                  ],
+                ),
+              ),
               priceRate.when(data: (data) {
                 return GoldScrollPriceWidget(
                   data: data,
@@ -336,15 +392,15 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.only(top: 10),
+                                padding: const EdgeInsets.only(top: 1),
                                 child: Stack(
+                                  clipBehavior: Clip.none,
                                   children: [
                                     Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.all(10),
+                                          padding: const EdgeInsets.all(5),
                                           child: Row(
                                             children: [
                                               Image.asset(
@@ -352,89 +408,106 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                                 height: 50,
                                                 width: 50,
                                               ),
-                                              const SizedBox(width: 5),
-                                              Text("Shining dawn",
-                                                  style: UserST1),
+                                              const SizedBox(width: 1),
+                                              Text("Saravana Nagai Maligai", style: UserST1),
                                             ],
                                           ),
-
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(
-                                              top: 1, left: 30, right: 10),
+                                          padding: const EdgeInsets.only(top: 1, left: 30, right: 10),
                                           child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              Text("DIGI GOLD Savings",
-                                                  style: UserST),
-                                              Text("Easy | Flexibility",
-                                                  style: walletT3),
-                                              Text("Convenient",
-                                                  style: walletT3),
+                                              const Text(
+                                                "DIGI GOLD Savings",
+                                                style: TextStyle(
+                                                    fontSize: 18,
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
+                                              Text("Easy | Flexibility", style: walletT3),
+                                              Text("Convenient", style: walletT3),
                                             ],
                                           ),
                                         ),
-                                        const SizedBox(height: 15),
+                                        const SizedBox(height: 10),
                                         Padding(
-                                          padding: const EdgeInsets.all(10),
+                                          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                                           child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                             children: [
-                                              ElevatedButton(
-                                                onPressed: () {
-                                                  setState(() {
-                                                    backhome = true;
-                                                    dell = false;
-                                                  });
-                                                  Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          const Grammage_Plan_Screen(),
+                                              Expanded(
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.yellow.shade600,
+                                                    borderRadius: BorderRadius.circular(20),
+                                                    border: Border.all(color: Colors.grey.shade400),
+                                                  ),
+                                                  child: ElevatedButton(
+                                                    onPressed: () {
+                                                      setState(() {
+                                                        Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                            builder: (context) => const Grammage_Plan_Screen(),
+                                                          ),
+                                                        );
+                                                      });
+                                                    },
+                                                    style: ElevatedButton.styleFrom(
+                                                      backgroundColor: Colors.transparent,
+                                                      shadowColor: Colors.transparent,
+                                                      padding: const EdgeInsets.symmetric(
+                                                          horizontal: 20, vertical: 1),
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(10),
+                                                      ),
                                                     ),
-                                                  );
-                                                },
-                                                style: ElevatedButton.styleFrom(
-                                                  backgroundColor: backhome
-                                                      ? Colors.yellow
-                                                      : Colors.white,
-                                                  foregroundColor: Colors.black,
-                                                  side: BorderSide(
-                                                      color: Colors
-                                                          .yellow.shade700),
-                                                  elevation: 2,
+                                                    child: Text('Join Now',
+                                                        style: TextStyle(
+                                                          fontSize: 16,
+                                                          fontWeight: FontWeight.bold,
+                                                          color:  Colors.black,
+                                                        )),
+                                                  ),
                                                 ),
-                                                child: Text('Join Now',
-                                                    style: planST),
                                               ),
-                                              ElevatedButton(
-                                                onPressed: () {
-                                                  setState(() {
-                                                    dell = true;
-                                                    backhome = false;
-                                                  });
-                                                  Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          const JoinDigitGold(),
+                                              SizedBox(width: 20),
+                                              Expanded(
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    color:  Colors.white,
+                                                    borderRadius: BorderRadius.circular(20),
+                                                    border: Border.all(color: Colors.grey.shade400),
+                                                  ),
+                                                  child: ElevatedButton(
+                                                    onPressed: () {
+                                                      setState(() {
+                                                        Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                            builder: (context) => const JoinDigitGold(),
+                                                          ),
+                                                        );
+                                                      });
+                                                    },
+                                                    style: ElevatedButton.styleFrom(
+                                                      backgroundColor: Colors.transparent,
+                                                      shadowColor: Colors.transparent,
+                                                      padding: const EdgeInsets.symmetric(
+                                                          horizontal: 20, vertical: 1),
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(8),
+                                                      ),
                                                     ),
-                                                  );
-                                                },
-                                                style: ElevatedButton.styleFrom(
-                                                  backgroundColor: dell
-                                                      ? Colors.yellow
-                                                      : Colors.white,
-                                                  foregroundColor: Colors.black,
-                                                  side: BorderSide(
-                                                      color: Colors
-                                                          .yellow.shade700),
-                                                  elevation: 2,
+                                                    child: Text('Know More',
+                                                        style: TextStyle(
+                                                          fontSize: 16,
+                                                          fontWeight: FontWeight.bold,
+                                                          color: Colors.black,
+                                                        )),
+                                                  ),
                                                 ),
-                                                child: Text('Know More',
-                                                    style: gramST),
                                               ),
                                             ],
                                           ),
@@ -443,12 +516,14 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                     ),
                                     Positioned(
                                       top: 20,
-                                      right: 10,
-                                      child: Image.asset(
-                                        'assets/sha1.png',
-                                        fit: BoxFit.contain,
-                                        height: 150,
-                                        width: 150,
+                                      right: 1,
+                                      child: ClipOval(
+                                        child: Image.asset(
+                                          'assets/sha1.png',
+                                          fit: BoxFit.contain,
+                                          height: 150,
+                                          width: 150,
+                                        ),
                                       ),
                                     ),
                                   ],

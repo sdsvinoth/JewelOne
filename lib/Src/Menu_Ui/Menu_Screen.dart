@@ -397,7 +397,6 @@ Widget NavContainer(
             child: Text(
               planST,
               style: const TextStyle(
-                fontFamily: 'JosefinSans',
                 fontSize: 14,
                 color: Colors.black,
                 fontWeight: FontWeight.bold, // Optional for emphasis
