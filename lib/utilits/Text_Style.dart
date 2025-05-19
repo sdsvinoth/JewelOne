@@ -51,7 +51,7 @@ TextStyle skip_ST = const TextStyle(
 TextStyle follow = const TextStyle(
     fontSize: 15,
     color: Color.fromRGBO(45, 45, 45, 1),
-    fontWeight: FontWeight.w600);
+    fontWeight: FontWeight.bold);
 
 TextStyle bottomotext = const TextStyle(
     fontFamily: 'JosefinSans',
@@ -75,10 +75,8 @@ TextStyle planST = const TextStyle(
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.bold);
 
-TextStyle planST5 =  TextStyle(
-    fontSize: 15,
-    color: gradient2,
-    fontWeight: FontWeight.bold);
+TextStyle planST5 =
+    TextStyle(fontSize: 15, color: gradient2, fontWeight: FontWeight.bold);
 
 TextStyle planST2 = const TextStyle(
     fontSize: 12,
@@ -104,23 +102,26 @@ TextStyle walletT32 = const TextStyle(
     fontFamily: 'JosefinSans',
     fontSize: 12,
     color: Color.fromRGBO(255, 255, 255, 1),
-    fontWeight: FontWeight.bold);
+    fontWeight: FontWeight.w500);
+
+TextStyle walletT33 = const TextStyle(
+    fontFamily: 'JosefinSans',
+    fontSize: 15,
+    color: Color.fromRGBO(255, 255, 255, 1),
+    fontWeight: FontWeight.w700);
 
 TextStyle plandetailT = const TextStyle(
+    fontFamily: 'JosefinSans',
     fontSize: 12,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w500);
 
 //GRAM
 TextStyle gramST = const TextStyle(
-    fontSize: 16,
-    color: Colors.black,
-    fontWeight: FontWeight.bold);
+    fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold);
 
 TextStyle gramrateST = const TextStyle(
-    fontSize: 16,
-    color: Colors.green,
-    fontWeight: FontWeight.w700);
+    fontSize: 16, color: Colors.green, fontWeight: FontWeight.w700);
 
 //RADIO T
 TextStyle radioST = const TextStyle(
@@ -134,48 +135,54 @@ TextStyle radioST1 = const TextStyle(
     fontWeight: FontWeight.w400);
 
 TextStyle appTitle = const TextStyle(
+    fontFamily: 'JosefinSans',
     fontSize: 18,
     color: Colors.black,
     fontWeight: FontWeight.w500);
 TextStyle appTitle2 = const TextStyle(
+    fontFamily: 'JosefinSans',
     fontSize: 18,
     color: white1,
     fontWeight: FontWeight.w500);
 
 TextStyle phoneHT = const TextStyle(
-    fontFamily: '',
+    fontFamily: 'JosefinSans',
     fontSize: 14,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w500);
 
 TextStyle light = const TextStyle(
-    fontFamily: '',
+    fontFamily: 'JosefinSans',
     fontSize: 12,
     color: Color.fromRGBO(181, 181, 181, 1),
     fontWeight: FontWeight.w400);
 
 TextStyle locationT = const TextStyle(
-    fontFamily: '',
+    fontFamily: 'JosefinSans',
     fontSize: 24,
     color: Color.fromRGBO(40, 40, 40, 1),
     fontWeight: FontWeight.w700);
 
 TextStyle locationT1 = const TextStyle(
+    fontFamily: 'JosefinSans',
     fontSize: 16,
     color: Color.fromRGBO(40, 40, 40, 1),
     fontWeight: FontWeight.w600);
 
 TextStyle delete = const TextStyle(
+    fontFamily: 'JosefinSans',
     fontSize: 14,
     color: Color.fromRGBO(255, 0, 0, 1),
     fontWeight: FontWeight.w500);
 
 TextStyle title1 = const TextStyle(
+    fontFamily: 'JosefinSans',
     fontSize: 15,
-    color: Colors.red,
+    color: Colors.purple,
     fontWeight: FontWeight.bold);
 
 TextStyle Textfield_Style = const TextStyle(
+    fontFamily: 'JosefinSans',
     fontSize: 14,
     color: Colors.black,
     fontWeight: FontWeight.w400);
@@ -193,11 +200,13 @@ TextStyle StarT = const TextStyle(color: Colors.red, fontSize: 16);
 
 //BUTTON TEXT
 TextStyle ButtonT = const TextStyle(
+    fontFamily: 'JosefinSans',
     fontSize: 16,
     color: white1,
     fontWeight: FontWeight.w500);
 
 TextStyle ButtonT2 = const TextStyle(
+    fontFamily: 'JosefinSans',
     fontSize: 14,
     color: white1,
     fontWeight: FontWeight.bold);
@@ -209,6 +218,7 @@ TextStyle ButtonT3 = const TextStyle(
     fontWeight: FontWeight.w600);
 
 TextStyle BlackTextColorLowSize = const TextStyle(
+  fontFamily: 'JosefinSans',
   fontSize: 14,
   color: BlackNormal,
   fontWeight: FontWeight.w500,
@@ -222,6 +232,7 @@ TextStyle BlackTextColor = const TextStyle(
 );
 
 TextStyle TBlack = const TextStyle(
+    fontFamily: 'JosefinSans',
     fontSize: 24,
     color: Color.fromRGBO(45, 45, 45, 1),
     fontWeight: FontWeight.w800);
@@ -245,7 +256,8 @@ TextStyle detailsT = const TextStyle(
     fontWeight: FontWeight.w600);
 
 TextStyle Plan_Style = const TextStyle(
-    fontSize: 15,
+    fontFamily: 'JosefinSans',
+    fontSize: 17,
     color: Color.fromRGBO(145, 26, 29, 1),
     fontWeight: FontWeight.w500);
 
@@ -256,13 +268,12 @@ TextStyle Tamount = const TextStyle(
     fontWeight: FontWeight.w600);
 
 TextStyle TBlack2 = const TextStyle(
+    fontFamily: 'JosefinSans',
     fontSize: 24,
     color: Color.fromRGBO(0, 0, 0, 1),
     fontWeight: FontWeight.w600);
 
-
 TextStyle Black22 = const TextStyle(
-  fontFamily: 'poppins',
     fontSize: 14,
     color: Color.fromRGBO(0, 0, 0, 1),
     fontWeight: FontWeight.w500);
@@ -392,9 +403,10 @@ TextStyle success = const TextStyle(
     fontWeight: FontWeight.bold);
 
 TextStyle rate2 = const TextStyle(
-  fontSize: 14,
-  color: Colors.black,
-  fontWeight: FontWeight.bold);
+    fontFamily: 'JosefinSans',
+    fontSize: 14,
+    color: Colors.black,
+    fontWeight: FontWeight.bold);
 
 TextStyle underline = const TextStyle(
     decoration: TextDecoration.underline,
@@ -545,6 +557,7 @@ TextStyle Content1 = const TextStyle(
     fontWeight: FontWeight.w400);
 
 TextStyle profilenum = const TextStyle(
+    fontFamily: 'JosefinSans',
     fontSize: 16,
     color: Color.fromRGBO(255, 255, 255, 1),
     fontWeight: FontWeight.w400);
@@ -562,6 +575,7 @@ TextStyle appbarT = const TextStyle(
     fontWeight: FontWeight.w600);
 
 TextStyle profilT = const TextStyle(
+    fontFamily: 'JosefinSans',
     fontSize: 24,
     color: Color.fromRGBO(255, 255, 255, 1),
     fontWeight: FontWeight.w600);
@@ -573,6 +587,7 @@ TextStyle TandC = const TextStyle(
     fontWeight: FontWeight.w500);
 
 TextStyle GPlanT = const TextStyle(
+    fontFamily: 'JosefinSans',
     fontSize: 18,
     color: Color.fromRGBO(159, 33, 44, 1),
     fontWeight: FontWeight.w600);

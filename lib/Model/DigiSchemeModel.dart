@@ -1,14 +1,14 @@
 class DigiSchemeModel {
-  List<Data>? data;
+  List<DigiSchemeData>? data;
   String? message;
 
   DigiSchemeModel({this.data, this.message});
 
   DigiSchemeModel.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <DigiSchemeData>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(new DigiSchemeData.fromJson(v));
       });
     }
     message = json['message'];
@@ -24,7 +24,7 @@ class DigiSchemeModel {
   }
 }
 
-class Data {
+class DigiSchemeData {
   String? schemeName;
   String? schemeDescription;
   String? metalType;
@@ -44,12 +44,12 @@ class Data {
   String? maturityDate;
   bool? isTargetSet;
   String? currentInterestSlab;
-  int? currentInterestSlabRate;
-  String? currentDaysFromJointDate;
+  double? currentInterestSlabRate;
+  int? currentDaysFromJointDate;
   bool? showTarget;
   List<InterestSlabs>? interestSlabs;
 
-  Data(
+  DigiSchemeData(
       {this.schemeName,
       this.schemeDescription,
       this.metalType,
@@ -74,7 +74,7 @@ class Data {
       this.showTarget,
       this.interestSlabs});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  DigiSchemeData.fromJson(Map<String, dynamic> json) {
     schemeName = json['schemeName'];
     schemeDescription = json['schemeDescription'];
     metalType = json['metalType'];

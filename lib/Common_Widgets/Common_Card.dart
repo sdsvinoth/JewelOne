@@ -53,7 +53,7 @@ Widget Wallet_Card(
       elevation: 5,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Container(
-        width: 320,
+        width: width,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             border: Border.all(width: 1, color: gradient2),
@@ -98,7 +98,7 @@ Widget Wallet_Card(
                                   child: ImgPathPng('accountnum.png')),
                               Padding(
                                 padding:
-                                const EdgeInsets.only(left: 5, right: 5),
+                                    const EdgeInsets.only(left: 5, right: 5),
                                 child: Container(
                                   width: 3,
                                   color: gradient2,
@@ -169,7 +169,7 @@ Widget Wallet_Card(
                                   child: ImgPathPng('totalpaid.png')),
                               Padding(
                                 padding:
-                                const EdgeInsets.only(left: 5, right: 5),
+                                    const EdgeInsets.only(left: 5, right: 5),
                                 child: Container(
                                   width: 3,
                                   color: gradient2,
@@ -194,7 +194,8 @@ Widget Wallet_Card(
                         ),
                         Row(
                           children: [
-                            const Icon(Icons.balance_sharp, color: Colors.white),
+                            const Icon(Icons.balance_sharp,
+                                color: Colors.white),
                             Padding(
                               padding: const EdgeInsets.only(left: 5, right: 5),
                               child: Container(
@@ -226,7 +227,7 @@ Widget Wallet_Card(
               ),
               Column(
                 children: [
-                  const Divider(thickness: 1.5, color: gradient2),
+                  const Divider(thickness: 1.5, color: Colors.white),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -236,12 +237,12 @@ Widget Wallet_Card(
                             width: (MediaQuery.sizeOf(context).width / 2) - 15,
                             child: Center(
                                 child: Padding(
-                          padding: const EdgeInsets.only(bottom: 10),
-                          child: Text(
-                            "Payment History",
-                            style: ButtonT2,
-                          ),
-                        ))),
+                              padding: const EdgeInsets.only(bottom: 10),
+                              child: Text(
+                                "Payment History",
+                                style: ButtonT2,
+                              ),
+                            ))),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 10),
@@ -289,7 +290,7 @@ InputDecoration boxWalletCardInputDecoration(String hint) {
     hintText: hint,
     hintStyle: const TextStyle(
       color: Colors.black,
-      fontSize: 15,
+      fontSize: 16,
     ),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
@@ -312,12 +313,13 @@ InputDecoration boxWalletCardInputDecoration(String hint) {
     ),
   );
 }
+
 InputDecoration boxWalletCardInputDecoration1(String hint) {
   return InputDecoration(
     hintText: hint, // ✅ Use hintText instead of labelText
     hintStyle: const TextStyle(
       color: Colors.black,
-      fontSize: 15,
+      fontSize: 16,
     ),
 
     border: OutlineInputBorder(
@@ -341,9 +343,6 @@ InputDecoration boxWalletCardInputDecoration1(String hint) {
     ),
   );
 }
-
-
-
 
 Widget New_SSP_Images(context, {required String image}) {
   return Container(
