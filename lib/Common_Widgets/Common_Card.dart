@@ -318,26 +318,26 @@ InputDecoration boxWalletCardInputDecoration1(String hint) {
   return InputDecoration(
     hintText: hint, // ✅ Use hintText instead of labelText
     hintStyle: const TextStyle(
-      color: Colors.black,
+      color: Colors.grey,
       fontSize: 16,
     ),
 
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
       borderSide: const BorderSide(
-        color: Colors.red,
+        color: gradient1,
       ),
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
       borderSide: const BorderSide(
-        color: Colors.red,
+        color: gradient1,
       ),
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
       borderSide: const BorderSide(
-        color: Colors.red,
+        color: gradient1,
         width: 2.0,
       ),
     ),

@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jewelone/Src/Home_DashBoard_Ui/Home_DashBoard_Screen.dart';
 import 'package:jewelone/Src/Join_Digit_Gold_Scheme/Digit_Gold_Card.dart';
-import 'package:jewelone/Src/Scheme_Passbook/New_Passbook_Scheme.dart';
 import 'package:jewelone/utilits/Landing.dart';
 
 import 'Src/Login_Ui/LoginScreen.dart';
@@ -35,7 +34,6 @@ class MyApp extends StatelessWidget {
             "/login": (context) => const LoginScreen(),
             "/home": (context) => Home_DashBoard_Screen(),
             "/gold": (context) => const DigitGoldCard(),
-            "/new": (context) => const NewPassbookScheme(),
           },
           onGenerateRoute: (value) {
             return MaterialPageRoute(builder: (context) => const LoginScreen());

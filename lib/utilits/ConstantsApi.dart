@@ -22,6 +22,8 @@ class ConstantApi {
 
   static String digiSchemeSetTargetApi =
       SERVER_ONE + "managescheme/set_target_digi_scheme/";
+  static String digiPaymentHistoryApi =
+      SERVER_ONE + "payment/account_payment_history/";
 
   static String buynewplanUrl = SERVER_ONE + "managescheme/scheme_account/";
 

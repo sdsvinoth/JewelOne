@@ -3,6 +3,7 @@ import 'package:jewelone/Model/ActiveLocationMOdel.dart';
 import 'package:jewelone/Model/ActivePlanModel.dart';
 import 'package:jewelone/Model/BannerModel.dart';
 import 'package:jewelone/Model/ClosedAccountModel.dart';
+import 'package:jewelone/Model/DigiPaymentHistoryModel.dart';
 import 'package:jewelone/Model/DigiSchemeModel.dart';
 import 'package:jewelone/Model/ForgotPasswwordModel.dart';
 import 'package:jewelone/Model/GoldRateMmodel.dart';
@@ -77,6 +78,13 @@ final setTargetDigiProvider =
 
 final getDigiSchemeProvider = FutureProvider<DigiSchemeModel?>((ref) async {
   return ref.watch(apiServiceProvider).DigiSchemeApi();
+});
+
+//DIGI PAYMENT SCHEME
+
+final getDigiPayementHisProvider = FutureProvider.autoDispose
+    .family<DigiPaymentHistoryModel?, String>((ref, accountID) async {
+  return ref.watch(apiServiceProvider).digiPaymentHistoryApi(accountID);
 });
 
 //Buy New Plan

@@ -4,6 +4,7 @@ import 'package:jewelone/Model/ActiveLocationMOdel.dart';
 import 'package:jewelone/Model/ActivePlanModel.dart';
 import 'package:jewelone/Model/BannerModel.dart';
 import 'package:jewelone/Model/ClosedAccountModel.dart';
+import 'package:jewelone/Model/DigiPaymentHistoryModel.dart';
 import 'package:jewelone/Model/DigiSchemeModel.dart';
 import 'package:jewelone/Model/ForgotPasswwordModel.dart';
 import 'package:jewelone/Model/GoldRateMmodel.dart';
@@ -258,6 +259,32 @@ class ApiService {
       }
     }
     return DigiSchemeModel();
+  }
+
+  //DIGI SCHEME
+  Future<DigiPaymentHistoryModel> digiPaymentHistoryApi(
+      String accountID) async {
+    final result = await requestGET(
+        url: ConstantApi.digiPaymentHistoryApi + "${accountID}/", dio: _dio);
+
+    if (result["success"] == true) {
+      print("resultOTP:$result");
+      print("resultOTPsss:${result["success"]}");
+      var resultval = DigiPaymentHistoryModel.fromJson(result["response"]);
+
+      return resultval;
+    } else {
+      try {
+        var resultval = DigiPaymentHistoryModel.fromJson(result["response"]);
+        // Toast.show(resultval.message.toString(), context);
+        print(result["response"]);
+        return resultval;
+      } catch (e) {
+        print(result["response"]);
+        // Toast.show(result["response"], context);
+      }
+    }
+    return DigiPaymentHistoryModel();
   }
 
   //DIGI SCHEME SET TARGET

@@ -9,12 +9,15 @@ import 'package:jewelone/Model/GoldRateMmodel.dart';
 import 'package:jewelone/Model/LoginModel.dart';
 import 'package:jewelone/Src/Close_Account_UI/CloseAccountScreen.dart';
 import 'package:jewelone/Src/Join_Digit_Gold_Scheme/Join_Digit_Gold.dart';
+import 'package:jewelone/Src/Join_Digit_Gold_Scheme/JoinedDigiGold.dart';
 import 'package:jewelone/Src/Menu_Ui/Menu_Screen.dart';
 import 'package:jewelone/Src/My_SSP_Ui/My_SSP_Screen.dart';
 import 'package:jewelone/Src/New_SSP_Ui/New_SSP_Screen.dart';
 import 'package:jewelone/Src/Notification_Ui/Notification_Screen.dart';
 import 'package:jewelone/Src/Online_Emi_Payment_Ui/Online_Emi_Payment_Screen.dart';
 import 'package:jewelone/Src/Purchase_Plan_Detail_Ui/Purchase_Plan_Details_Screen.dart';
+import 'package:jewelone/Src/Scheme_Passbook/New_Passbook_Scheme.dart';
+import 'package:jewelone/Src/SetTarget/SetTargetScreen.dart';
 import 'package:jewelone/utilits/ApiProvider.dart';
 import 'package:jewelone/utilits/Common_Colors.dart';
 import 'package:jewelone/utilits/Generic.dart';
@@ -332,533 +335,552 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                         width:
                                             MediaQuery.sizeOf(context).width -
                                                 20,
-                                        child: Card(
-                                          elevation: 1,
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(14)),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(14),
-                                              border: Border.all(
-                                                  width: 1,
-                                                  color: Colors.white),
-                                            ),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Container(
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                      topLeft:
-                                                          Radius.circular(20),
-                                                      topRight:
-                                                          Radius.circular(20),
+                                        child: InkWell(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        NewPassbookScheme(
+                                                          schemeAccountID: data
+                                                                  ?.data?[index]
+                                                                  .accountId ??
+                                                              "",
+                                                        )));
+                                          },
+                                          child: Card(
+                                            elevation: 1,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(14)),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(14),
+                                                border: Border.all(
+                                                    width: 1,
+                                                    color: Colors.white),
+                                              ),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Container(
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                        topLeft:
+                                                            Radius.circular(20),
+                                                        topRight:
+                                                            Radius.circular(20),
+                                                      ),
+                                                      gradient: appGradient,
+                                                      image: DecorationImage(
+                                                        image: AssetImage(
+                                                            'assets/Group.png'),
+                                                        fit: BoxFit.cover,
+                                                        opacity: 0.2,
+                                                      ),
                                                     ),
-                                                    gradient: appGradient,
-                                                    image: DecorationImage(
-                                                      image: AssetImage(
-                                                          'assets/Group.png'),
-                                                      fit: BoxFit.cover,
-                                                      opacity: 0.2,
-                                                    ),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            top: 20,
-                                                            right: 20,
-                                                            left: 20,
-                                                            bottom: 10),
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Column(
-                                                          children: [
-                                                            Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceBetween,
-                                                              children: [
-                                                                Column(
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Text(
-                                                                        data?.data?[index].accountNumber ??
-                                                                            "",
-                                                                        style:
-                                                                            walletT31),
-                                                                    Text(
-                                                                        data?.data?[index].accountName ??
-                                                                            "",
-                                                                        style:
-                                                                            walletT32),
-                                                                  ],
-                                                                ),
-                                                                Column(
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .end,
-                                                                  children: [
-                                                                    Text(
-                                                                        data?.data?[index].schemeName ??
-                                                                            "",
-                                                                        style:
-                                                                            walletT33),
-                                                                    Row(
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 20,
+                                                              right: 20,
+                                                              left: 20,
+                                                              bottom: 10),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Column(
+                                                            children: [
+                                                              Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                children: [
+                                                                  Column(
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      Text(
+                                                                          data?.data?[index].accountNumber ??
+                                                                              "",
+                                                                          style:
+                                                                              walletT31),
+                                                                      Text(
+                                                                          data?.data?[index].accountName ??
+                                                                              "",
+                                                                          style:
+                                                                              walletT32),
+                                                                    ],
+                                                                  ),
+                                                                  Column(
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .end,
+                                                                    children: [
+                                                                      Text(
+                                                                          data?.data?[index].schemeName ??
+                                                                              "",
+                                                                          style:
+                                                                              walletT33),
+                                                                      Row(
+                                                                        children: [
+                                                                          Text(
+                                                                            "Status:",
+                                                                            style:
+                                                                                walletT3?.copyWith(
+                                                                              fontFamily: 'JosefinSans',
+                                                                              fontWeight: FontWeight.bold,
+                                                                              color: Colors.white,
+                                                                            ),
+                                                                          ),
+                                                                          const SizedBox(
+                                                                              width: 6),
+                                                                          Row(
+                                                                            children: [
+                                                                              Container(
+                                                                                height: 20,
+                                                                                decoration: const BoxDecoration(
+                                                                                  borderRadius: BorderRadius.all(Radius.circular(2)),
+                                                                                  color: Colors.green,
+                                                                                  shape: BoxShape.rectangle, // or BoxShape.circle if you want a dot
+                                                                                ),
+                                                                                child: Padding(
+                                                                                  padding: const EdgeInsets.only(right: 5, left: 5, top: 2),
+                                                                                  child: Text(
+                                                                                    data?.data?[index].status ?? "",
+                                                                                    style: walletT32?.copyWith(
+                                                                                      fontFamily: 'JosefinSans',
+                                                                                      fontWeight: FontWeight.w500,
+                                                                                      color: Colors.white,
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ],
+                                                                      )
+                                                                    ],
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          const SizedBox(
+                                                              height: 10),
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
+                                                            children: [
+                                                              Expanded(
+                                                                child:
+                                                                    Container(
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            10),
+                                                                    color: const Color(
+                                                                        0xFF87251D),
+                                                                  ),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        top:
+                                                                            8.0,
+                                                                        bottom:
+                                                                            8.0,
+                                                                        left:
+                                                                            20),
+                                                                    child:
+                                                                        Column(
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .start,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .center,
                                                                       children: [
                                                                         Text(
-                                                                          "Status:",
+                                                                          "Weight Saved",
                                                                           style:
                                                                               walletT3?.copyWith(
                                                                             fontFamily:
                                                                                 'JosefinSans',
                                                                             fontWeight:
-                                                                                FontWeight.bold,
+                                                                                FontWeight.w500,
                                                                             color:
                                                                                 Colors.white,
                                                                           ),
                                                                         ),
-                                                                        const SizedBox(
-                                                                            width:
-                                                                                6),
-                                                                        Row(
-                                                                          children: [
-                                                                            Container(
-                                                                              height: 20,
-                                                                              decoration: const BoxDecoration(
-                                                                                borderRadius: BorderRadius.all(Radius.circular(2)),
-                                                                                color: Colors.green,
-                                                                                shape: BoxShape.rectangle, // or BoxShape.circle if you want a dot
-                                                                              ),
-                                                                              child: Padding(
-                                                                                padding: const EdgeInsets.only(right: 5, left: 5, top: 2),
-                                                                                child: Text(
-                                                                                  data?.data?[index].status ?? "",
-                                                                                  style: walletT32?.copyWith(
-                                                                                    fontFamily: 'JosefinSans',
-                                                                                    fontWeight: FontWeight.w500,
-                                                                                    color: Colors.white,
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          ],
+                                                                        Text(
+                                                                          "${data?.data?[index].weightSavedGrams ?? ""} grams",
+                                                                          style:
+                                                                              walletT3?.copyWith(
+                                                                            fontFamily:
+                                                                                'JosefinSans',
+                                                                            fontWeight:
+                                                                                FontWeight.w400,
+                                                                            color:
+                                                                                Colors.white,
+                                                                          ),
                                                                         ),
                                                                       ],
-                                                                    )
-                                                                  ],
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        const SizedBox(
-                                                            height: 10),
-                                                        Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          children: [
-                                                            Expanded(
-                                                              child: Container(
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              10),
-                                                                  color: const Color(
-                                                                      0xFF87251D),
-                                                                ),
-                                                                child: Padding(
-                                                                  padding: const EdgeInsets
-                                                                      .only(
-                                                                      top: 8.0,
-                                                                      bottom:
-                                                                          8.0,
-                                                                      left: 20),
-                                                                  child: Column(
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      Text(
-                                                                        "Weight Saved",
-                                                                        style: walletT3
-                                                                            ?.copyWith(
-                                                                          fontFamily:
-                                                                              'JosefinSans',
-                                                                          fontWeight:
-                                                                              FontWeight.w500,
-                                                                          color:
-                                                                              Colors.white,
-                                                                        ),
-                                                                      ),
-                                                                      Text(
-                                                                        "${data?.data?[index].weightSavedGrams ?? ""} grams",
-                                                                        style: walletT3
-                                                                            ?.copyWith(
-                                                                          fontFamily:
-                                                                              'JosefinSans',
-                                                                          fontWeight:
-                                                                              FontWeight.w400,
-                                                                          color:
-                                                                              Colors.white,
-                                                                        ),
-                                                                      ),
-                                                                    ],
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
-                                                            ),
-                                                            const SizedBox(
-                                                                width: 20),
-                                                            Expanded(
-                                                              child: Container(
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              10),
-                                                                  color: const Color(
-                                                                      0xFF87251D),
-                                                                ),
-                                                                child: Padding(
-                                                                  padding: const EdgeInsets
-                                                                      .only(
-                                                                      top: 8.0,
-                                                                      bottom:
-                                                                          8.0,
-                                                                      left: 20),
-                                                                  child: Column(
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      Text(
-                                                                        "Benefit Earned*",
-                                                                        style: walletT3
-                                                                            ?.copyWith(
-                                                                          fontFamily:
-                                                                              'JosefinSans',
-                                                                          fontWeight:
-                                                                              FontWeight.w500,
-                                                                          color:
-                                                                              Colors.white,
-                                                                        ),
-                                                                      ),
-                                                                      Text(
-                                                                        "${data?.data?[index].maturityBenefitGrams} grams",
-                                                                        style: walletT3
-                                                                            ?.copyWith(
-                                                                          fontFamily:
-                                                                              'JosefinSans',
-                                                                          fontWeight:
-                                                                              FontWeight.w400,
-                                                                          color:
-                                                                              Colors.white,
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        const Divider(
-                                                            color:
-                                                                Colors.yellow,
-                                                            thickness: 1,
-                                                            height: 20),
-                                                        Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Row(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Container(
-                                                                  width: 110,
-                                                                  height: 110,
+                                                              const SizedBox(
+                                                                  width: 20),
+                                                              Expanded(
+                                                                child:
+                                                                    Container(
                                                                   decoration:
-                                                                      const BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                    color: Colors
-                                                                        .white,
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            10),
+                                                                    color: const Color(
+                                                                        0xFF87251D),
                                                                   ),
-                                                                  alignment:
-                                                                      Alignment
-                                                                          .center,
-                                                                  child: Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .min,
-                                                                    children: [
-                                                                      const SizedBox(
-                                                                          height:
-                                                                              10),
-                                                                      Text(
-                                                                        "Total\nWeight Saved",
-                                                                        style: UserST
-                                                                            .copyWith(
-                                                                          color:
-                                                                              Colors.black,
-                                                                          fontSize:
-                                                                              15,
-                                                                          fontFamily:
-                                                                              'JosefinSans',
-                                                                          fontWeight:
-                                                                              FontWeight.w400,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                      ),
-                                                                      const SizedBox(
-                                                                          height:
-                                                                              5),
-                                                                      Text(
-                                                                        "${data?.data?[index].totalGoldSavedGrams} g",
-                                                                        style: UserST
-                                                                            .copyWith(
-                                                                          color:
-                                                                              Colors.red,
-                                                                          fontSize:
-                                                                              20,
-                                                                          fontFamily:
-                                                                              'JosefinSans',
-                                                                          fontWeight:
-                                                                              FontWeight.bold,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                                Expanded(
-                                                                  child: Column(
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      Row(
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.center,
-                                                                        children: [
-                                                                          Text(
-                                                                              "Date of Maturity",
-                                                                              style: walletT3),
-                                                                        ],
-                                                                      ),
-                                                                      Text(
-                                                                        '${data?.data?[index].maturityDate}',
-                                                                        style: TextStyle(
-                                                                            fontSize:
-                                                                                12,
-                                                                            color:
-                                                                                Colors.white),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                                Expanded(
-                                                                  child: Column(
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      Container(
-                                                                        height:
-                                                                            25,
-                                                                        padding: const EdgeInsets
-                                                                            .symmetric(
-                                                                            vertical:
-                                                                                5,
-                                                                            horizontal:
-                                                                                10),
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(30),
-                                                                          color:
-                                                                              Colors.white,
-                                                                        ),
-                                                                        child:
-                                                                            Text(
-                                                                          "Set Target Now",
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        top:
+                                                                            8.0,
+                                                                        bottom:
+                                                                            8.0,
+                                                                        left:
+                                                                            20),
+                                                                    child:
+                                                                        Column(
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .start,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .center,
+                                                                      children: [
+                                                                        Text(
+                                                                          "Benefit Earned*",
                                                                           style:
-                                                                              walletT32.copyWith(color: Colors.red),
+                                                                              walletT3?.copyWith(
+                                                                            fontFamily:
+                                                                                'JosefinSans',
+                                                                            fontWeight:
+                                                                                FontWeight.w500,
+                                                                            color:
+                                                                                Colors.white,
+                                                                          ),
+                                                                        ),
+                                                                        Text(
+                                                                          "${data?.data?[index].maturityBenefitGrams} grams",
+                                                                          style:
+                                                                              walletT3?.copyWith(
+                                                                            fontFamily:
+                                                                                'JosefinSans',
+                                                                            fontWeight:
+                                                                                FontWeight.w400,
+                                                                            color:
+                                                                                Colors.white,
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          const Divider(
+                                                              color:
+                                                                  Colors.yellow,
+                                                              thickness: 1,
+                                                              height: 20),
+                                                          Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Row(
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Container(
+                                                                    width: 110,
+                                                                    height: 110,
+                                                                    decoration:
+                                                                        const BoxDecoration(
+                                                                      shape: BoxShape
+                                                                          .circle,
+                                                                      color: Colors
+                                                                          .white,
+                                                                    ),
+                                                                    alignment:
+                                                                        Alignment
+                                                                            .center,
+                                                                    child:
+                                                                        Column(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .min,
+                                                                      children: [
+                                                                        const SizedBox(
+                                                                            height:
+                                                                                10),
+                                                                        Text(
+                                                                          "Total\nWeight Saved",
+                                                                          style:
+                                                                              UserST.copyWith(
+                                                                            color:
+                                                                                Colors.black,
+                                                                            fontSize:
+                                                                                15,
+                                                                            fontFamily:
+                                                                                'JosefinSans',
+                                                                            fontWeight:
+                                                                                FontWeight.w400,
+                                                                          ),
                                                                           textAlign:
                                                                               TextAlign.center,
                                                                         ),
-                                                                      ),
-                                                                      const SizedBox(
-                                                                          height:
-                                                                              5),
-                                                                      Center(
-                                                                          child: Text(
-                                                                              "0.0%",
-                                                                              style: walletT3)),
-                                                                      const SizedBox(
-                                                                          height:
-                                                                              5),
-                                                                      LayoutBuilder(
-                                                                        builder:
-                                                                            (context,
-                                                                                constraints) {
-                                                                          return ClipRRect(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(10),
-                                                                            child:
-                                                                                LinearPercentIndicator(
-                                                                              width: constraints.maxWidth,
-                                                                              lineHeight: 10,
-                                                                              percent: 0.3,
-                                                                              progressColor: Colors.amber,
-                                                                              backgroundColor: Colors.transparent,
-                                                                              barRadius: const Radius.circular(10),
-                                                                              animation: true,
-                                                                            ),
-                                                                          );
-                                                                        },
-                                                                      ),
-                                                                      const SizedBox(
-                                                                          height:
-                                                                              10),
-                                                                      SizedBox(
-                                                                        height:
-                                                                            30,
-                                                                        width:
-                                                                            107,
-                                                                        child:
-                                                                            ElevatedButton(
-                                                                          onPressed:
+                                                                        const SizedBox(
+                                                                            height:
+                                                                                5),
+                                                                        Text(
+                                                                          "${data?.data?[index].totalGoldSavedGrams} g",
+                                                                          style:
+                                                                              UserST.copyWith(
+                                                                            color:
+                                                                                Colors.red,
+                                                                            fontSize:
+                                                                                20,
+                                                                            fontFamily:
+                                                                                'JosefinSans',
+                                                                            fontWeight:
+                                                                                FontWeight.bold,
+                                                                          ),
+                                                                          textAlign:
+                                                                              TextAlign.center,
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                  Expanded(
+                                                                    child:
+                                                                        Column(
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .center,
+                                                                      children: [
+                                                                        Row(
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.center,
+                                                                          children: [
+                                                                            Text("Date of Maturity",
+                                                                                style: walletT3),
+                                                                          ],
+                                                                        ),
+                                                                        Text(
+                                                                          '${data?.data?[index].maturityDate}',
+                                                                          style: TextStyle(
+                                                                              fontSize: 12,
+                                                                              color: Colors.white),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                  Expanded(
+                                                                    child:
+                                                                        Column(
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .center,
+                                                                      children: [
+                                                                        InkWell(
+                                                                          onTap:
                                                                               () {
                                                                             Navigator.push(
                                                                               context,
-                                                                              MaterialPageRoute(builder: (context) => Home_DashBoard_Screen()),
+                                                                              MaterialPageRoute(
+                                                                                  builder: (context) => SetTargetScreen(
+                                                                                        digiSchemeData: data?.data?[index],
+                                                                                      )),
                                                                             );
                                                                           },
-                                                                          style:
-                                                                              ElevatedButton.styleFrom(
-                                                                            backgroundColor:
-                                                                                Colors.yellow[800],
-                                                                            shape:
-                                                                                RoundedRectangleBorder(
+                                                                          child:
+                                                                              Container(
+                                                                            height:
+                                                                                25,
+                                                                            padding:
+                                                                                const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                                                                            decoration:
+                                                                                BoxDecoration(
                                                                               borderRadius: BorderRadius.circular(30),
+                                                                              color: Colors.white,
+                                                                            ),
+                                                                            child:
+                                                                                Text(
+                                                                              "Set Target Now",
+                                                                              style: walletT32.copyWith(color: Colors.red),
+                                                                              textAlign: TextAlign.center,
                                                                             ),
                                                                           ),
+                                                                        ),
+                                                                        const SizedBox(
+                                                                            height:
+                                                                                5),
+                                                                        Center(
+                                                                            child:
+                                                                                Text("${data?.data?[index].currentInterestSlabRate}", style: walletT3)),
+                                                                        const SizedBox(
+                                                                            height:
+                                                                                5),
+                                                                        LayoutBuilder(
+                                                                          builder:
+                                                                              (context, constraints) {
+                                                                            return ClipRRect(
+                                                                              borderRadius: BorderRadius.circular(10),
+                                                                              child: LinearPercentIndicator(
+                                                                                width: constraints.maxWidth,
+                                                                                lineHeight: 10,
+                                                                                percent: 0.3,
+                                                                                progressColor: Colors.amber,
+                                                                                backgroundColor: Colors.transparent,
+                                                                                barRadius: const Radius.circular(10),
+                                                                                animation: true,
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        ),
+                                                                        const SizedBox(
+                                                                            height:
+                                                                                10),
+                                                                        SizedBox(
+                                                                          height:
+                                                                              30,
+                                                                          width:
+                                                                              107,
                                                                           child:
-                                                                              Row(
-                                                                            children: [
-                                                                              Text('Pay Now', style: planST),
-                                                                            ],
+                                                                              ElevatedButton(
+                                                                            onPressed:
+                                                                                () {
+                                                                              Navigator.push(
+                                                                                context,
+                                                                                MaterialPageRoute(
+                                                                                    builder: (context) => JoinedDigiGold(
+                                                                                          digiSchemeData: data?.data?[index],
+                                                                                        )),
+                                                                              );
+                                                                            },
+                                                                            style:
+                                                                                ElevatedButton.styleFrom(
+                                                                              backgroundColor: Colors.yellow[800],
+                                                                              shape: RoundedRectangleBorder(
+                                                                                borderRadius: BorderRadius.circular(30),
+                                                                              ),
+                                                                            ),
+                                                                            child:
+                                                                                Row(
+                                                                              children: [
+                                                                                Text('Pay Now', style: planST),
+                                                                              ],
+                                                                            ),
                                                                           ),
                                                                         ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ],
-                                                        )
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  height: 47,
-                                                  child: Padding(
-                                                    padding: const EdgeInsets
-                                                        .symmetric(
-                                                        horizontal: 8.0),
-                                                    child: IntrinsicHeight(
-                                                      child: Row(
-                                                        children: [
-                                                          Expanded(
-                                                            child:
-                                                                GestureDetector(
-                                                              // onTap: () =>
-                                                              //     showCustomBottomSheet1(
-                                                              //         context,
-                                                              //         const Bottombar1()),
-                                                              child: Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .center,
-                                                                children: [
-                                                                  Padding(
-                                                                    padding:
-                                                                        const EdgeInsets
-                                                                            .all(
-                                                                            8.0),
-                                                                    child: Text(
-                                                                        "Key Benefits",
-                                                                        style:
-                                                                            planST),
+                                                                      ],
+                                                                    ),
                                                                   ),
                                                                 ],
                                                               ),
-                                                            ),
-                                                          ),
-                                                          const VerticalDivider(
-                                                            color: Colors.grey,
-                                                            thickness: 1,
-                                                          ),
-                                                          Expanded(
-                                                            child:
-                                                                GestureDetector(
-                                                              // onTap: () =>
-                                                              //     showCustomBottomSheet2(
-                                                              //         context,
-                                                              //         const Bottombar2()),
-                                                              child: Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .center,
-                                                                children: [
-                                                                  Padding(
-                                                                    padding:
-                                                                        const EdgeInsets
-                                                                            .all(
-                                                                            8.0),
-                                                                    child: Text(
-                                                                        "Know More",
-                                                                        style:
-                                                                            planST),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ),
+                                                            ],
+                                                          )
                                                         ],
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                              ],
+                                                  SizedBox(
+                                                    height: 47,
+                                                    child: Padding(
+                                                      padding: const EdgeInsets
+                                                          .symmetric(
+                                                          horizontal: 8.0),
+                                                      child: IntrinsicHeight(
+                                                        child: Row(
+                                                          children: [
+                                                            Expanded(
+                                                              child:
+                                                                  GestureDetector(
+                                                                // onTap: () =>
+                                                                //     showCustomBottomSheet1(
+                                                                //         context,
+                                                                //         const Bottombar1()),
+                                                                child: Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: const EdgeInsets
+                                                                          .all(
+                                                                          8.0),
+                                                                      child: Text(
+                                                                          "Key Benefits",
+                                                                          style:
+                                                                              planST),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            const VerticalDivider(
+                                                              color:
+                                                                  Colors.grey,
+                                                              thickness: 1,
+                                                            ),
+                                                            Expanded(
+                                                              child:
+                                                                  GestureDetector(
+                                                                // onTap: () =>
+                                                                //     showCustomBottomSheet2(
+                                                                //         context,
+                                                                //         const Bottombar2()),
+                                                                child: Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: const EdgeInsets
+                                                                          .all(
+                                                                          8.0),
+                                                                      child: Text(
+                                                                          "Know More",
+                                                                          style:
+                                                                              planST),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -965,7 +987,13 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                                                             index],
                                                                   ),
                                                                 ),
-                                                              );
+                                                              ).then((onValue) {
+                                                                if (onValue ==
+                                                                    true) {
+                                                                  ref.refresh(
+                                                                      getDigiSchemeProvider);
+                                                                }
+                                                              });
                                                             },
                                                             style:
                                                                 ElevatedButton

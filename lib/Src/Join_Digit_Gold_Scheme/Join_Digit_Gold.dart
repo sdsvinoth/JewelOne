@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:jewelone/Common_Widgets/Common_Card.dart';
+import 'package:jewelone/Common_Widgets/Custom_App_Bar.dart';
 import 'package:jewelone/Model/DigiSchemeModel.dart';
 import 'package:jewelone/Src/Join_Digit_Gold_Scheme/Bottom_Bar/Bottom_Bar_1.dart';
 import 'package:jewelone/Src/Join_Digit_Gold_Scheme/Bottom_Bar/Bottom_Bar_2.dart';
@@ -25,11 +26,23 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
   int? selectedIndex;
 
   TextEditingController? enterAmountText = TextEditingController();
-
+  TextEditingController? enterNameText = TextEditingController();
+  String? grams = "0.0";
+  String? discountGrams = "0.0";
+  String? totalGrams = "0.0";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
+        appBar: Custom_AppBar(
+          isNav: true,
+          isTwoLine: false,
+          title1: 'Join DigitGold Scheme',
+          title2: '',
+          actionLogo: 'info.svg',
+          isWhite: false,
+          ActiononTap: () {},
+        ),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -43,90 +56,55 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 30),
-                    Row(
-                      children: [
-                        const SizedBox(width: 10),
-                        Container(
-                          width: 25,
-                          height: 25,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: white1,
-                          ),
-                          child: IconButton(
-                            icon: const Icon(Icons.arrow_back_ios_new,
-                                size: 16, color: Colors.black),
-                            onPressed: () => Navigator.pop(context),
-                            splashRadius: 16,
-                            padding: EdgeInsets.zero,
-                            constraints: const BoxConstraints(),
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        Text(
-                          "Join DigitGold Scheme",
-                          style: walletT3,
-                        ),
-                      ],
-                    ),
                     Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Stack(
-                        children: [
-                          Container(
-                            height: 104,
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 1),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: white1,
-                              border: Border.all(color: Colors.yellow),
-                            ),
-                            child: Expanded(
-                              child: Row(
+                      padding: const EdgeInsets.only(
+                          top: 20, left: 20, right: 20, bottom: 10),
+                      child: Container(
+                        height: 104,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6),
+                          color: white1,
+                          border: Border.all(color: Colors.yellow),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Image.asset(
+                                'lib/assets/gold_img.png',
+                                height: 74,
+                                width: 74,
+                              ),
+                              SizedBox(
+                                width: 15,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  SizedBox(width: 85),
-                                  Padding(
-                                    padding: const EdgeInsets.all(25),
-                                    child: Row(
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "Today's Gold Rate 22KT",
-                                              style: follow,
-                                            ),
-                                            Text(
-                                              "₹6,680/g",
-                                              style: planST5,
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
+                                  Text(
+                                    (widget.digiSchemeData?.metalType ?? "") ==
+                                            "SILVER"
+                                        ? "Today's Sliver Rate"
+                                        : "Today's Gold Rate 22KT",
+                                    style: follow,
+                                  ),
+                                  Text(
+                                    "₹${widget.digiSchemeData?.metalRate}/g",
+                                    style: planST5,
                                   ),
                                 ],
                               ),
-                            ),
+                            ],
                           ),
-                          Positioned(
-                            top: -20,
-                            left: 5,
-                            child: ClipOval(
-                              child: Image.asset(
-                                'lib/assets/goldk.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      padding: const EdgeInsets.only(
+                          left: 10, right: 10, bottom: 10),
                       child: Row(
                         children: [
                           Expanded(
@@ -138,7 +116,7 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                                 margin:
                                     const EdgeInsets.symmetric(horizontal: 8),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(6),
                                   color: white1,
                                   border: Border.all(color: Colors.yellow),
                                 ),
@@ -153,7 +131,7 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                                     const Icon(
                                       Icons.arrow_forward_ios,
                                       size: 16,
-                                      color: Colors.black,
+                                      color: gradient2,
                                     ),
                                   ],
                                 ),
@@ -169,7 +147,7 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                                 margin:
                                     const EdgeInsets.symmetric(horizontal: 8),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(6),
                                   color: white1,
                                   border: Border.all(color: Colors.yellow),
                                 ),
@@ -184,7 +162,7 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                                     const Icon(
                                       Icons.arrow_forward_ios,
                                       size: 16,
-                                      color: Colors.black,
+                                      color: gradient2,
                                     ),
                                   ],
                                 ),
@@ -198,7 +176,7 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(20),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -208,16 +186,17 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.only(left: 20, right: 20),
                 child: Column(
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(8),
                         color: Colors.white,
-                        border: Border.all(color: gradient2),
+                        border: Border.all(color: gradient1),
                       ),
-                      padding: const EdgeInsets.all(10),
+                      padding: const EdgeInsets.only(
+                          left: 30, right: 30, top: 15, bottom: 15),
                       child: Column(
                         children: [
                           Row(
@@ -230,8 +209,31 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                                   const SizedBox(height: 10),
                                   SizedBox(
                                     width: 130,
+                                    height: 50,
                                     child: TextFormField(
                                       controller: enterAmountText,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          if (value.isNotEmpty) {
+                                            double amount = double.parse(value);
+                                            grams = (amount /
+                                                    widget.digiSchemeData!
+                                                        .metalRate!)
+                                                .toStringAsFixed(2);
+                                            discountGrams =
+                                                (double.parse(grams!) * 0.05)
+                                                    .toStringAsFixed(2);
+                                            totalGrams = (double.parse(grams!) +
+                                                    double.parse(
+                                                        discountGrams!))
+                                                .toStringAsFixed(2);
+                                          } else {
+                                            grams = "0.0";
+                                            discountGrams = "0.0";
+                                            totalGrams = "0.0";
+                                          }
+                                        });
+                                      },
                                       decoration:
                                           boxWalletCardInputDecoration1('100'),
                                     ),
@@ -254,18 +256,28 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                                 children: [
                                   Text('Grams', style: planST5),
                                   const SizedBox(height: 10),
-                                  SizedBox(
+                                  Container(
+                                    height: 50,
                                     width: 130,
-                                    child: TextField(
-                                      decoration: boxWalletCardInputDecoration1(
-                                          '0.015 gms'),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: white1,
+                                      border: Border.all(color: gradient1),
                                     ),
+                                    child: Center(
+                                        child: Text(
+                                      "${grams} gms",
+                                      style: TextStyle(
+                                          color: black1,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500),
+                                    )),
                                   ),
                                 ],
                               ),
                             ],
                           ),
-                          const SizedBox(height: 5),
+                          const SizedBox(height: 15),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -288,7 +300,7 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                                 ),
                               ),
                               const SizedBox(width: 10),
-                              const Text('|',
+                              const Text('│',
                                   style: TextStyle(
                                       fontSize: 18, color: Colors.grey)),
                               RichText(
@@ -298,8 +310,8 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                                       text: 'You Get: ',
                                       style: Black22,
                                     ),
-                                    const TextSpan(
-                                      text: '0.001 gms',
+                                    TextSpan(
+                                      text: '${discountGrams} gms',
                                       style: TextStyle(
                                           fontFamily: 'JosefinSans',
                                           fontSize: 15,
@@ -318,39 +330,52 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(20),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Quantity you saved', style: planST),
                     SizedBox(
-                      width: 150,
-                      child: TextField(
-                        decoration: boxWalletCardInputDecoration('0.116 gms'),
+                      width: 30,
+                    ),
+                    Container(
+                      height: 50,
+                      width: 133,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+                        color: white1,
+                        border: Border.all(color: const Color(0xFF0FA843)),
                       ),
+                      child: Center(
+                          child: Text(
+                        "${totalGrams} gms",
+                        style: TextStyle(
+                            color: const Color(0xFF0FA843),
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600),
+                      )),
                     ),
                   ],
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5),
+                padding: const EdgeInsets.only(left: 20, right: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
                         Text(
-                            'Benefits subject to redemption after date of maturity',
-                            style: Black22),
+                            '*Benefits subject to redemption after date of maturity',
+                            style: detailsT),
                       ],
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 20),
                     Text('Name Your Scheme', style: planST),
                   ],
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -360,12 +385,12 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                     boxShadow: const [
                       BoxShadow(
                         color: Colors.black26,
-                        blurRadius: 5,
-                        offset: Offset(0, 1),
+                        blurRadius: 1,
                       ),
                     ],
                   ),
-                  child: TextField(
+                  child: TextFormField(
+                    controller: enterNameText,
                     decoration: InputDecoration(
                       hintText:
                           'Enter Your Name', // Changed from labelText to hintText
@@ -378,13 +403,13 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                   ),
                 ),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30),
+                padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Date of Maturity: 30-Apr-2025',
+                    Text('*Date of Maturity: 30-Apr-2025',
                         style: TextStyle(
                             fontSize: 14,
                             color: Font_Primary_Color,
@@ -393,7 +418,7 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 1),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
                   children: [
                     Checkbox(
@@ -416,99 +441,143 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(20),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment:
+                      MainAxisAlignment.center, // Center the buttons
                   children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        // setState(() {
-                        //   selectedIndex = 0;
-                        //   Navigator.push(
-                        //       context,
-                        //       MaterialPageRoute(
-                        //           builder: (context) => const DigitGoldCard()));
-                        // });
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            selectedIndex == 0 ? Colors.red : Colors.white,
-                        foregroundColor: Colors.black,
-                        side: BorderSide(color: Colors.yellow.shade700),
-                        elevation: 2,
-                      ),
-                      child: Text('Cancel', style: gramST),
-                    ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        List<Map<String, dynamic>> data = [];
-
-                        var now = DateTime.now();
-                        var formatter = DateFormat('yyyy-MM-dd');
-                        String formattedDate = formatter.format(now);
-                        data.add(
-                          {
-                            "advance": 1,
-                            "id_scheme_account":
-                                widget.digiSchemeData?.schemeId,
-                            "trans_date": formattedDate,
-                            "date_payment": formattedDate,
-                            "payment_charges": 0,
-                            "payment_status": 1,
-                            "paid_through": 2,
-                            "installment": 1,
-                            "id_branch": 2,
-                            "id_payGateway": 1,
-                            "payment_amount": enterAmountText?.text,
-                            "tax_amount": 0,
-                            "net_amount": enterAmountText?.text,
-                            "total_net_amount": enterAmountText?.text,
-                            "discountAmt": 0,
-                            "actual_trans_amt": 0,
-                            "ref_trans_id": null,
-                            "trans_id": null,
-                            "metal_weight": 0,
-                            "metal_rate": widget.digiSchemeData?.metalRate,
-                            "tax_type": 3,
-                            "tax_id": null
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(25),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.black26,
+                              blurRadius: 5,
+                              offset: Offset(0, 0.5),
+                            ),
+                          ],
+                        ),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            // setState(() {
+                            //   selectedIndex = 0;
+                            //   Navigator.push(
+                            //       context,
+                            //       MaterialPageRoute(
+                            //           builder: (context) => const DigitGoldCard()));
+                            // });
                           },
-                        );
-
-                        final result =
-                            await ref.read(paymentPostProvider(data).future);
-
-                        // final result = await ref.watch(
-                        //     paymentPostProvider(data));
-                        LoadingOverlay.forcedStop();
-                        if (result?.message ==
-                            "Payment Created successfully.") {
-                          Navigator.pop(context);
-                        } else {
-                          // Handle failure
-                          ShowToastMessage(result?.message ?? "");
-                        }
-
-                        // setState(() {
-                        //   selectedIndex = 1;
-                        //   Navigator.push(
-                        //       context,
-                        //       MaterialPageRoute(
-                        //           builder: (context) =>
-                        //               const NewPassbookScheme()));
-                        // });
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            selectedIndex == 1 ? Colors.yellow : Colors.white,
-                        foregroundColor: Colors.black,
-                        side: BorderSide(color: Colors.yellow.shade700),
-                        elevation: 2,
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.transparent,
+                              shadowColor: Colors.transparent,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25),
+                              )),
+                          child: Text('Cancel', style: gramST),
+                        ),
                       ),
-                      child: Text('Pay Now', style: gramST),
+                    ),
+                    SizedBox(width: 20), // Add space between buttons
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          gradient: const LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.topRight,
+                            colors: [
+                              gradient2,
+                              gradient1,
+                            ],
+                          ),
+                        ),
+                        child: ElevatedButton(
+                          onPressed: () async {
+                            if (enterAmountText?.text.isEmpty == true) {
+                              ShowToastMessage("Please enter amount");
+                              return;
+                            } else if (enterNameText?.text.isEmpty == true) {
+                              ShowToastMessage("Please enter name");
+                              return;
+                            } else if (agreeToTerms == false) {
+                              ShowToastMessage(
+                                  "Please agree to terms and conditions");
+                              return;
+                            } else {
+                              List<Map<String, dynamic>> data = [];
+
+                              var now = DateTime.now();
+                              var formatter = DateFormat('yyyy-MM-dd');
+                              String formattedDate = formatter.format(now);
+                              data.add(
+                                {
+                                  "advance": 1,
+                                  "id_scheme_account": null,
+                                  "trans_date": formattedDate,
+                                  "date_payment": formattedDate,
+                                  "payment_charges": 0,
+                                  "payment_status": 0,
+                                  "paid_through": 2,
+                                  "installment": 1,
+                                  "id_branch": 0,
+                                  "id_payGateway": 1,
+                                  "payment_amount": enterAmountText?.text,
+                                  "tax_amount": 0,
+                                  "net_amount": enterAmountText?.text,
+                                  "total_net_amount": enterAmountText?.text,
+                                  "discountAmt": 0,
+                                  "actual_trans_amt": 0,
+                                  "ref_trans_id": null,
+                                  "trans_id": null,
+                                  "metal_weight": double.parse(totalGrams!),
+                                  "metal_rate":
+                                      widget.digiSchemeData?.metalRate,
+                                  "tax_type": 3,
+                                  "tax_id": null,
+                                  "acc_name": enterNameText?.text,
+                                  "scheme_id": widget.digiSchemeData?.schemeId,
+                                },
+                              );
+
+                              final result = await ref
+                                  .read(paymentPostProvider(data).future);
+
+                              LoadingOverlay.forcedStop();
+                              if (result?.message ==
+                                  "Payment Created successfully.") {
+                                Navigator.pop(context, true);
+                              } else {
+                                // Handle failure
+                                ShowToastMessage(result?.message ?? "");
+                              }
+                            }
+
+                            // setState(() {
+                            //   selectedIndex = 1;
+                            //   Navigator.push(
+                            //       context,
+                            //       MaterialPageRoute(
+                            //           builder: (context) => const NewPassbookScheme()));
+                            // });
+                          },
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.transparent,
+                              shadowColor: Colors.transparent,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25),
+                              )),
+                          child: Text('Pay Now', style: walletT33),
+                        ),
+                      ),
                     ),
                   ],
                 ),
               ),
+              SizedBox(
+                height: 20,
+              )
             ],
           ),
         ));
