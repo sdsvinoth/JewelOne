@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cashfree_pg_sdk/api/cfpayment/cfwebcheckoutpayment.dart';
+import 'package:flutter_cashfree_pg_sdk/api/cfpaymentgateway/cfpaymentgatewayservice.dart';
+import 'package:flutter_cashfree_pg_sdk/api/cfsession/cfsession.dart';
+import 'package:flutter_cashfree_pg_sdk/utils/cfenums.dart';
+import 'package:flutter_cashfree_pg_sdk/utils/cfexceptions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:jewelone/Model/DigiSchemeModel.dart';
@@ -25,8 +30,11 @@ class _JoinedDigiGoldState extends ConsumerState<JoinedDigiGold> {
 
   TextEditingController? enterAmountText = TextEditingController();
   String? grams = "0.0";
+  String? interetAmt = "0.0";
   String? discountGrams = "0.0";
   String? totalGrams = "0.0";
+
+  final CFEnvironment environment = CFEnvironment.SANDBOX;
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +138,7 @@ class _JoinedDigiGoldState extends ConsumerState<JoinedDigiGold> {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              '${(progressValue * 100).toStringAsFixed(2)}%',
+                              '${(widget.digiSchemeData!.currentInterestSlabRate!).toStringAsFixed(2)}%',
                               style: const TextStyle(
                                 fontSize: 13,
                                 color: Colors.red,
@@ -235,7 +243,7 @@ class _JoinedDigiGoldState extends ConsumerState<JoinedDigiGold> {
                                     (widget.digiSchemeData?.metalType ?? "") ==
                                             "SILVER"
                                         ? "Today's Sliver Rate"
-                                        : "Today's Gold Rate 22KT",
+                                        : "Today's Gold Rate",
                                     style: follow,
                                   ),
                                 ],
@@ -263,8 +271,7 @@ class _JoinedDigiGoldState extends ConsumerState<JoinedDigiGold> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 10),
-                  Text('Enter the Weight or Amount you wish to save',
-                      style: planST),
+                  Text('Enter the Amount you wish to save', style: planST),
                 ],
               ),
             ),
@@ -302,14 +309,23 @@ class _JoinedDigiGoldState extends ConsumerState<JoinedDigiGold> {
                                                   widget.digiSchemeData!
                                                       .metalRate!)
                                               .toStringAsFixed(2);
-                                          discountGrams =
-                                              (double.parse(grams!) * 0.05)
-                                                  .toStringAsFixed(2);
+                                          interetAmt = (amount *
+                                                  (widget.digiSchemeData!
+                                                          .currentInterestSlabRate! /
+                                                      100))
+                                              .toStringAsFixed(2);
+                                          discountGrams = (double.parse(
+                                                      grams!) *
+                                                  (widget.digiSchemeData!
+                                                          .currentInterestSlabRate! /
+                                                      100))
+                                              .toStringAsFixed(2);
                                           totalGrams = (double.parse(grams!) +
                                                   double.parse(discountGrams!))
                                               .toStringAsFixed(2);
                                         } else {
                                           grams = "0.0";
+                                          interetAmt = "0.0";
                                           discountGrams = "0.0";
                                           totalGrams = "0.0";
                                         }
@@ -374,15 +390,15 @@ class _JoinedDigiGoldState extends ConsumerState<JoinedDigiGold> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  const TextSpan(
-                                    text: '₹5',
-                                    style: TextStyle(
+                                  TextSpan(
+                                    text: ' ₹$interetAmt',
+                                    style: const TextStyle(
                                       fontFamily: 'JosefinSans',
                                       fontSize: 15,
                                       color: Colors.green,
                                       fontWeight: FontWeight.bold,
                                     ),
-                                  ),
+                                  )
                                 ],
                               ),
                             ),
@@ -595,7 +611,8 @@ class _JoinedDigiGoldState extends ConsumerState<JoinedDigiGold> {
                             data.add(
                               {
                                 "advance": 1,
-                                "id_scheme_account": null,
+                                "id_scheme_account":
+                                    widget.digiSchemeData?.schemeId,
                                 "trans_date": formattedDate,
                                 "date_payment": formattedDate,
                                 "payment_charges": 0,
@@ -617,6 +634,8 @@ class _JoinedDigiGoldState extends ConsumerState<JoinedDigiGold> {
                                 "tax_type": 3,
                                 "tax_id": null,
                                 "scheme_id": widget.digiSchemeData?.schemeId,
+                                "account_name":
+                                    widget.digiSchemeData?.accountName,
                               },
                             );
 
@@ -626,7 +645,10 @@ class _JoinedDigiGoldState extends ConsumerState<JoinedDigiGold> {
                             LoadingOverlay.forcedStop();
                             if (result?.message ==
                                 "Payment Created successfully.") {
-                              Navigator.pop(context, true);
+                              await initiatePay(
+                                  orderId: result?.orderId ?? "",
+                                  paymentSessionId:
+                                      result?.paymentSessionId ?? "");
                             } else {
                               // Handle failure
                               ShowToastMessage(result?.message ?? "");
@@ -658,6 +680,67 @@ class _JoinedDigiGoldState extends ConsumerState<JoinedDigiGold> {
         ),
       ),
     );
+  }
+
+  Future<void> initiatePay(
+      {required String orderId, required String paymentSessionId}) async {
+    try {
+      var session = CFSessionBuilder()
+          .setEnvironment(environment)
+          .setOrderId(orderId)
+          .setPaymentSessionId(paymentSessionId)
+          .build();
+
+      var cfWebCheckout =
+          CFWebCheckoutPaymentBuilder().setSession(session).build();
+
+      var cfPaymentGateway = CFPaymentGatewayService();
+
+      cfPaymentGateway.setCallback(
+        (resultsMsg) async {
+          print('Payment successful for Order ID: $resultsMsg');
+
+          Map<String, dynamic> data = {
+            "type": "Success",
+            "order_id": orderId,
+          };
+
+          final result = await ref.read(paymentSuccessProvider(data).future);
+
+          LoadingOverlay.forcedStop();
+          if (result?.status == true) {
+            Navigator.pop(context, true);
+          } else {
+            // Handle failure
+            ShowToastMessage(result?.message ?? "");
+          }
+        },
+        (error, resultsMsg) async {
+          Map<String, dynamic> data = {
+            "type": "Failure",
+            "order_id": orderId,
+          };
+
+          final result = await ref.read(paymentSuccessProvider(data).future);
+
+          LoadingOverlay.forcedStop();
+          if (result?.status == false) {
+            ShowToastMessage(result?.message ?? "");
+          } else {
+            // Handle failure
+            ShowToastMessage(result?.message ?? "");
+          }
+        },
+      );
+
+      cfPaymentGateway.doPayment(cfWebCheckout);
+    } catch (e) {
+      if (e is CFException) {
+        print('CFException: ${e.message}');
+      } else {
+        print('Exception: $e');
+      }
+    }
   }
 }
 

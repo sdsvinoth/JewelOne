@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cashfree_pg_sdk/api/cfpayment/cfwebcheckoutpayment.dart';
+import 'package:flutter_cashfree_pg_sdk/api/cfpaymentgateway/cfpaymentgatewayservice.dart';
+import 'package:flutter_cashfree_pg_sdk/api/cfsession/cfsession.dart';
+import 'package:flutter_cashfree_pg_sdk/utils/cfenums.dart';
+import 'package:flutter_cashfree_pg_sdk/utils/cfexceptions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:jewelone/Common_Widgets/Common_Card.dart';
@@ -28,8 +33,12 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
   TextEditingController? enterAmountText = TextEditingController();
   TextEditingController? enterNameText = TextEditingController();
   String? grams = "0.0";
+  String? interetAmt = "0.0";
   String? discountGrams = "0.0";
   String? totalGrams = "0.0";
+
+  final CFEnvironment environment = CFEnvironment.SANDBOX;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -220,15 +229,26 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                                                     widget.digiSchemeData!
                                                         .metalRate!)
                                                 .toStringAsFixed(2);
-                                            discountGrams =
-                                                (double.parse(grams!) * 0.05)
-                                                    .toStringAsFixed(2);
+
+                                            interetAmt = (amount *
+                                                    (widget.digiSchemeData!
+                                                            .currentInterestSlabRate! /
+                                                        100))
+                                                .toStringAsFixed(2);
+
+                                            discountGrams = (double.parse(
+                                                        grams!) *
+                                                    (widget.digiSchemeData!
+                                                            .currentInterestSlabRate! /
+                                                        100))
+                                                .toStringAsFixed(2);
                                             totalGrams = (double.parse(grams!) +
                                                     double.parse(
                                                         discountGrams!))
                                                 .toStringAsFixed(2);
                                           } else {
                                             grams = "0.0";
+                                            interetAmt = "0.0";
                                             discountGrams = "0.0";
                                             totalGrams = "0.0";
                                           }
@@ -288,8 +308,8 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                                       text: 'You Get:',
                                       style: Black22,
                                     ),
-                                    const TextSpan(
-                                      text: '5',
+                                    TextSpan(
+                                      text: ' ₹$interetAmt',
                                       style: TextStyle(
                                           fontFamily: 'JosefinSans',
                                           fontSize: 15,
@@ -514,7 +534,8 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                               data.add(
                                 {
                                   "advance": 1,
-                                  "id_scheme_account": null,
+                                  "id_scheme_account":
+                                      widget.digiSchemeData?.schemeId,
                                   "trans_date": formattedDate,
                                   "date_payment": formattedDate,
                                   "payment_charges": 0,
@@ -536,7 +557,7 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                                       widget.digiSchemeData?.metalRate,
                                   "tax_type": 3,
                                   "tax_id": null,
-                                  "acc_name": enterNameText?.text,
+                                  "account_name": enterNameText?.text,
                                   "scheme_id": widget.digiSchemeData?.schemeId,
                                 },
                               );
@@ -547,7 +568,10 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                               LoadingOverlay.forcedStop();
                               if (result?.message ==
                                   "Payment Created successfully.") {
-                                Navigator.pop(context, true);
+                                await initiatePay(
+                                    orderId: result?.orderId ?? "",
+                                    paymentSessionId:
+                                        result?.paymentSessionId ?? "");
                               } else {
                                 // Handle failure
                                 ShowToastMessage(result?.message ?? "");
@@ -581,5 +605,66 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
             ],
           ),
         ));
+  }
+
+  Future<void> initiatePay(
+      {required String orderId, required String paymentSessionId}) async {
+    try {
+      var session = CFSessionBuilder()
+          .setEnvironment(environment)
+          .setOrderId(orderId)
+          .setPaymentSessionId(paymentSessionId)
+          .build();
+
+      var cfWebCheckout =
+          CFWebCheckoutPaymentBuilder().setSession(session).build();
+
+      var cfPaymentGateway = CFPaymentGatewayService();
+
+      cfPaymentGateway.setCallback(
+        (resultsMsg) async {
+          print('Payment successful for Order ID: $resultsMsg');
+
+          Map<String, dynamic> data = {
+            "type": "Success",
+            "order_id": orderId,
+          };
+
+          final result = await ref.read(paymentSuccessProvider(data).future);
+
+          LoadingOverlay.forcedStop();
+          if (result?.status == true) {
+            Navigator.pop(context, true);
+          } else {
+            // Handle failure
+            ShowToastMessage(result?.message ?? "");
+          }
+        },
+        (error, resultsMsg) async {
+          Map<String, dynamic> data = {
+            "type": "Failure",
+            "order_id": orderId,
+          };
+
+          final result = await ref.read(paymentSuccessProvider(data).future);
+
+          LoadingOverlay.forcedStop();
+          if (result?.status == false) {
+            ShowToastMessage(result?.message ?? "");
+          } else {
+            // Handle failure
+            ShowToastMessage(result?.message ?? "");
+          }
+        },
+      );
+
+      cfPaymentGateway.doPayment(cfWebCheckout);
+    } catch (e) {
+      if (e is CFException) {
+        print('CFException: ${e.message}');
+      } else {
+        print('Exception: $e');
+      }
+    }
   }
 }

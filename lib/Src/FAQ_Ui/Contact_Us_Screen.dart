@@ -77,11 +77,10 @@ class _Contact_Us_ScreenState extends State<Contact_Us_Screen> {
             heading: 'General Enquiries', number: '1800 1033916'),
 
         //WHATSAPP US
-        contactus(context, heading: 'WhatsApp Us', number: '+91 73972 73272'),
+        contactus(context, heading: 'WhatsApp Us', number: '+91 73972 73972'),
 
         //MAIL US
-        contactus(context,
-            heading: 'Mail Us', number: 'retail.crm@ejindia.com'),
+        contactus(context, heading: 'Mail Us', number: 'retail.crm@sds.com'),
 
         const SizedBox(
           height: 30,
@@ -161,14 +160,14 @@ Widget Address(context) {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Shaining Dawn Corporate Office:',
+              'Saravana Nagai Maligai Corporate Office:',
               style: texts2,
             ),
             Divider(
               endIndent: 10,
             ),
             Text(
-              '231, 1, E TV Swamy Rd, R.S. Puram, Coimbatore,Tamil Nadu 642002',
+              'No7, Swamy Rd, Eachanri, Coimbatore,Tamil Nadu 642002',
               style: lighttext,
             )
           ],
@@ -202,7 +201,7 @@ Widget Scheme(context) {
               Padding(
                 padding: const EdgeInsets.only(bottom: 10),
                 child: Text(
-                  'Mr. Rajasekar',
+                  'Mr. Rajesh',
                   style: lighttext,
                 ),
               ),
@@ -217,7 +216,7 @@ Widget Scheme(context) {
             ],
           ),
           Text(
-            '+91 95974 44855',
+            '+91 95974 95974',
             style: Num,
           )
         ],

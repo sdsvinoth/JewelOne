@@ -81,7 +81,7 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
         title: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Saravana Jewels', style: title1),
+            Text('Saravana Nagai Maligai', style: appTitle),
           ],
         ),
         actions: [
@@ -782,7 +782,11 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                                                                     builder: (context) => JoinedDigiGold(
                                                                                           digiSchemeData: data?.data?[index],
                                                                                         )),
-                                                                              );
+                                                                              ).then((onValue) {
+                                                                                if (onValue == true) {
+                                                                                  ref.refresh(getDigiSchemeProvider);
+                                                                                }
+                                                                              });
                                                                             },
                                                                             style:
                                                                                 ElevatedButton.styleFrom(
@@ -933,7 +937,7 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                                           const SizedBox(
                                                               width: 5),
                                                           Text(
-                                                              "Saravana Jewels",
+                                                              "Saravana Nagai Maligai",
                                                               style: UserST1),
                                                         ],
                                                       ),
@@ -1018,18 +1022,18 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                                           ),
                                                           ElevatedButton(
                                                             onPressed: () {
-                                                              setState(() {
-                                                                backhome =
-                                                                    false;
-                                                              });
-                                                              Navigator.push(
-                                                                  context,
-                                                                  MaterialPageRoute(
-                                                                    builder: (context) =>
-                                                                        JoinDigitGold(
-                                                                            digiSchemeData:
-                                                                                data?.data?[index]),
-                                                                  ));
+                                                              // setState(() {
+                                                              //   backhome =
+                                                              //       false;
+                                                              // });
+                                                              // Navigator.push(
+                                                              //     context,
+                                                              //     MaterialPageRoute(
+                                                              //       builder: (context) =>
+                                                              //           JoinDigitGold(
+                                                              //               digiSchemeData:
+                                                              //                   data?.data?[index]),
+                                                              //     ));
                                                             },
                                                             style:
                                                                 ElevatedButton

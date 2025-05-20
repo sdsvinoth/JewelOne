@@ -136,9 +136,9 @@ TextStyle radioST1 = const TextStyle(
 
 TextStyle appTitle = const TextStyle(
     fontFamily: 'JosefinSans',
-    fontSize: 18,
-    color: Colors.black,
-    fontWeight: FontWeight.w500);
+    fontSize: 20,
+    color: gradient1,
+    fontWeight: FontWeight.w800);
 TextStyle appTitle2 = const TextStyle(
     fontFamily: 'JosefinSans',
     fontSize: 18,
