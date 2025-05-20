@@ -82,7 +82,7 @@ class _Create_Account_ScreenState extends ConsumerState<Create_Account_Screen> {
         Heading_Text(context, Title: "Join Our Savings Scheme"),
         //FULL NAME
         const SizedBox(height: 10),
-        Title_Style(Title: 'Full name', isStatus: false),
+        Title_Style(Title: 'First Name', isStatus: true),
         textFormField(
             hintText: 'Enter your first name',
             keyboardtype: TextInputType.text,
@@ -105,7 +105,7 @@ class _Create_Account_ScreenState extends ConsumerState<Create_Account_Screen> {
 
         //LAST NAME
         const SizedBox(height: 10),
-        Title_Style(Title: 'Last name', isStatus: false),
+        Title_Style(Title: 'Last Name', isStatus: false),
         textFormField(
             hintText: 'Enter your last name',
             keyboardtype: TextInputType.text,
@@ -151,7 +151,7 @@ class _Create_Account_ScreenState extends ConsumerState<Create_Account_Screen> {
 
         // Phone Number Text and TextField
         const SizedBox(height: 10),
-        Title_Style(Title: 'Phone Number', isStatus: null),
+        Title_Style(Title: 'Phone Number', isStatus: true),
         textFormField(
             // isEnabled: false,
             hintText: "Enter your mobile number",
@@ -177,7 +177,7 @@ class _Create_Account_ScreenState extends ConsumerState<Create_Account_Screen> {
 
         //DATE OF BIRTH
         const SizedBox(height: 10),
-        Title_Style(Title: 'Date of Birth', isStatus: true),
+        Title_Style(Title: 'Date of Birth', isStatus: false),
         TextFieldDatePickerF(
           context,
           Controller: _Dateofbirth,
@@ -294,7 +294,7 @@ class _Create_Account_ScreenState extends ConsumerState<Create_Account_Screen> {
               "date_of_birth": _Dateofbirth.text,
               "confirm_password": _ConfirmPassword.text,
             };
-
+            print("REG: $formData");
             final result = await ref.read(signupPostProvider(formData).future);
             LoadingOverlay.forcedStop();
             if (result?.status == true) {
