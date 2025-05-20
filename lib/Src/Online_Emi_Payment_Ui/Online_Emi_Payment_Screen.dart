@@ -1223,6 +1223,7 @@ class _Online_Emi_Payment_ScreenState
                                             true) {
                                           data.add({
                                             "advance": 1,
+                                            "scheme_id" : SingleTon().plandata[i].idScheme,
                                             "id_scheme_account": SingleTon()
                                                 .plandata[i]
                                                 .idSchemeAccount,
@@ -1231,32 +1232,20 @@ class _Online_Emi_Payment_ScreenState
                                             "payment_charges": 0,
                                             "payment_status": 1,
                                             "paid_through": 2,
-                                            "installment": SingleTon()
-                                                .plandata[i]
-                                                .incrementCount,
+                                            "installment": SingleTon().plandata[i].incrementCount ?? 0,
                                             "id_branch": SingleTon()
                                                 .plandata[i]
                                                 .idBranch,
                                             "id_payGateway": 1,
                                             "payment_amount": totalAmount,
-                                            "tax_amount": SingleTon()
-                                                .plandata[i]
-                                                .totalTaxAmount,
-                                            "net_amount": SingleTon()
-                                                .plandata[i]
-                                                .totalAmount,
-                                            "total_net_amount": SingleTon()
-                                                .plandata[i]
-                                                .totalAmount,
-                                            "discountAmt": SingleTon()
-                                                .plandata[i]
-                                                .totalDiscountAmount,
+                                            "tax_amount": SingleTon().plandata[i].totalTaxAmount ?? 0,
+                                            "net_amount": SingleTon().plandata[i].totalAmount ?? 0,
+                                            "total_net_amount": SingleTon().plandata[i].totalAmount ?? 0,
+                                            "discountAmt": SingleTon().plandata[i].totalDiscountAmount ?? 0,
                                             "actual_trans_amt": 0,
                                             "ref_trans_id": null,
                                             "trans_id": null,
-                                            "metal_weight": SingleTon()
-                                                .plandata[i]
-                                                .totalWeight,
+                                            "metal_weight": SingleTon().plandata[i].totalWeight ?? 0,
                                             "metal_rate": SingleTon()
                                                 .plandata[i]
                                                 .todaysRate,

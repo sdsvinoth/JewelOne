@@ -25,6 +25,7 @@ class _JoinedDigiGoldState extends ConsumerState<JoinedDigiGold> {
 
   TextEditingController? enterAmountText = TextEditingController();
   String? grams = "0.0";
+  String? interetAmt = "0.0";
   String? discountGrams = "0.0";
   String? totalGrams = "0.0";
 
@@ -130,7 +131,8 @@ class _JoinedDigiGoldState extends ConsumerState<JoinedDigiGold> {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              '${(progressValue * 100).toStringAsFixed(2)}%',
+                              '${(widget.digiSchemeData!
+                                                      .currentInterestSlabRate!).toStringAsFixed(2)}%',
                               style: const TextStyle(
                                 fontSize: 13,
                                 color: Colors.red,
@@ -235,7 +237,7 @@ class _JoinedDigiGoldState extends ConsumerState<JoinedDigiGold> {
                                     (widget.digiSchemeData?.metalType ?? "") ==
                                             "SILVER"
                                         ? "Today's Sliver Rate"
-                                        : "Today's Gold Rate 22KT",
+                                        : "Today's Gold Rate",
                                     style: follow,
                                   ),
                                 ],
@@ -263,7 +265,7 @@ class _JoinedDigiGoldState extends ConsumerState<JoinedDigiGold> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 10),
-                  Text('Enter the Weight or Amount you wish to save',
+                  Text('Enter the Amount you wish to save',
                       style: planST),
                 ],
               ),
@@ -302,14 +304,17 @@ class _JoinedDigiGoldState extends ConsumerState<JoinedDigiGold> {
                                                   widget.digiSchemeData!
                                                       .metalRate!)
                                               .toStringAsFixed(2);
+                                          interetAmt = (amount * (widget.digiSchemeData!
+                                                      .currentInterestSlabRate! / 100)).toStringAsFixed(2);
                                           discountGrams =
-                                              (double.parse(grams!) * 0.05)
+                                              (double.parse(grams!) * (widget.digiSchemeData!.currentInterestSlabRate! / 100))
                                                   .toStringAsFixed(2);
                                           totalGrams = (double.parse(grams!) +
                                                   double.parse(discountGrams!))
                                               .toStringAsFixed(2);
                                         } else {
                                           grams = "0.0";
+                                          interetAmt = "0.0";
                                           discountGrams = "0.0";
                                           totalGrams = "0.0";
                                         }
@@ -374,15 +379,18 @@ class _JoinedDigiGoldState extends ConsumerState<JoinedDigiGold> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  const TextSpan(
-                                    text: '₹5',
-                                    style: TextStyle(
+
+
+                                  TextSpan(
+                                    text: ' ₹$interetAmt',
+                                    style: const TextStyle(
                                       fontFamily: 'JosefinSans',
                                       fontSize: 15,
                                       color: Colors.green,
                                       fontWeight: FontWeight.bold,
                                     ),
-                                  ),
+                                  )
+
                                 ],
                               ),
                             ),
