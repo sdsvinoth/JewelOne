@@ -80,8 +80,7 @@ class _Contact_Us_ScreenState extends State<Contact_Us_Screen> {
         contactus(context, heading: 'WhatsApp Us', number: '+91 73972 73972'),
 
         //MAIL US
-        contactus(context,
-            heading: 'Mail Us', number: 'retail.crm@sds.com'),
+        contactus(context, heading: 'Mail Us', number: 'retail.crm@sds.com'),
 
         const SizedBox(
           height: 30,
@@ -161,7 +160,7 @@ Widget Address(context) {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Shaining Dawn Corporate Office:',
+              'Saravana Nagai Maligai Corporate Office:',
               style: texts2,
             ),
             Divider(

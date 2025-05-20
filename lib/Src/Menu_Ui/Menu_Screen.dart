@@ -279,7 +279,7 @@ class _Menu_ScreenState extends ConsumerState<Menu_Screen> {
                     ),
 
                     Settingscontainer(context,
-                        text: 'About Shaining Dawn',
+                        text: 'About Saravana Nagai Maligai',
                         image: 'aboutone.svg',
                         image2: 'rightarrow2.svg', onTap: () {
                       //Navigator.pop(context);
@@ -416,14 +416,30 @@ void _showExitConfirmation(BuildContext context) {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: const Text("Logout",style: TextStyle(color: Colors.black,fontFamily: 'JosefinSans',fontSize: 14,)),
-        content: const Text("Are you sure you want to logout from Shaining dawn Jewellers?",style: TextStyle(color: Colors.black,fontFamily: 'JosefinSans',fontSize: 14,)),
+        title: const Text("Logout",
+            style: TextStyle(
+              color: Colors.black,
+              fontFamily: 'JosefinSans',
+              fontSize: 14,
+            )),
+        content: const Text(
+            "Are you sure you want to logout from Saravana Nagai Maligai?",
+            style: TextStyle(
+              color: Colors.black,
+              fontFamily: 'JosefinSans',
+              fontSize: 14,
+            )),
         actions: [
           TextButton(
             onPressed: () {
               Navigator.pop(context); // Close the dialog
             },
-            child: const Text("Cancel",style: TextStyle(color: Colors.red,fontFamily: 'JosefinSans',fontSize: 15,)),
+            child: const Text("Cancel",
+                style: TextStyle(
+                  color: Colors.red,
+                  fontFamily: 'JosefinSans',
+                  fontSize: 15,
+                )),
           ),
           TextButton(
             onPressed: () {
@@ -432,7 +448,12 @@ void _showExitConfirmation(BuildContext context) {
                 (Route<dynamic> route) => false, // Removes all previous routes
               );
             },
-            child: const Text("Yes ", style: TextStyle(color: Colors.red,fontFamily: 'JosefinSans',fontSize: 15,)),
+            child: const Text("Yes ",
+                style: TextStyle(
+                  color: Colors.red,
+                  fontFamily: 'JosefinSans',
+                  fontSize: 15,
+                )),
           ),
         ],
       );
