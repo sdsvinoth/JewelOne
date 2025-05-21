@@ -25,6 +25,7 @@ class DigiSchemeModel {
 }
 
 class DigiSchemeData {
+  String? targetAchievedPercent;
   String? schemeName;
   String? schemeDescription;
   String? metalType;
@@ -50,7 +51,8 @@ class DigiSchemeData {
   List<InterestSlabs>? interestSlabs;
 
   DigiSchemeData(
-      {this.schemeName,
+      {this.targetAchievedPercent,
+      this.schemeName,
       this.schemeDescription,
       this.metalType,
       this.metalId,
@@ -75,6 +77,7 @@ class DigiSchemeData {
       this.interestSlabs});
 
   DigiSchemeData.fromJson(Map<String, dynamic> json) {
+    targetAchievedPercent = json['targetAchievedPercent'];
     schemeName = json['schemeName'];
     schemeDescription = json['schemeDescription'];
     metalType = json['metalType'];
@@ -107,6 +110,7 @@ class DigiSchemeData {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['targetAchievedPercent'] = this.targetAchievedPercent;
     data['schemeName'] = this.schemeName;
     data['schemeDescription'] = this.schemeDescription;
     data['metalType'] = this.metalType;

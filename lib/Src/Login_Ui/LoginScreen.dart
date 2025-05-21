@@ -58,6 +58,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       }
     });
   }
+
   void _saveCredentials() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (_isChecked) {
@@ -127,13 +128,17 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         //     ],
         //   ),
         // ),
-        const SizedBox(height: 40,),
+        const SizedBox(
+          height: 40,
+        ),
         //LOGO
         Center(
             child: SizedBox(
                 height: MediaQuery.sizeOf(context).width / 3.5,
                 child: ImgPathPng("logo.png"))),
-        const SizedBox(height: 50,),
+        const SizedBox(
+          height: 50,
+        ),
         //MOBILE NUMBER
         Heading_Text(context, Title: "Welcome Back!"),
         const SizedBox(height: 20),
@@ -241,12 +246,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               String Boolvalue = "true";
               Routes(Boolvalue);
 
-              Navigator.push(
+              Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
                       builder: (context) => Home_DashBoard_Screen(
                             customer: result?.customer,
-                          )));
+                          )),
+                  (route) => false);
             } else {
               // Handle failure
               ShowToastMessage(

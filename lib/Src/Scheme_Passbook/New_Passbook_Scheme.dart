@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jewelone/Common_Widgets/Custom_App_Bar.dart';
+import 'package:jewelone/Model/DigiSchemeModel.dart';
 import 'package:jewelone/Src/FAQ_Ui/FAQ_Screen.dart';
+import 'package:jewelone/Src/Join_Digit_Gold_Scheme/JoinedDigiGold.dart';
 import 'package:jewelone/Src/Scheme_Passbook/Payment_History.dart';
 import 'package:jewelone/utilits/ApiProvider.dart';
 import 'package:jewelone/utilits/Common_Colors.dart';
@@ -9,8 +11,10 @@ import 'package:jewelone/utilits/Text_Style.dart';
 
 class NewPassbookScheme extends ConsumerStatefulWidget {
   String schemeAccountID;
+  DigiSchemeData? digiSchemeData;
 
-  NewPassbookScheme({super.key, required this.schemeAccountID});
+  NewPassbookScheme(
+      {super.key, required this.digiSchemeData, required this.schemeAccountID});
 
   @override
   ConsumerState<NewPassbookScheme> createState() => _NewPassbookSchemeState();
@@ -222,19 +226,76 @@ class _NewPassbookSchemeState extends ConsumerState<NewPassbookScheme> {
                                 ),
                               ),
                               Container(
+                                height: 75,
                                 decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    topRight: Radius.circular(10),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10),
                                   ),
+
                                   color: Color(
                                       0xFFA51E23), // gradient1 replacement
                                 ),
                                 child: Stack(
                                   clipBehavior: Clip.none,
                                   children: [
-                                    Container(
-                                      height: 61,
+                                    Row(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 20),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                'Date of Joining',
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              Text(
+                                                '${data?.schemeAccount?.startDate ?? ""}',
+                                                style: TextStyle(
+                                                  fontFamily: 'JosefinSans',
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Spacer(),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 20),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                'Date of Maturity',
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              Text(
+                                                '${data?.schemeAccount?.maturityDate ?? ""}',
+                                                style: TextStyle(
+                                                  fontFamily: 'JosefinSans',
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                     Positioned(
                                       top: -10,
@@ -277,58 +338,6 @@ class _NewPassbookSchemeState extends ConsumerState<NewPassbookScheme> {
                                   ],
                                 ),
                               ),
-                              const SizedBox(height: 30),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Date of Joining',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                      Text(
-                                        '${data?.schemeAccount?.startDate ?? ""}',
-                                        style: TextStyle(
-                                          fontFamily: 'JosefinSans',
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      Text(
-                                        'Date of Maturity',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                      Text(
-                                        '${data?.schemeAccount?.maturityDate ?? ""}',
-                                        style: TextStyle(
-                                          fontFamily: 'JosefinSans',
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 10),
                             ],
                           ),
                         ),
@@ -504,41 +513,56 @@ class _NewPassbookSchemeState extends ConsumerState<NewPassbookScheme> {
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               vertical: 10, horizontal: 15),
-                          child: Container(
-                              height: 50,
-                              width: MediaQuery.sizeOf(context).width,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                boxShadow: const [
-                                  BoxShadow(
-                                    color: Colors.black26,
-                                    blurRadius: 10,
-                                    offset: Offset(0, 5),
-                                  ),
-                                ],
-                                gradient: const LinearGradient(
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.topRight,
-                                    colors: [
-                                      gradient1,
-                                      gradient2,
-                                    ]),
-                              ),
-                              child: const Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Center(
-                                      child: Text(
-                                    'Pay Now',
-                                    style: TextStyle(
-                                      fontFamily: 'JosefinSans',
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => JoinedDigiGold(
+                                          digiSchemeData: widget.digiSchemeData,
+                                        )),
+                              ).then((onValue) {
+                                if (onValue == true) {
+                                  Navigator.pop(context, true);
+                                }
+                              });
+                            },
+                            child: Container(
+                                height: 50,
+                                width: MediaQuery.sizeOf(context).width,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      color: Colors.black26,
+                                      blurRadius: 10,
+                                      offset: Offset(0, 5),
                                     ),
-                                  )),
-                                ],
-                              )),
+                                  ],
+                                  gradient: const LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.topRight,
+                                      colors: [
+                                        gradient1,
+                                        gradient2,
+                                      ]),
+                                ),
+                                child: const Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Center(
+                                        child: Text(
+                                      'Pay Now',
+                                      style: TextStyle(
+                                        fontFamily: 'JosefinSans',
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    )),
+                                  ],
+                                )),
+                          ),
                         ),
                       ],
                     ),

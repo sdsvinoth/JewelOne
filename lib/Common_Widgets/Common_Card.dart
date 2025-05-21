@@ -234,7 +234,7 @@ Widget Wallet_Card(
                       InkWell(
                         onTap: payMentHistory,
                         child: SizedBox(
-                            width: (MediaQuery.sizeOf(context).width / 2) - 15,
+                            width: width! / 2 - 5,
                             child: Center(
                                 child: Padding(
                               padding: const EdgeInsets.only(bottom: 10),
@@ -255,7 +255,7 @@ Widget Wallet_Card(
                       InkWell(
                         onTap: paynow,
                         child: SizedBox(
-                            width: (MediaQuery.sizeOf(context).width / 2) - 80,
+                            width: width / 2 - 5,
                             child: Center(
                                 child: Padding(
                               padding: const EdgeInsets.only(bottom: 10),

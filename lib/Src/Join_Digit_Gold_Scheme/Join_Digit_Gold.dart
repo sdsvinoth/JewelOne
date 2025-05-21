@@ -526,6 +526,8 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                                   "Please agree to terms and conditions");
                               return;
                             } else {
+                              LoadingOverlay.show(context);
+
                               List<Map<String, dynamic>> data = [];
 
                               var now = DateTime.now();
@@ -534,8 +536,7 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                               data.add(
                                 {
                                   "advance": 1,
-                                  "id_scheme_account":
-                                      widget.digiSchemeData?.schemeId,
+                                  "id_scheme_account": null,
                                   "trans_date": formattedDate,
                                   "date_payment": formattedDate,
                                   "payment_charges": 0,
@@ -559,13 +560,13 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                                   "tax_id": null,
                                   "account_name": enterNameText?.text,
                                   "scheme_id": widget.digiSchemeData?.schemeId,
+                                  "id_customer": await getCustomer_Id(),
                                 },
                               );
 
                               final result = await ref
                                   .read(paymentPostProvider(data).future);
 
-                              LoadingOverlay.forcedStop();
                               if (result?.message ==
                                   "Payment Created successfully.") {
                                 await initiatePay(
@@ -573,6 +574,7 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                                     paymentSessionId:
                                         result?.paymentSessionId ?? "");
                               } else {
+                                LoadingOverlay.forcedStop();
                                 // Handle failure
                                 ShowToastMessage(result?.message ?? "");
                               }

@@ -416,7 +416,11 @@ class _Online_Emi_Payment_ScreenState
                                                 data?.data?[index].denomType ==
                                                     3)
                                             ? SizedBox(
-                                                width: (MediaQuery.of(context).size.width / 2) - 35,
+                                                width: (MediaQuery.of(context)
+                                                            .size
+                                                            .width /
+                                                        2) -
+                                                    35,
                                                 height: 35,
                                                 child: TextFormField(
                                                   keyboardType:
@@ -1210,6 +1214,8 @@ class _Online_Emi_Payment_ScreenState
                                   return Total_Amount_Bottom_Sheet(
                                     context,
                                     onPress: () async {
+                                      LoadingOverlay.show(context);
+
                                       List<Map<String, dynamic>> data = [];
                                       for (int i = 0;
                                           i < (SingleTon().plandata.length);
@@ -1223,7 +1229,9 @@ class _Online_Emi_Payment_ScreenState
                                             true) {
                                           data.add({
                                             "advance": 1,
-                                            "scheme_id" : SingleTon().plandata[i].idScheme,
+                                            "scheme_id": SingleTon()
+                                                .plandata[i]
+                                                .idScheme,
                                             "id_scheme_account": SingleTon()
                                                 .plandata[i]
                                                 .idSchemeAccount,
@@ -1232,20 +1240,38 @@ class _Online_Emi_Payment_ScreenState
                                             "payment_charges": 0,
                                             "payment_status": 1,
                                             "paid_through": 2,
-                                            "installment": SingleTon().plandata[i].incrementCount ?? 0,
+                                            "installment": SingleTon()
+                                                    .plandata[i]
+                                                    .incrementCount ??
+                                                0,
                                             "id_branch": SingleTon()
                                                 .plandata[i]
                                                 .idBranch,
                                             "id_payGateway": 1,
                                             "payment_amount": totalAmount,
-                                            "tax_amount": SingleTon().plandata[i].totalTaxAmount ?? 0,
-                                            "net_amount": SingleTon().plandata[i].totalAmount ?? 0,
-                                            "total_net_amount": SingleTon().plandata[i].totalAmount ?? 0,
-                                            "discountAmt": SingleTon().plandata[i].totalDiscountAmount ?? 0,
+                                            "tax_amount": SingleTon()
+                                                    .plandata[i]
+                                                    .totalTaxAmount ??
+                                                0,
+                                            "net_amount": SingleTon()
+                                                    .plandata[i]
+                                                    .totalAmount ??
+                                                0,
+                                            "total_net_amount": SingleTon()
+                                                    .plandata[i]
+                                                    .totalAmount ??
+                                                0,
+                                            "discountAmt": SingleTon()
+                                                    .plandata[i]
+                                                    .totalDiscountAmount ??
+                                                0,
                                             "actual_trans_amt": 0,
                                             "ref_trans_id": null,
                                             "trans_id": null,
-                                            "metal_weight": SingleTon().plandata[i].totalWeight ?? 0,
+                                            "metal_weight": SingleTon()
+                                                    .plandata[i]
+                                                    .totalWeight ??
+                                                0,
                                             "metal_rate": SingleTon()
                                                 .plandata[i]
                                                 .todaysRate,
@@ -1261,7 +1287,6 @@ class _Online_Emi_Payment_ScreenState
 
                                       // final result = await ref.watch(
                                       //     paymentPostProvider(data));
-                                      LoadingOverlay.forcedStop();
                                       if (result?.message ==
                                           "Payment Created successfully.") {
                                         // ShowToastMessage(result?.message ?? "");
@@ -1273,6 +1298,8 @@ class _Online_Emi_Payment_ScreenState
                                             paymentSessionId:
                                                 result?.paymentSessionId ?? "");
                                       } else {
+                                        LoadingOverlay.forcedStop();
+
                                         // Handle failure
                                         ShowToastMessage(result?.message ?? "");
                                       }

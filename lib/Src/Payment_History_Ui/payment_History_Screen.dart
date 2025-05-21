@@ -4,7 +4,6 @@ import 'package:jewelone/Common_Widgets/Common_Button.dart';
 import 'package:jewelone/Common_Widgets/Custom_App_Bar.dart';
 import 'package:jewelone/Common_Widgets/Image_Path.dart';
 import 'package:jewelone/Src/FAQ_Ui/FAQ_Screen.dart';
-import 'package:jewelone/Src/My_SSP_Ui/My_SSP_Screen.dart';
 import 'package:jewelone/utilits/Common_Colors.dart';
 import 'package:jewelone/utilits/Text_Style.dart';
 
@@ -69,12 +68,15 @@ class _payment_History_ScreenState
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween, // Ensures space between elements
+                                      mainAxisAlignment: MainAxisAlignment
+                                          .spaceBetween, // Ensures space between elements
                                       children: [
                                         Row(
                                           children: [
                                             Text(
-                                              data?.responseData?[index].schemeName ?? "",
+                                              data?.responseData?[index]
+                                                      .schemeName ??
+                                                  "",
                                               style: Goldweight,
                                               overflow: TextOverflow.ellipsis,
                                               maxLines: 1,
@@ -82,38 +84,52 @@ class _payment_History_ScreenState
                                           ],
                                         ),
                                         Text(
-                                          data?.responseData?[index].accountNumber ?? "",
+                                          data?.responseData?[index]
+                                                  .accountNumber ??
+                                              "",
                                           style: rate2,
                                           overflow: TextOverflow.ellipsis,
                                           maxLines: 1,
-                                          textAlign: TextAlign.end, // Aligns it to the right
+                                          textAlign: TextAlign
+                                              .end, // Aligns it to the right
                                         ),
                                       ],
                                     ),
                                     const SizedBox(height: 5),
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween, // Ensures space between elements
+                                      mainAxisAlignment: MainAxisAlignment
+                                          .spaceBetween, // Ensures space between elements
                                       children: [
                                         Row(
                                           children: [
                                             ImgPathSvg('Greenright.svg'),
-                                            const SizedBox(width: 20), // Space between image and text
+                                            const SizedBox(
+                                                width:
+                                                    20), // Space between image and text
                                             Text(
-                                              data?.responseData?[index].amount ?? "",
+                                              data?.responseData?[index]
+                                                      .amount ??
+                                                  "",
                                               style: bottomotext,
                                             ),
                                           ],
                                         ),
                                         Container(
-                                          width: MediaQuery.sizeOf(context).width / 5,
+                                          width:
+                                              MediaQuery.sizeOf(context).width /
+                                                  5,
                                           decoration: BoxDecoration(
                                             color: grey5,
-                                            borderRadius: BorderRadius.circular(50),
+                                            borderRadius:
+                                                BorderRadius.circular(50),
                                           ),
-                                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 10, vertical: 5),
                                           child: Center(
                                             child: Text(
-                                              data?.responseData?[index].statusName ?? "",
+                                              data?.responseData?[index]
+                                                      .statusName ??
+                                                  "",
                                               style: success,
                                               textAlign: TextAlign.center,
                                             ),
@@ -121,14 +137,15 @@ class _payment_History_ScreenState
                                         ),
                                       ],
                                     ),
-
                                     const SizedBox(height: 5),
-
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          data?.responseData?[index].paymentDate ?? "",
+                                          data?.responseData?[index]
+                                                  .paymentDate ??
+                                              "",
                                           style: planST,
                                         ),
                                         const SizedBox(width: 20),
@@ -136,13 +153,17 @@ class _payment_History_ScreenState
                                           margin: const EdgeInsets.all(1),
                                           decoration: BoxDecoration(
                                             color: grey5,
-                                            borderRadius: BorderRadius.circular(50),
+                                            borderRadius:
+                                                BorderRadius.circular(50),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 10, vertical: 5),
                                             child: Center(
                                               child: Text(
-                                                data?.responseData?[index].paymentMode ?? "",
+                                                data?.responseData?[index]
+                                                        .paymentMode ??
+                                                    "",
                                                 style: planST,
                                               ),
                                             ),
@@ -152,7 +173,8 @@ class _payment_History_ScreenState
                                     ),
                                     const SizedBox(height: 5),
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween, // Ensures space between elements
+                                      mainAxisAlignment: MainAxisAlignment
+                                          .spaceBetween, // Ensures space between elements
                                       children: [
                                         Row(
                                           children: [
