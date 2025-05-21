@@ -479,12 +479,14 @@ class _JoinedDigiGoldState extends ConsumerState<JoinedDigiGold> {
                 children: [
                   Row(
                     children: [
-                      Text(
-                          '*Benefits subject to redemption after date of maturity',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,
-                          )),
+                      Expanded(
+                        child: Text(
+                            '*Benefits subject to redemption after date of maturity',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 14,
+                            )),
+                      ),
                     ],
                   ),
                 ],
@@ -603,6 +605,8 @@ class _JoinedDigiGoldState extends ConsumerState<JoinedDigiGold> {
                             ShowToastMessage("Please enter amount");
                             return;
                           } else {
+                            LoadingOverlay.show(context);
+
                             List<Map<String, dynamic>> data = [];
 
                             var now = DateTime.now();
@@ -612,7 +616,7 @@ class _JoinedDigiGoldState extends ConsumerState<JoinedDigiGold> {
                               {
                                 "advance": 1,
                                 "id_scheme_account":
-                                    widget.digiSchemeData?.schemeId,
+                                    widget.digiSchemeData?.accountId,
                                 "trans_date": formattedDate,
                                 "date_payment": formattedDate,
                                 "payment_charges": 0,
@@ -642,7 +646,6 @@ class _JoinedDigiGoldState extends ConsumerState<JoinedDigiGold> {
                             final result = await ref
                                 .read(paymentPostProvider(data).future);
 
-                            LoadingOverlay.forcedStop();
                             if (result?.message ==
                                 "Payment Created successfully.") {
                               await initiatePay(
@@ -650,6 +653,7 @@ class _JoinedDigiGoldState extends ConsumerState<JoinedDigiGold> {
                                   paymentSessionId:
                                       result?.paymentSessionId ?? "");
                             } else {
+                              LoadingOverlay.forcedStop();
                               // Handle failure
                               ShowToastMessage(result?.message ?? "");
                             }

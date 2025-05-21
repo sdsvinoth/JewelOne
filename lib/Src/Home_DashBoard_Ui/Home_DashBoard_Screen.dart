@@ -281,7 +281,7 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const payment_History_Screen()));
+                                            payment_History_Screen()));
                               },
                               child: Plan_Card(
                                 context,
@@ -346,7 +346,14 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                                                   ?.data?[index]
                                                                   .accountId ??
                                                               "",
-                                                        )));
+                                                          digiSchemeData: data
+                                                              ?.data?[index],
+                                                        ))).then((onValue) {
+                                              if (onValue == true) {
+                                                ref.refresh(
+                                                    getDigiSchemeProvider);
+                                              }
+                                            });
                                           },
                                           child: Card(
                                             elevation: 1,
@@ -688,7 +695,7 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                                                           mainAxisAlignment:
                                                                               MainAxisAlignment.center,
                                                                           children: [
-                                                                            Text("Date of Maturity",
+                                                                            Text("Maturity On",
                                                                                 style: walletT3),
                                                                           ],
                                                                         ),
@@ -743,7 +750,7 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                                                                 5),
                                                                         Center(
                                                                             child:
-                                                                                Text("${data?.data?[index].currentInterestSlabRate}", style: walletT3)),
+                                                                                Text("${data?.data?[index].targetAchievedPercent}", style: walletT3)),
                                                                         const SizedBox(
                                                                             height:
                                                                                 5),

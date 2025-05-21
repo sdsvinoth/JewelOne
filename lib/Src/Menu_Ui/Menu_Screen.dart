@@ -10,6 +10,7 @@ import 'package:jewelone/Src/Online_Emi_Payment_Ui/Online_Emi_Payment_Screen.dar
 import 'package:jewelone/Src/Payment_History_Ui/payment_History_Screen.dart';
 import 'package:jewelone/Src/Security_Setting_Ui/Settings_Screen.dart';
 import 'package:jewelone/Src/Store_Locator_Ui/Store_Locator_Screen.dart';
+import 'package:jewelone/utilits/ApiProvider.dart';
 import 'package:jewelone/utilits/Common_Colors.dart';
 import 'package:jewelone/utilits/Generic.dart';
 import 'package:jewelone/utilits/Text_Style.dart';
@@ -199,7 +200,7 @@ class _Menu_ScreenState extends ConsumerState<Menu_Screen> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                const payment_History_Screen()));
+                                                payment_History_Screen()));
                                   }),
                               const Divider(),
                               NavContainer(
@@ -325,9 +326,8 @@ class _Menu_ScreenState extends ConsumerState<Menu_Screen> {
                       padding:
                           const EdgeInsets.only(left: 20, right: 20, top: 20),
                       child: buttonIcon(context, onPress: () {
-                        _handleLogout;
                         {
-                          _showExitConfirmation(context);
+                          _showExitConfirmation(context, ref);
 // Removes all previous route
                         }
                       }, titleName: 'Logout'),
@@ -411,7 +411,7 @@ Widget NavContainer(
   );
 }
 
-void _showExitConfirmation(BuildContext context) {
+void _showExitConfirmation(BuildContext context, WidgetRef ref) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -442,7 +442,22 @@ void _showExitConfirmation(BuildContext context) {
                 )),
           ),
           TextButton(
-            onPressed: () {
+            onPressed: () async {
+              final prefs = await SharedPreferences.getInstance();
+              await prefs.clear(); // or remove specific keys
+
+              // Reset Riverpod state
+              ref.invalidate(GoldrateProvider);
+              ref.invalidate(BannerDataProvider);
+              ref.invalidate(MyplanProvider);
+              ref.invalidate(getDigiSchemeProvider);
+              ref.invalidate(ActivelocationProvider);
+              ref.invalidate(ActiveplanProvider);
+              ref.invalidate(paymenthistoryProvider);
+              ref.invalidate(getDigiPayementHisProvider);
+              ref.invalidate(setTargetDigiProvider);
+              ref.invalidate(buyplanProvider);
+
               Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(builder: (context) => const LoginScreen()),
                 (Route<dynamic> route) => false, // Removes all previous routes

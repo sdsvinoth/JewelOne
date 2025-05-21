@@ -1,16 +1,12 @@
 class DigiPaymentHistoryModel {
   SchemeAccount? schemeAccount;
-  Customer? customer;
   List<Payments>? payments;
 
-  DigiPaymentHistoryModel({this.schemeAccount, this.customer, this.payments});
+  DigiPaymentHistoryModel({this.schemeAccount, this.payments});
 
   DigiPaymentHistoryModel.fromJson(Map<String, dynamic> json) {
     schemeAccount = json['scheme_account'] != null
         ? new SchemeAccount.fromJson(json['scheme_account'])
-        : null;
-    customer = json['customer'] != null
-        ? new Customer.fromJson(json['customer'])
         : null;
     if (json['payments'] != null) {
       payments = <Payments>[];
@@ -24,9 +20,6 @@ class DigiPaymentHistoryModel {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.schemeAccount != null) {
       data['scheme_account'] = this.schemeAccount!.toJson();
-    }
-    if (this.customer != null) {
-      data['customer'] = this.customer!.toJson();
     }
     if (this.payments != null) {
       data['payments'] = this.payments!.map((v) => v.toJson()).toList();
@@ -44,34 +37,34 @@ class SchemeAccount {
   String? refNo;
   String? startDate;
   int? approvedEmployee;
-  Null? closingBalance;
-  Null? closingAmount;
-  Null? closingWeight;
-  Null? targetWeight;
-  Null? closingDate;
+  String? closingBalance;
+  String? closingAmount;
+  String? closingWeight;
+  String? targetWeight;
+  String? closingDate;
   bool? isClosed;
-  Null? addedBy;
-  Null? additionalBenefits;
-  Null? closingAddCharges;
-  Null? closingDeductions;
-  Null? closingBenefits;
+  String? addedBy;
+  String? additionalBenefits;
+  String? closingAddCharges;
+  String? closingDeductions;
+  String? closingBenefits;
   bool? isUtilized;
-  Null? utilizedType;
+  String? utilizedType;
   String? createdOn;
-  Null? updatedOn;
+  String? updatedOn;
   int? accSchemeId;
   int? idCustomer;
   int? idBranch;
-  Null? closedEmployee;
-  Null? closingIdBranch;
-  Null? finYear;
-  Null? closeRevertedBy;
+  int? closedEmployee;
+  int? closingIdBranch;
+  int? finYear;
+  int? closeRevertedBy;
   String? schemeName;
-  int? schemeType;
+  String? schemeType;
   String? currPeriodAndInterest;
   String? maturityDate;
-  double? totalMetalWeight;
-  double? totalNetAmount;
+  String? totalMetalWeight;
+  String? totalNetAmount;
 
   SchemeAccount(
       {this.idSchemeAccount,
@@ -192,269 +185,12 @@ class SchemeAccount {
   }
 }
 
-class Customer {
-  int? idCustomer;
-  String? email;
-  String? mobCode;
-  Null? referenceNo;
-  int? idBranch;
-  Null? idArea;
-  String? title;
-  String? lastname;
-  String? firstname;
-  Null? companyName;
-  String? dateOfBirth;
-  String? dateOfWed;
-  int? gender;
-  String? mobile;
-  Null? phoneNo;
-  String? cusImg;
-  Null? comments;
-  Null? profileComplete;
-  bool? active;
-  int? approvedStatus;
-  Null? dateAdd;
-  String? customEntryDate;
-  Null? dateUpd;
-  bool? notification;
-  Null? gstNumber;
-  Null? panNumber;
-  Null? aadharNumber;
-  Null? cusRefCode;
-  bool? isRefbenefitCrtCus;
-  Null? empRefCode;
-  bool? isRefbenefitCrtEmp;
-  int? religion;
-  bool? kycStatus;
-  bool? isCusSynced;
-  Null? lastSyncTime;
-  Null? lastPaymentOn;
-  bool? isVip;
-  bool? isEmailVerified;
-  String? creditBalance;
-  String? debitBalance;
-  int? registeredThrough;
-  int? approvedThrough;
-  int? catalogueReqStatus;
-  String? cusType;
-  bool? sendPromoSms;
-  String? isRetailer;
-  String? retailerType;
-  String? profileType;
-  String? createdOn;
-  Null? updatedOn;
-  int? catalogueVisibleType;
-  Null? showCatalogueDate;
-  int? user;
-  int? profession;
-  int? createdBy;
-  Null? updatedBy;
-  String? address;
-  String? address1;
-  String? address2;
-  String? address3;
-  String? mobileWoc;
-
-  Customer(
-      {this.idCustomer,
-      this.email,
-      this.mobCode,
-      this.referenceNo,
-      this.idBranch,
-      this.idArea,
-      this.title,
-      this.lastname,
-      this.firstname,
-      this.companyName,
-      this.dateOfBirth,
-      this.dateOfWed,
-      this.gender,
-      this.mobile,
-      this.phoneNo,
-      this.cusImg,
-      this.comments,
-      this.profileComplete,
-      this.active,
-      this.approvedStatus,
-      this.dateAdd,
-      this.customEntryDate,
-      this.dateUpd,
-      this.notification,
-      this.gstNumber,
-      this.panNumber,
-      this.aadharNumber,
-      this.cusRefCode,
-      this.isRefbenefitCrtCus,
-      this.empRefCode,
-      this.isRefbenefitCrtEmp,
-      this.religion,
-      this.kycStatus,
-      this.isCusSynced,
-      this.lastSyncTime,
-      this.lastPaymentOn,
-      this.isVip,
-      this.isEmailVerified,
-      this.creditBalance,
-      this.debitBalance,
-      this.registeredThrough,
-      this.approvedThrough,
-      this.catalogueReqStatus,
-      this.cusType,
-      this.sendPromoSms,
-      this.isRetailer,
-      this.retailerType,
-      this.profileType,
-      this.createdOn,
-      this.updatedOn,
-      this.catalogueVisibleType,
-      this.showCatalogueDate,
-      this.user,
-      this.profession,
-      this.createdBy,
-      this.updatedBy,
-      this.address,
-      this.address1,
-      this.address2,
-      this.address3,
-      this.mobileWoc});
-
-  Customer.fromJson(Map<String, dynamic> json) {
-    idCustomer = json['id_customer'];
-    email = json['email'];
-    mobCode = json['mob_code'];
-    referenceNo = json['reference_no'];
-    idBranch = json['id_branch'];
-    idArea = json['id_area'];
-    title = json['title'];
-    lastname = json['lastname'];
-    firstname = json['firstname'];
-    companyName = json['company_name'];
-    dateOfBirth = json['date_of_birth'];
-    dateOfWed = json['date_of_wed'];
-    gender = json['gender'];
-    mobile = json['mobile'];
-    phoneNo = json['phone_no'];
-    cusImg = json['cus_img'];
-    comments = json['comments'];
-    profileComplete = json['profile_complete'];
-    active = json['active'];
-    approvedStatus = json['approved_status'];
-    dateAdd = json['date_add'];
-    customEntryDate = json['custom_entry_date'];
-    dateUpd = json['date_upd'];
-    notification = json['notification'];
-    gstNumber = json['gst_number'];
-    panNumber = json['pan_number'];
-    aadharNumber = json['aadhar_number'];
-    cusRefCode = json['cus_ref_code'];
-    isRefbenefitCrtCus = json['is_refbenefit_crt_cus'];
-    empRefCode = json['emp_ref_code'];
-    isRefbenefitCrtEmp = json['is_refbenefit_crt_emp'];
-    religion = json['religion'];
-    kycStatus = json['kyc_status'];
-    isCusSynced = json['is_cus_synced'];
-    lastSyncTime = json['last_sync_time'];
-    lastPaymentOn = json['last_payment_on'];
-    isVip = json['is_vip'];
-    isEmailVerified = json['is_email_verified'];
-    creditBalance = json['credit_balance'];
-    debitBalance = json['debit_balance'];
-    registeredThrough = json['registered_through'];
-    approvedThrough = json['approved_through'];
-    catalogueReqStatus = json['catalogue_req_status'];
-    cusType = json['cus_type'];
-    sendPromoSms = json['send_promo_sms'];
-    isRetailer = json['is_retailer'];
-    retailerType = json['retailer_type'];
-    profileType = json['profile_type'];
-    createdOn = json['created_on'];
-    updatedOn = json['updated_on'];
-    catalogueVisibleType = json['catalogue_visible_type'];
-    showCatalogueDate = json['show_catalogue_date'];
-    user = json['user'];
-    profession = json['profession'];
-    createdBy = json['created_by'];
-    updatedBy = json['updated_by'];
-    address = json['address'];
-    address1 = json['address1'];
-    address2 = json['address2'];
-    address3 = json['address3'];
-    mobileWoc = json['mobile_woc'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id_customer'] = this.idCustomer;
-    data['email'] = this.email;
-    data['mob_code'] = this.mobCode;
-    data['reference_no'] = this.referenceNo;
-    data['id_branch'] = this.idBranch;
-    data['id_area'] = this.idArea;
-    data['title'] = this.title;
-    data['lastname'] = this.lastname;
-    data['firstname'] = this.firstname;
-    data['company_name'] = this.companyName;
-    data['date_of_birth'] = this.dateOfBirth;
-    data['date_of_wed'] = this.dateOfWed;
-    data['gender'] = this.gender;
-    data['mobile'] = this.mobile;
-    data['phone_no'] = this.phoneNo;
-    data['cus_img'] = this.cusImg;
-    data['comments'] = this.comments;
-    data['profile_complete'] = this.profileComplete;
-    data['active'] = this.active;
-    data['approved_status'] = this.approvedStatus;
-    data['date_add'] = this.dateAdd;
-    data['custom_entry_date'] = this.customEntryDate;
-    data['date_upd'] = this.dateUpd;
-    data['notification'] = this.notification;
-    data['gst_number'] = this.gstNumber;
-    data['pan_number'] = this.panNumber;
-    data['aadhar_number'] = this.aadharNumber;
-    data['cus_ref_code'] = this.cusRefCode;
-    data['is_refbenefit_crt_cus'] = this.isRefbenefitCrtCus;
-    data['emp_ref_code'] = this.empRefCode;
-    data['is_refbenefit_crt_emp'] = this.isRefbenefitCrtEmp;
-    data['religion'] = this.religion;
-    data['kyc_status'] = this.kycStatus;
-    data['is_cus_synced'] = this.isCusSynced;
-    data['last_sync_time'] = this.lastSyncTime;
-    data['last_payment_on'] = this.lastPaymentOn;
-    data['is_vip'] = this.isVip;
-    data['is_email_verified'] = this.isEmailVerified;
-    data['credit_balance'] = this.creditBalance;
-    data['debit_balance'] = this.debitBalance;
-    data['registered_through'] = this.registeredThrough;
-    data['approved_through'] = this.approvedThrough;
-    data['catalogue_req_status'] = this.catalogueReqStatus;
-    data['cus_type'] = this.cusType;
-    data['send_promo_sms'] = this.sendPromoSms;
-    data['is_retailer'] = this.isRetailer;
-    data['retailer_type'] = this.retailerType;
-    data['profile_type'] = this.profileType;
-    data['created_on'] = this.createdOn;
-    data['updated_on'] = this.updatedOn;
-    data['catalogue_visible_type'] = this.catalogueVisibleType;
-    data['show_catalogue_date'] = this.showCatalogueDate;
-    data['user'] = this.user;
-    data['profession'] = this.profession;
-    data['created_by'] = this.createdBy;
-    data['updated_by'] = this.updatedBy;
-    data['address'] = this.address;
-    data['address1'] = this.address1;
-    data['address2'] = this.address2;
-    data['address3'] = this.address3;
-    data['mobile_woc'] = this.mobileWoc;
-    return data;
-  }
-}
-
 class Payments {
   int? idPayment;
   String? paidThroughDisplay;
   String? datePayment;
   int? installment;
-  Null? transId;
+  String? transId;
   String? transDate;
   String? entryDate;
   String? paymentAmount;
@@ -466,37 +202,40 @@ class Payments {
   String? bonusMetalAmount;
   String? remark;
   String? receiptNo;
-  Null? refTransId;
+  String? refTransId;
   String? discountAmt;
   String? taxAmount;
   int? taxType;
   String? actualTransAmt;
   int? isOffline;
-  Null? approvalDate;
+  String? approvalDate;
   String? gst;
   int? gstType;
   String? gstAmount;
   String? paidThrough;
   String? dueType;
-  Null? orderId;
-  Null? paymentSessionId;
+  String? orderId;
+  String? paymentSessionId;
   bool? isFreeInstallment;
   String? createdOn;
-  Null? updatedOn;
-  Null? cancelledDate;
-  Null? cancelReason;
+  String? updatedOn;
+  String? cancelledDate;
+  String? cancelReason;
+  String? accountName;
   int? idSchemeAccount;
   int? idScheme;
   int? idBranch;
-  Null? idPayGateway;
-  int? paymentStatus;
-  Null? taxId;
+  int? idPayGateway;
+  String? paymentStatus;
+  int? taxId;
   int? createdBy;
-  Null? updatedBy;
-  Null? cancelledBy;
+  int? updatedBy;
+  int? cancelledBy;
+  int? idCustomer;
   bool? cancel;
   String? bonus;
-  double? accumulateWeight;
+  String? accumulateWeight;
+  String? statusColor;
 
   Payments(
       {this.idPayment,
@@ -534,6 +273,7 @@ class Payments {
       this.updatedOn,
       this.cancelledDate,
       this.cancelReason,
+      this.accountName,
       this.idSchemeAccount,
       this.idScheme,
       this.idBranch,
@@ -543,9 +283,11 @@ class Payments {
       this.createdBy,
       this.updatedBy,
       this.cancelledBy,
+      this.idCustomer,
       this.cancel,
       this.bonus,
-      this.accumulateWeight});
+      this.accumulateWeight,
+      this.statusColor});
 
   Payments.fromJson(Map<String, dynamic> json) {
     idPayment = json['id_payment'];
@@ -583,6 +325,7 @@ class Payments {
     updatedOn = json['updated_on'];
     cancelledDate = json['cancelled_date'];
     cancelReason = json['cancel_reason'];
+    accountName = json['account_name'];
     idSchemeAccount = json['id_scheme_account'];
     idScheme = json['id_scheme'];
     idBranch = json['id_branch'];
@@ -592,9 +335,11 @@ class Payments {
     createdBy = json['created_by'];
     updatedBy = json['updated_by'];
     cancelledBy = json['cancelled_by'];
+    idCustomer = json['id_customer'];
     cancel = json['cancel'];
     bonus = json['bonus'];
     accumulateWeight = json['accumulate_weight'];
+    statusColor = json['status_color'];
   }
 
   Map<String, dynamic> toJson() {
@@ -634,6 +379,7 @@ class Payments {
     data['updated_on'] = this.updatedOn;
     data['cancelled_date'] = this.cancelledDate;
     data['cancel_reason'] = this.cancelReason;
+    data['account_name'] = this.accountName;
     data['id_scheme_account'] = this.idSchemeAccount;
     data['id_scheme'] = this.idScheme;
     data['id_branch'] = this.idBranch;
@@ -643,9 +389,11 @@ class Payments {
     data['created_by'] = this.createdBy;
     data['updated_by'] = this.updatedBy;
     data['cancelled_by'] = this.cancelledBy;
+    data['id_customer'] = this.idCustomer;
     data['cancel'] = this.cancel;
     data['bonus'] = this.bonus;
     data['accumulate_weight'] = this.accumulateWeight;
+    data['status_color'] = this.statusColor;
     return data;
   }
 }
