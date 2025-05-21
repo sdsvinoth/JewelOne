@@ -64,6 +64,8 @@ class SchemeAccount {
   String? currPeriodAndInterest;
   String? maturityDate;
   String? totalMetalWeight;
+  String? totalBonusWeight;
+  String? totalAccWeight;
   String? totalNetAmount;
 
   SchemeAccount(
@@ -102,6 +104,8 @@ class SchemeAccount {
       this.currPeriodAndInterest,
       this.maturityDate,
       this.totalMetalWeight,
+      this.totalBonusWeight,
+      this.totalAccWeight,
       this.totalNetAmount});
 
   SchemeAccount.fromJson(Map<String, dynamic> json) {
@@ -140,6 +144,8 @@ class SchemeAccount {
     currPeriodAndInterest = json['curr_period_and_interest'];
     maturityDate = json['maturity_date'];
     totalMetalWeight = json['total_metal_weight'];
+    totalBonusWeight = json['total_bonus_weight'];
+    totalAccWeight = json['total_accumulate_weight'];
     totalNetAmount = json['total_net_amount'];
   }
 
@@ -180,6 +186,8 @@ class SchemeAccount {
     data['curr_period_and_interest'] = this.currPeriodAndInterest;
     data['maturity_date'] = this.maturityDate;
     data['total_metal_weight'] = this.totalMetalWeight;
+    data['total_bonus_weight'] = this.totalBonusWeight;
+    data['total_accumulate_weight'] = this.totalAccWeight;
     data['total_net_amount'] = this.totalNetAmount;
     return data;
   }

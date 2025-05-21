@@ -164,7 +164,7 @@ class _My_SSP_ScreenState extends ConsumerState<My_SSP_Screen> {
                                     Row_List(
                                         text1: 'Total plan amount',
                                         text2:
-                                            '₹${data?.data?[index].maximumPayable?.maxAmount}'),
+                                            '₹${data?.data?[index].maximumPayable?.maxAmount ?? ''}'),
                                     Divider(),
                                     Row_List(
                                         text1: 'Monthly EMA',

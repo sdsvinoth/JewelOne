@@ -132,17 +132,18 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                   children: [
                     //CARD
                     myplandata.when(data: (data) {
-                      if (data?.data?.isNotEmpty ?? false) {
+                      final filteredData = data?.data?.where((plan) => plan.isDigiScheme != true).toList();
+                      if (filteredData?.isNotEmpty ?? false) {
                         return Container(
                           width: MediaQuery.sizeOf(context).width,
                           height: 250,
                           child: ListView.builder(
-                              itemCount: data?.data?.length ?? 0,
+                              itemCount: filteredData?.length ?? 0,
                               physics: const ScrollPhysics(),
                               scrollDirection: Axis.horizontal,
                               shrinkWrap: true,
                               itemBuilder: (BuildContext context, int index) {
-                                final cardWidth = data?.data?.length == 1
+                                final cardWidth = filteredData?.length == 1
                                     ? MediaQuery.sizeOf(context).width - 30
                                     : MediaQuery.sizeOf(context).width / 1.2;
                                 return Padding(
@@ -151,17 +152,19 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                   child: Wallet_Card(
                                     width: cardWidth,
                                     context,
+                                    allowPay:
+                                        filteredData?[index].allowPay ?? false,
                                     customername:
-                                        data?.data?[index].accountName ?? "",
+                                        filteredData?[index].accountName ?? "",
                                     Acnumval:
-                                        "${data?.data?[index].idSchemeAccount ?? ""}",
+                                        "${filteredData?[index].idSchemeAccount ?? ""}",
                                     totalpaidval:
-                                        '₹${data?.data?[index].paidAmount?.toStringAsFixed(2) ?? ""}',
-                                    totaccval: data?.data?[index].paidWeight
+                                        '₹${filteredData?[index].paidAmount?.toStringAsFixed(2) ?? ""}',
+                                    totaccval: filteredData?[index].paidWeight
                                             ?.toStringAsFixed(3) ??
                                         "",
                                     noofpaidval:
-                                        "${data?.data?[index].paidInstallments ?? ""}",
+                                        "${filteredData?[index].paidInstallments ?? ""}",
                                     paynow: () {
                                       Navigator.push(
                                           context,
@@ -179,8 +182,7 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                                           MaterialPageRoute(
                                               builder: (context) =>
                                                   Purchase_Plan_detail_Screeen(
-                                                    schemeAccountID: data
-                                                            ?.data?[index]
+                                                    schemeAccountID: filteredData?[index]
                                                             .idSchemeAccount ??
                                                         0,
                                                   )));

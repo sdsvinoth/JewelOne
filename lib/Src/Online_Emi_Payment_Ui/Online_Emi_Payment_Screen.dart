@@ -77,6 +77,7 @@ class _Online_Emi_Payment_ScreenState
     final priceRate = ref.watch(GoldrateProvider);
 
     final myplandata = ref.watch(MyplanProvider);
+    
     return Scaffold(
       backgroundColor: white2,
       appBar: Custom_AppBar(
@@ -92,65 +93,67 @@ class _Online_Emi_Payment_ScreenState
         },
       ),
       body: myplandata.when(data: (data) {
+        final filteredData = data?.data?.where((plan) => plan.isDigiScheme != true).toList();
+
         widget.selectedIndex != null
-            ? data?.data != null
-                ? data?.data![widget.selectedIndex ?? 0].isChecked = true
+            ? filteredData != null
+                ? filteredData![widget.selectedIndex ?? 0].isChecked = true
                 : null
             : null;
         amountCalculation(int selectIndex, int amount) {
-          if (data?.data?[selectIndex].discountType == 2) {
+          if (filteredData?[selectIndex].discountType == 2) {
             final taxAmount =
-                ((data?.data?[selectIndex].taxPercentage ?? 0.0) / 100) *
+                ((filteredData?[selectIndex].taxPercentage ?? 0.0) / 100) *
                     amount;
 
             final finalAmount =
-                (amount * (data?.data?[selectIndex].incrementCount ?? 0)) -
-                    ((data?.data?[selectIndex].discountValue ?? 0) + taxAmount);
+                (amount * (filteredData?[selectIndex].incrementCount ?? 0)) -
+                    ((filteredData?[selectIndex].discountValue ?? 0) + taxAmount);
 
-            data?.data?[selectIndex].totalTaxAmount = "$taxAmount";
-            data?.data?[selectIndex].enterAmount = "$amount";
-            data?.data?[selectIndex].totalAmount =
+            filteredData?[selectIndex].totalTaxAmount = "$taxAmount";
+            filteredData?[selectIndex].enterAmount = "$amount";
+            filteredData?[selectIndex].totalAmount =
                 finalAmount.toStringAsFixed(2);
-          } else if (data?.data?[selectIndex].discountType == 1) {
+          } else if (filteredData?[selectIndex].discountType == 1) {
             final taxAmount =
-                ((data?.data?[selectIndex].taxPercentage ?? 0.0) / 100) *
+                ((filteredData?[selectIndex].taxPercentage ?? 0.0) / 100) *
                     amount;
 
             final dicountAmout =
-                ((data?.data?[selectIndex].discountValue ?? 0) / 100) * amount;
+                ((filteredData?[selectIndex].discountValue ?? 0) / 100) * amount;
 
             final finalAmount =
-                (amount * (data?.data?[selectIndex].incrementCount ?? 0)) -
+                (amount * (filteredData?[selectIndex].incrementCount ?? 0)) -
                     (dicountAmout + taxAmount);
 
-            data?.data?[selectIndex].totalTaxAmount = "$taxAmount";
-            data?.data?[selectIndex].totalDiscountAmount = "$dicountAmout";
+            filteredData?[selectIndex].totalTaxAmount = "$taxAmount";
+            filteredData?[selectIndex].totalDiscountAmount = "$dicountAmout";
 
-            data?.data?[selectIndex].enterAmount = "$amount";
+            filteredData?[selectIndex].enterAmount = "$amount";
 
-            data?.data?[selectIndex].totalAmount =
+            filteredData?[selectIndex].totalAmount =
                 finalAmount.toStringAsFixed(2);
           } else {
             final taxAmount =
-                ((data?.data?[selectIndex].taxPercentage ?? 0.0) / 100) *
+                ((filteredData?[selectIndex].taxPercentage ?? 0.0) / 100) *
                     amount;
             final finalAmount =
-                (amount * (data?.data?[selectIndex].incrementCount ?? 0)) -
+                (amount * (filteredData?[selectIndex].incrementCount ?? 0)) -
                     taxAmount;
 
-            data?.data?[selectIndex].totalTaxAmount = "$taxAmount";
-            data?.data?[selectIndex].enterAmount = "$amount";
+            filteredData?[selectIndex].totalTaxAmount = "$taxAmount";
+            filteredData?[selectIndex].enterAmount = "$amount";
 
-            data?.data?[selectIndex].totalAmount =
+            filteredData?[selectIndex].totalAmount =
                 finalAmount.toStringAsFixed(2);
           }
-          if (data?.data?[selectIndex].convertToWeight == true) {
-            data?.data?[selectIndex].totalWeight =
-                (amount / (data.data?[selectIndex].todaysRate ?? 0.0))
+          if (filteredData?[selectIndex].convertToWeight == true) {
+            filteredData?[selectIndex].totalWeight =
+                (amount / (filteredData?[selectIndex].todaysRate ?? 0.0))
                     .toStringAsFixed(3);
           }
 
-          totalAmount = data?.data!
+          totalAmount = filteredData!
               .map((item) => double.parse(item.totalAmount ?? "0"))
               .reduce((a, b) => a + b) as num;
 
@@ -158,88 +161,88 @@ class _Online_Emi_Payment_ScreenState
         }
 
         gramCalculation(int selectIndex, double amount) {
-          if (data?.data?[selectIndex].discountType == 2) {
+          if (filteredData?[selectIndex].discountType == 2) {
             final finalAmount =
-                ((amount * (data?.data?[selectIndex].incrementCount ?? 0)) *
-                        (data?.data?[selectIndex].todaysRate ?? 0.0)) -
-                    ((data?.data?[selectIndex].discountValue ?? 0));
+                ((amount * (filteredData?[selectIndex].incrementCount ?? 0)) *
+                        (filteredData?[selectIndex].todaysRate ?? 0.0)) -
+                    ((filteredData?[selectIndex].discountValue ?? 0));
 
-            if (data?.data?[selectIndex].taxType == 2) {
+            if (filteredData?[selectIndex].taxType == 2) {
               final taxAmount =
-                  ((data?.data?[selectIndex].taxPercentage ?? 0.0) / 100) *
+                  ((filteredData?[selectIndex].taxPercentage ?? 0.0) / 100) *
                       finalAmount;
 
-              data?.data?[selectIndex].enterAmount =
+              filteredData?[selectIndex].enterAmount =
                   (amount + taxAmount).toStringAsFixed(2);
-              data?.data?[selectIndex].totalAmount =
+              filteredData?[selectIndex].totalAmount =
                   (finalAmount + taxAmount).toStringAsFixed(2);
-              data?.data?[selectIndex].totalTaxAmount = "$taxAmount";
+              filteredData?[selectIndex].totalTaxAmount = "$taxAmount";
             } else {
-              data?.data?[selectIndex].enterAmount = amount.toStringAsFixed(2);
-              data?.data?[selectIndex].totalAmount =
+              filteredData?[selectIndex].enterAmount = amount.toStringAsFixed(2);
+              filteredData?[selectIndex].totalAmount =
                   finalAmount.toStringAsFixed(2);
             }
-          } else if (data?.data?[selectIndex].discountType == 1) {
+          } else if (filteredData?[selectIndex].discountType == 1) {
             final dicountAmout =
-                ((data?.data?[selectIndex].discountValue ?? 0) / 100) * amount;
+                ((filteredData?[selectIndex].discountValue ?? 0) / 100) * amount;
 
             final finalAmount =
-                ((amount * (data?.data?[selectIndex].incrementCount ?? 0)) *
-                        (data?.data?[selectIndex].todaysRate ?? 0.0)) -
+                ((amount * (filteredData?[selectIndex].incrementCount ?? 0)) *
+                        (filteredData?[selectIndex].todaysRate ?? 0.0)) -
                     (dicountAmout);
 
-            if (data?.data?[selectIndex].taxType == 2) {
+            if (filteredData?[selectIndex].taxType == 2) {
               final taxAmount =
-                  ((data?.data?[selectIndex].taxPercentage ?? 0.0) / 100) *
+                  ((filteredData?[selectIndex].taxPercentage ?? 0.0) / 100) *
                       finalAmount;
 
-              data?.data?[selectIndex].enterAmount =
+              filteredData?[selectIndex].enterAmount =
                   (amount + taxAmount).toStringAsFixed(2);
-              data?.data?[selectIndex].totalAmount =
+              filteredData?[selectIndex].totalAmount =
                   (finalAmount + taxAmount).toStringAsFixed(2);
-              data?.data?[selectIndex].totalTaxAmount = "$taxAmount";
-              data?.data?[selectIndex].totalDiscountAmount = "$dicountAmout";
+              filteredData?[selectIndex].totalTaxAmount = "$taxAmount";
+              filteredData?[selectIndex].totalDiscountAmount = "$dicountAmout";
             } else {
-              data?.data?[selectIndex].enterAmount = amount.toStringAsFixed(2);
-              data?.data?[selectIndex].totalDiscountAmount = "$dicountAmout";
+              filteredData?[selectIndex].enterAmount = amount.toStringAsFixed(2);
+              filteredData?[selectIndex].totalDiscountAmount = "$dicountAmout";
 
-              data?.data?[selectIndex].totalAmount =
+              filteredData?[selectIndex].totalAmount =
                   finalAmount.toStringAsFixed(2);
             }
           } else {
             final taxAmount =
-                ((data?.data?[selectIndex].taxPercentage ?? 0.0) / 100) *
+                ((filteredData?[selectIndex].taxPercentage ?? 0.0) / 100) *
                     amount;
 
             final finalAmount =
-                (((amount * (data?.data?[selectIndex].incrementCount ?? 0)) *
-                        (data?.data?[selectIndex].todaysRate ?? 0.0))) -
+                (((amount * (filteredData?[selectIndex].incrementCount ?? 0)) *
+                        (filteredData?[selectIndex].todaysRate ?? 0.0))) -
                     taxAmount;
 
-            data?.data?[selectIndex].enterAmount = amount.toStringAsFixed(2);
-            data?.data?[selectIndex].totalTaxAmount = "$taxAmount";
+            filteredData?[selectIndex].enterAmount = amount.toStringAsFixed(2);
+            filteredData?[selectIndex].totalTaxAmount = "$taxAmount";
 
-            data?.data?[selectIndex].totalAmount =
+            filteredData?[selectIndex].totalAmount =
                 finalAmount.toStringAsFixed(2);
           }
-          totalAmount = (data?.data!
+          totalAmount = (filteredData!
               .map((item) => double.parse(item.totalAmount ?? "0"))
               .reduce((a, b) => a + b) as num);
           totalAmount = double.parse(totalAmount.toStringAsFixed(2));
         }
 
         clearAmount(int selectIndex) {
-          data?.data?[selectIndex].enterAmount = "0";
+          filteredData?[selectIndex].enterAmount = "0";
 
-          data?.data?[selectIndex].totalAmount = "0";
-          data?.data?[selectIndex].selectedAmount = "";
-          data?.data?[selectIndex].incrementCount = 1;
-          data?.data?[selectIndex].totalDiscountAmount = "";
-          data?.data?[selectIndex].totalTaxAmount = "";
+          filteredData?[selectIndex].totalAmount = "0";
+          filteredData?[selectIndex].selectedAmount = "";
+          filteredData?[selectIndex].incrementCount = 1;
+          filteredData?[selectIndex].totalDiscountAmount = "";
+          filteredData?[selectIndex].totalTaxAmount = "";
 
-          data?.data?[selectIndex].selectedGram = null;
+          filteredData?[selectIndex].selectedGram = null;
 
-          totalAmount = data?.data!
+          totalAmount = filteredData!
               .map((item) => double.parse(
                   item.totalAmount == "" ? "0" : item.totalAmount ?? "0"))
               .reduce((a, b) => a + b) as num;
@@ -272,7 +275,7 @@ class _Online_Emi_Payment_ScreenState
                         children: [
                           ImgPathSvg('calendar2.svg'),
                           const SizedBox(width: 10),
-                          Text('${data?.data?.length ?? 0} Plan Active',
+                          Text('${filteredData?.length ?? 0} Plan Active',
                               style: rate2)
                         ],
                       ),
@@ -282,13 +285,13 @@ class _Online_Emi_Payment_ScreenState
                     Padding(
                       padding: const EdgeInsets.only(left: 15, right: 15),
                       child: ListView.builder(
-                        itemCount: data?.data?.length ?? 0,
+                        itemCount: filteredData?.length ?? 0,
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         physics: const NeverScrollableScrollPhysics(),
                         padding: EdgeInsets.zero,
                         itemBuilder: (context, index) {
-                          int returnType = data?.data?[index].limitType ?? 1;
+                          int returnType = filteredData?[index].limitType ?? 1;
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 10),
                             child: Container(
@@ -309,30 +312,26 @@ class _Online_Emi_Payment_ScreenState
                                         SizedBox(
                                           width: 20,
                                           child: Checkbox(
-                                            side: const BorderSide(
-                                                width: 1, color: checkbox),
-                                            value: data?.data?[index].isChecked,
-                                            onChanged: (bool? value) {
-                                              setState(() {
-                                                data?.data?[index].isChecked =
-                                                    value ?? false;
-                                                if (data?.data?[index]
-                                                        .isChecked !=
-                                                    true) {
-                                                  "";
-                                                  clearAmount(index);
-                                                }
-                                              });
-                                            },
+                                            side: const BorderSide(width: 1, color: checkbox),
+                                            value: filteredData?[index].isChecked,
+                                            onChanged: filteredData?[index].allowPay ?? false 
+                                                ? (bool? value) {
+                                                    setState(() {
+                                                      filteredData?[index].isChecked = value ?? false;
+                                                      if (filteredData?[index].isChecked != true) {
+                                                        clearAmount(index);
+                                                      }
+                                                    });
+                                                  }
+                                                : null, // disables checkbox when allowPay is false
                                           ),
                                         ),
-
                                         //SCHEME NAME
                                         Container(
                                           margin:
                                               const EdgeInsets.only(left: 10),
                                           child: Text(
-                                            data?.data?[index].accountName ??
+                                            filteredData?[index].accountName ??
                                                 "",
                                             style: planST.copyWith(
                                                 fontWeight: FontWeight.bold,
@@ -341,7 +340,7 @@ class _Online_Emi_Payment_ScreenState
                                         ),
                                       ],
                                     ),
-                                    data?.data?[index].limitType == 1
+                                    filteredData?[index].limitType == 1
                                         ? Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceAround,
@@ -359,7 +358,7 @@ class _Online_Emi_Payment_ScreenState
                                                               FontWeight.w500,
                                                           fontSize: 15))),
                                               Text(
-                                                "₹ ${(data?.data?[index].minimumPayable?.minAmount ?? 0.0).toStringAsFixed(2)} / ${(data?.data?[index].maximumPayable?.maxAmount ?? 0.0).toStringAsFixed(2)}",
+                                                "₹ ${(filteredData?[index].minimumPayable?.minAmount ?? 0.0).toStringAsFixed(2)} / ${(filteredData?[index].maximumPayable?.maxAmount ?? 0.0).toStringAsFixed(2)}",
                                                 style: planST.copyWith(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 14),
@@ -383,13 +382,13 @@ class _Online_Emi_Payment_ScreenState
                                                         fontSize: 15)),
                                               ),
                                               Text(
-                                                "${(data?.data?[index].minimumPayable?.minWeight ?? 0.0).toStringAsFixed(3)} / ",
+                                                "${(filteredData?[index].minimumPayable?.minWeight ?? 0.0).toStringAsFixed(3)} / ",
                                                 style: planST.copyWith(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 14),
                                               ),
                                               Text(
-                                                "${(data?.data?[index].maximumPayable?.maxWeight ?? 0.0).toStringAsFixed(3)}",
+                                                "${(filteredData?[index].maximumPayable?.maxWeight ?? 0.0).toStringAsFixed(3)}",
                                                 style: planST.copyWith(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 14),
@@ -412,8 +411,8 @@ class _Online_Emi_Payment_ScreenState
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 15)),
                                         ),
-                                        (data?.data?[index].limitType == 1 &&
-                                                data?.data?[index].denomType ==
+                                        (filteredData?[index].limitType == 1 &&
+                                                filteredData?[index].denomType ==
                                                     3)
                                             ? SizedBox(
                                                 width: (MediaQuery.of(context)
@@ -469,10 +468,10 @@ class _Online_Emi_Payment_ScreenState
                                                     }),
                                                   ],
                                                   textAlign: TextAlign.left,
-                                                  enabled: (data?.data?[index]
+                                                  enabled: (filteredData?[index]
                                                               .isChecked ??
                                                           false) &&
-                                                      data?.data?[index]
+                                                      filteredData?[index]
                                                               .limitType ==
                                                           1,
                                                   decoration: InputDecoration(
@@ -517,7 +516,7 @@ class _Online_Emi_Payment_ScreenState
                                                             index, amount);
 
                                                         // int.parse(
-                                                        //     data?.data?[index]
+                                                        //     filteredData?[index]
                                                         //             .totalAmount ??
                                                         //         "0");
                                                       });
@@ -525,7 +524,7 @@ class _Online_Emi_Payment_ScreenState
                                                   },
                                                 ),
                                               )
-                                            : (data?.data?[index].amountDenom
+                                            : (filteredData?[index].amountDenom
                                                             ?.length ??
                                                         0) !=
                                                     0
@@ -570,7 +569,7 @@ class _Online_Emi_Payment_ScreenState
                                                                           index]
                                                                       .isChecked ??
                                                                   false) &&
-                                                              data?.data?[index]
+                                                              filteredData?[index]
                                                                       .limitType ==
                                                                   1)
                                                           ? (String? newValue) {
@@ -593,7 +592,7 @@ class _Online_Emi_Payment_ScreenState
                                                                 amountCalculation(
                                                                     index,
                                                                     amount);
-                                                                // if ((data?.data?[index].maximumPayable?.maxAmount ??
+                                                                // if ((filteredData?[index].maximumPayable?.maxAmount ??
                                                                 //         0.0) >=
                                                                 //     amount
                                                                 //         .toDouble()) {
@@ -797,7 +796,7 @@ class _Online_Emi_Payment_ScreenState
                                                                           index]
                                                                       .isChecked ??
                                                                   false) &&
-                                                              data?.data?[index]
+                                                              filteredData?[index]
                                                                       .limitType ==
                                                                   2,
                                                           keyboardType:
@@ -876,7 +875,7 @@ class _Online_Emi_Payment_ScreenState
                                       ],
                                     ),
                                     const SizedBox(height: 10),
-                                    data?.data?[index].convertToWeight == true
+                                    filteredData?[index].convertToWeight == true
                                         ? Row(
                                             children: [
                                               SizedBox(
@@ -892,7 +891,7 @@ class _Online_Emi_Payment_ScreenState
                                                         fontSize: 15)),
                                               ),
                                               Text(
-                                                '${data?.data?[index].totalWeight ?? 0.0}',
+                                                '${filteredData?[index].totalWeight ?? 0.0}',
                                                 style: planST.copyWith(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 14),
@@ -924,24 +923,23 @@ class _Online_Emi_Payment_ScreenState
                                             children: [
                                               InkWell(
                                                 onTap: () {
-                                                  if ((data?.data?[index]
+                                                  if ((filteredData?[index]
                                                                   .advanceMonths ??
                                                               0) >=
-                                                          (data?.data?[index]
+                                                          (filteredData?[index]
                                                                   .incrementCount ??
                                                               0) &&
-                                                      (data?.data?[index]
+                                                      (filteredData?[index]
                                                                   .incrementCount ??
                                                               0) >
                                                           1) {
                                                     setState(() {
-                                                      data?.data?[index]
-                                                          .incrementCount = (data
-                                                                  .data?[index]
+                                                      filteredData?[index]
+                                                          .incrementCount = (filteredData?[index]
                                                                   .incrementCount ??
                                                               0) -
                                                           1;
-                                                      if (data?.data?[index]
+                                                      if (filteredData?[index]
                                                               .limitType ==
                                                           1) {
                                                         final amount =
@@ -994,36 +992,35 @@ class _Online_Emi_Payment_ScreenState
                                                       const EdgeInsets.only(
                                                           top: 5),
                                                   child: Text(
-                                                      "${data?.data?[index].incrementCount}",
+                                                      "${filteredData?[index].incrementCount}",
                                                       textAlign:
                                                           TextAlign.center),
                                                 ),
                                               ),
                                               InkWell(
                                                 onTap: () {
-                                                  if (data?.data?[index]
+                                                  if (filteredData?[index]
                                                               .allowAdvance ==
                                                           true &&
-                                                      (data?.data?[index]
+                                                      (filteredData?[index]
                                                               .isChecked ??
                                                           false)) {
                                                     // _incrementCounter();
-                                                    if ((data?.data?[index]
+                                                    if ((filteredData?[index]
                                                                 .advanceMonths ??
                                                             0) >
-                                                        (data?.data?[index]
+                                                        (filteredData?[index]
                                                                 .incrementCount ??
                                                             0)) {
                                                       setState(() {
-                                                        data?.data?[index]
-                                                            .incrementCount = (data
-                                                                    .data?[
+                                                        filteredData?[index]
+                                                            .incrementCount = (filteredData?[
                                                                         index]
                                                                     .incrementCount ??
                                                                 0) +
                                                             1;
 
-                                                        if (data?.data?[index]
+                                                        if (filteredData?[index]
                                                                 .limitType ==
                                                             1) {
                                                           final amount =
@@ -1045,7 +1042,7 @@ class _Online_Emi_Payment_ScreenState
                                                           gramCalculation(
                                                               index, amount);
                                                         }
-                                                        // totalAmount = data?.data!
+                                                        // totalAmount = filteredData!
                                                         //     .map((item) =>
                                                         //         double.parse(
                                                         //             item.totalAmount ??
@@ -1077,7 +1074,7 @@ class _Online_Emi_Payment_ScreenState
                                     ),
                                     const SizedBox(height: 8),
 
-                                    data?.data?[index].discountValue != 0
+                                    filteredData?[index].discountValue != 0
                                         ? Row(
                                             children: [
                                               SizedBox(
@@ -1093,7 +1090,7 @@ class _Online_Emi_Payment_ScreenState
                                                         fontSize: 15)),
                                               ),
                                               Text(
-                                                  '${data?.data?[index].discountValue ?? ''}',
+                                                  '${filteredData?[index].discountValue ?? ''}',
                                                   style: planST.copyWith(
                                                       fontWeight:
                                                           FontWeight.bold,
@@ -1103,7 +1100,7 @@ class _Online_Emi_Payment_ScreenState
                                         : const SizedBox.shrink(),
                                     const SizedBox(height: 8),
 
-                                    data?.data?[index].taxPercentage != null
+                                    filteredData?[index].taxPercentage != null
                                         ? Row(
                                             children: [
                                               SizedBox(
@@ -1119,7 +1116,7 @@ class _Online_Emi_Payment_ScreenState
                                                         fontSize: 15)),
                                               ),
                                               Text(
-                                                '${data?.data?[index].taxPercentage ?? ''}',
+                                                '${filteredData?[index].taxPercentage ?? ''}',
                                                 style: planST.copyWith(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 14),
@@ -1141,7 +1138,7 @@ class _Online_Emi_Payment_ScreenState
                                     //               fontSize: 15)),
                                     //     ),
                                     //     Text(
-                                    //       '${data?.data?[index].paidWeight ?? ''}',
+                                    //       '${filteredData?[index].paidWeight ?? ''}',
                                     //       style: planST.copyWith(
                                     //           fontWeight: FontWeight.bold,
                                     //           fontSize: 14),
@@ -1161,7 +1158,7 @@ class _Online_Emi_Payment_ScreenState
                                                   fontSize: 15)),
                                         ),
                                         Text(
-                                          '₹${data?.data?[index].totalAmount ?? '0'}',
+                                          '₹${filteredData?[index].totalAmount ?? '0'}',
                                           style: planST.copyWith(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 14),
@@ -1206,7 +1203,7 @@ class _Online_Emi_Payment_ScreenState
                           child: CommonContainerButton(
                             context,
                             onPress: () {
-                              SingleTon().plandata = data?.data ?? [];
+                              SingleTon().plandata = filteredData ?? [];
 
                               showModalBottomSheet(
                                 context: context,

@@ -46,7 +46,7 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
         appBar: Custom_AppBar(
           isNav: true,
           isTwoLine: false,
-          title1: 'Join DigitGold Scheme',
+          title1: 'Join Digital Scheme',
           title2: '',
           actionLogo: 'info.svg',
           isWhite: false,
@@ -189,7 +189,7 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Enter the Weight or Amount you wish to save',
+                    Text('Enter the Amount you wish to save',
                         style: planST),
                   ],
                 ),
@@ -439,27 +439,35 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  children: [
-                    Checkbox(
-                      value: agreeToTerms,
-                      onChanged: (value) {
-                        setState(() {
-                          agreeToTerms = value ?? false;
-                        });
-                      },
-                    ),
-                    Expanded(
-                      child: Row(
-                        children: [
-                          Text('I agree to the scheme ', style: Black22),
-                          Text('Terms and Conditions', style: planST5),
-                        ],
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      agreeToTerms = !agreeToTerms;
+                    });
+                  },
+                  child: Row(
+                    children: [
+                      Checkbox(
+                        value: agreeToTerms,
+                        onChanged: (value) {
+                          setState(() {
+                            agreeToTerms = value ?? false;
+                          });
+                        },
                       ),
-                    ),
-                  ],
+                      Expanded(
+                        child: Row(
+                          children: [
+                            Text('I agree to the scheme ', style: Black22),
+                            Text('Terms and Conditions', style: planST5),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
+
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: Row(
@@ -481,6 +489,7 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                         ),
                         child: ElevatedButton(
                           onPressed: () {
+                            Navigator.pop(context);
                             // setState(() {
                             //   selectedIndex = 0;
                             //   Navigator.push(

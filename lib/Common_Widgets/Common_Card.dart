@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:jewelone/Common_Widgets/Image_Path.dart';
 import 'package:jewelone/utilits/Common_Colors.dart';
@@ -38,6 +40,7 @@ Widget Plan_Card(context, {required String Img, required String planT}) {
 //WALLET CARD
 Widget Wallet_Card(
   context, {
+  required bool allowPay,
   required String customername,
   required String Acnumval,
   required String totalpaidval,
@@ -253,7 +256,8 @@ Widget Wallet_Card(
                         ),
                       ),
                       InkWell(
-                        onTap: paynow,
+                        onTap: allowPay ? paynow : null, // Disable tap when false
+                        splashColor: allowPay ? null : Colors.transparent, // No splash if disabled
                         child: SizedBox(
                             width: width / 2 - 5,
                             child: Center(
@@ -261,7 +265,9 @@ Widget Wallet_Card(
                               padding: const EdgeInsets.only(bottom: 10),
                               child: Text(
                                 "Pay Now",
-                                style: ButtonT2,
+                                style: ButtonT2.copyWith(
+                                  color: allowPay ? Colors.white : Colors.grey, // Disabled color
+                                ),
                               ),
                             ))),
                       )

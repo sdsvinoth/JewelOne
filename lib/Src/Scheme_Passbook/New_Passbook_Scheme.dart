@@ -208,7 +208,7 @@ class _NewPassbookSchemeState extends ConsumerState<NewPassbookScheme> {
                                                 ),
                                               ),
                                               Text(
-                                                '0.001g',
+                                                '${data?.schemeAccount?.totalBonusWeight ?? ""}g',
                                                 style: TextStyle(
                                                   fontFamily: 'JosefinSans',
                                                   fontSize: 14,
@@ -322,7 +322,7 @@ class _NewPassbookSchemeState extends ConsumerState<NewPassbookScheme> {
                                               ),
                                               SizedBox(height: 2),
                                               Text(
-                                                "${data?.schemeAccount?.totalMetalWeight ?? 0.0} g",
+                                                "${data?.schemeAccount?.totalAccWeight ?? 0.0} g",
                                                 style: TextStyle(
                                                   color: Colors.red[900],
                                                   fontSize: 18,
@@ -493,14 +493,17 @@ class _NewPassbookSchemeState extends ConsumerState<NewPassbookScheme> {
                                                         "Payment Mode: ${data?.payments?[index].paidThrough}"),
                                                   ],
                                                 ),
-                                                SizedBox(height: 10),
-                                                Text(
-                                                  "Text debited amount if any will be credited to your bank account for this failed payment.",
-                                                  style: TextStyle(
-                                                    color: Colors.red,
-                                                    fontSize: 12,
+                                                if (data?.payments?[index].paymentStatus?.toLowerCase() != "success")
+                                                  const Padding(
+                                                    padding: const EdgeInsets.only(top: 4.0),
+                                                    child: Text(
+                                                      "The debited amount if any will be credited to your bank account for this failed payment.",
+                                                      style: TextStyle(
+                                                        color: Colors.red,
+                                                        fontSize: 12,
+                                                      ),
+                                                    ),
                                                   ),
-                                                ),
                                               ],
                                             ),
                                         ],

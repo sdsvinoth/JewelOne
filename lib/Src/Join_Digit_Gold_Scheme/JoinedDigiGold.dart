@@ -51,7 +51,7 @@ class _JoinedDigiGoldState extends ConsumerState<JoinedDigiGold> {
           ),
         ),
         title: const Text(
-          'Join DigitGold Scheme',
+          'Join Digital Scheme',
           style: TextStyle(
               fontSize: 17, color: white1, fontWeight: FontWeight.bold),
         ),

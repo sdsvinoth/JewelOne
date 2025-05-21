@@ -60,7 +60,7 @@ class MyPlanData {
   List<AmountDenom>? weightDenom;
   String? forSearch;
   double? taxPercentage;
-
+  bool? isDigiScheme;
   String? enterAmount;
   int? incrementCount = 1;
   bool? isChecked = false;
@@ -112,7 +112,9 @@ class MyPlanData {
       this.isChecked,
       this.totalAmount,
       this.selectedAmount,
-      this.selectedGram});
+      this.selectedGram,
+      this.isDigiScheme
+      });
 
   MyPlanData.fromJson(Map<String, dynamic> json) {
     idScheme = json['id_scheme'];
@@ -164,6 +166,7 @@ class MyPlanData {
     }
     forSearch = json['for_search'];
     taxPercentage = json['tax_percentage'];
+    isDigiScheme = json['digi_scheme'];
   }
 
   Map<String, dynamic> toJson() {
@@ -212,6 +215,7 @@ class MyPlanData {
     }
     data['for_search'] = this.forSearch;
     data['tax_percentage'] = this.taxPercentage;
+    data['digi_scheme'] = this.isDigiScheme;
     return data;
   }
 }
