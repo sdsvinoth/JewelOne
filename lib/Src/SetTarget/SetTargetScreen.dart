@@ -6,6 +6,8 @@ import 'package:jewelone/Model/DigiSchemeModel.dart';
 import 'package:jewelone/utilits/ApiProvider.dart';
 import 'package:jewelone/utilits/Generic.dart';
 import 'package:jewelone/utilits/Loading_Overlay.dart';
+import 'package:jewelone/utilits/Text_Style.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class SetTargetScreen extends ConsumerStatefulWidget {
   DigiSchemeData? digiSchemeData;
@@ -18,6 +20,19 @@ class SetTargetScreen extends ConsumerStatefulWidget {
 
 class _SetTargetScreenState extends ConsumerState<SetTargetScreen> {
   TextEditingController? enterAmountText = TextEditingController();
+  double progressValue = 0.01; // Example: 60%
+  final bool isZero = false;
+
+
+  @override
+  void initState() {
+    super.initState();
+
+    final targetValue = widget.digiSchemeData?.goalTracking?.targetGrams;
+    progressValue = double.tryParse(widget.digiSchemeData?.targetAchievedPercent ?? '') ?? 0.0;
+    enterAmountText?.text = targetValue != null ? targetValue.toString() : '';
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -45,25 +60,168 @@ class _SetTargetScreenState extends ConsumerState<SetTargetScreen> {
               ),
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
             ),
+             // User ID and Name
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // User ID and Name
-                Text(widget.digiSchemeData?.accountNumber ?? '',
-                    style: TextStyle(color: Colors.white70)),
-                Text(widget.digiSchemeData?.accountName ?? '',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                            crossAxisAlignment:
+                                CrossAxisAlignment
+                                    .start,
+                            children: [
+                              Text(widget.digiSchemeData?.accountNumber ?? '',
+                              style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                    Column(
+                            crossAxisAlignment:
+                                CrossAxisAlignment
+                                    .end,
+                            children: [
+                              Text(widget.digiSchemeData?.accountName ?? '',
+                              style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                  ]
+                ),
                 const SizedBox(height: 16),
 
                 // Weight Saved and Benefit Earned
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _infoCard('Weight Saved', '0.015 grams'),
-                    _infoCard('Benefit Earned*', '0.001 grams'),
+                    Expanded(
+                                                                child:
+                                                                    Container(
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            10),
+                                                                    color: const Color(
+                                                                        0xFF87251D),
+                                                                  ),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        top:
+                                                                            8.0,
+                                                                        bottom:
+                                                                            8.0,
+                                                                        left:
+                                                                            20),
+                                                                    child:
+                                                                        Column(
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .start,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .center,
+                                                                      children: [
+                                                                        Text(
+                                                                          "Weight Saved",
+                                                                          style:
+                                                                              walletT3?.copyWith(
+                                                                            fontFamily:
+                                                                                'JosefinSans',
+                                                                            fontWeight:
+                                                                                FontWeight.w500,
+                                                                            color:
+                                                                                Colors.white,
+                                                                          ),
+                                                                        ),
+                                                                        Text(
+                                                                          "${widget.digiSchemeData?.weightSavedGrams ?? ""} grams",
+                                                                          style:
+                                                                              walletT3?.copyWith(
+                                                                            fontFamily:
+                                                                                'JosefinSans',
+                                                                            fontWeight:
+                                                                                FontWeight.w400,
+                                                                            color:
+                                                                                Colors.white,
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                    const SizedBox(
+                                                                  width: 20),
+                                                              Expanded(
+                                                                child:
+                                                                    Container(
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            10),
+                                                                    color: const Color(
+                                                                        0xFF87251D),
+                                                                  ),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: const EdgeInsets
+                                                                        .only(
+                                                                        top:
+                                                                            8.0,
+                                                                        bottom:
+                                                                            8.0,
+                                                                        left:
+                                                                            20),
+                                                                    child:
+                                                                        Column(
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .start,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .center,
+                                                                      children: [
+                                                                        Text(
+                                                                          "Benefit Earned*",
+                                                                          style:
+                                                                              walletT3?.copyWith(
+                                                                            fontFamily:
+                                                                                'JosefinSans',
+                                                                            fontWeight:
+                                                                                FontWeight.w500,
+                                                                            color:
+                                                                                Colors.white,
+                                                                          ),
+                                                                        ),
+                                                                        Text(
+                                                                          "${widget.digiSchemeData?.maturityBenefitGrams} grams",
+                                                                          style:
+                                                                              walletT3?.copyWith(
+                                                                            fontFamily:
+                                                                                'JosefinSans',
+                                                                            fontWeight:
+                                                                                FontWeight.w400,
+                                                                            color:
+                                                                                Colors.white,
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                                                                    
+                    //_infoCard('Weight Saved', '${widget.digiSchemeData?.weightSavedGrams} grams'),
+                    //_infoCard('Benefit Earned*', '${widget.digiSchemeData?.maturityBenefitGrams} grams'),
                   ],
                 ),
 
@@ -74,9 +232,70 @@ class _SetTargetScreenState extends ConsumerState<SetTargetScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _circleCard('0.016 g', 'Total Gold Saved'),
-                    _verticalText('10-Apr-2025', 'Date of Maturity'),
-                    _verticalText('Target not set', 'Target Achieved'),
+                     Container(
+                                                                    width: 110,
+                                                                    height: 110,
+                                                                    decoration:
+                                                                        const BoxDecoration(
+                                                                      shape: BoxShape
+                                                                          .circle,
+                                                                      color: Colors
+                                                                          .white,
+                                                                    ),
+                                                                    alignment:
+                                                                        Alignment
+                                                                            .center,
+                                                                    child:
+                                                                        Column(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .min,
+                                                                      children: [
+                                                                        const SizedBox(
+                                                                            height:
+                                                                                10),
+                                                                        Text(
+                                                                          "Total\nWeight Saved",
+                                                                          style:
+                                                                              UserST.copyWith(
+                                                                            color:
+                                                                                Colors.black,
+                                                                            fontSize:
+                                                                                15,
+                                                                            fontFamily:
+                                                                                'JosefinSans',
+                                                                            fontWeight:
+                                                                                FontWeight.w400,
+                                                                          ),
+                                                                          textAlign:
+                                                                              TextAlign.center,
+                                                                        ),
+                                                                        const SizedBox(
+                                                                            height:
+                                                                                5),
+                                                                        Text(
+                                                                          "${widget.digiSchemeData?.totalGoldSavedGrams} g",
+                                                                          style:
+                                                                              UserST.copyWith(
+                                                                            color:
+                                                                                Colors.red,
+                                                                            fontSize:
+                                                                                20,
+                                                                            fontFamily:
+                                                                                'JosefinSans',
+                                                                            fontWeight:
+                                                                                FontWeight.bold,
+                                                                          ),
+                                                                          textAlign:
+                                                                              TextAlign.center,
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                 
+                    //_circleCard('${widget.digiSchemeData?.totalGoldSavedGrams} g', 'Total Gold Saved'),
+                    _verticalText('Maturity On', '${widget.digiSchemeData?.maturityDate}'),
+                    _verticalText('Target Achieved', '${widget.digiSchemeData?.targetAchievedPercent}%'),
                   ],
                 ),
               ],
@@ -90,12 +309,12 @@ class _SetTargetScreenState extends ConsumerState<SetTargetScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Setup your 330 days Target',
+                  Text('Setup your ${widget.digiSchemeData?.maturityDays ?? ''} days Target',
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                          const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
                   const SizedBox(height: 4),
                   const Text(
-                      'Enter gold weight you wish to save in this scheme'),
+                      'Enter weight you wish to save in this scheme'),
                   const SizedBox(height: 16),
 
                   // Input
@@ -121,23 +340,7 @@ class _SetTargetScreenState extends ConsumerState<SetTargetScreen> {
                             controller: enterAmountText,
                             onChanged: (value) {
                               setState(() {
-                                // if (value.isNotEmpty) {
-                                //   double amount = double.parse(value);
-                                //   grams = (amount /
-                                //           widget.digiSchemeData!
-                                //               .metalRate!)
-                                //       .toStringAsFixed(2);
-                                //   discountGrams =
-                                //       (double.parse(grams!) * 0.05)
-                                //           .toStringAsFixed(2);
-                                //   totalGrams = (double.parse(grams!) +
-                                //           double.parse(discountGrams!))
-                                //       .toStringAsFixed(2);
-                                // } else {
-                                //   grams = "0.0";
-                                //   discountGrams = "0.0";
-                                //   totalGrams = "0.0";
-                                // }
+                                
                               });
                             },
                             decoration: boxWalletCardInputDecoration1('100'),
@@ -146,24 +349,81 @@ class _SetTargetScreenState extends ConsumerState<SetTargetScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 14),
 
-                  // Tracking Status
-                  const Text('Target Tracking Status',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 8),
-                  Row(
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: Column(
                     children: [
-                      const Icon(Icons.circle, size: 8, color: Colors.orange),
-                      const SizedBox(width: 4),
-                      const Text('0.74% Achieved'),
-                      const Spacer(),
-                      const Text('330 days to target'),
+                      Row(
+                        children: [
+                          Text(
+                            'Target Tracking Status',
+                            style: TextStyle(
+                              color: Colors.red[800],
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.grey, // Border color
+                            width: 1, // Border width
+                          ),
+                          borderRadius:
+                              BorderRadius.circular(10), // Match barRadius
+                        ),
+                        child: LinearPercentIndicator(
+                          animation: true,
+                          lineHeight: 8.0,
+                          percent: isZero ? 0.0 : progressValue,
+                          barRadius: const Radius.circular(10),
+                          backgroundColor: Colors.white,
+                          progressColor:
+                              isZero ? Colors.transparent : Colors.transparent,
+                          center: Text(
+                            '${(progressValue * 100).toInt()}%',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.symmetric(horizontal: 3, vertical: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '${widget.digiSchemeData?.targetAchievedPercent}% Achieved',
+                              style: TextStyle(
+                                  color: Colors.amber[800],
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              '${widget.digiSchemeData?.maturityDays ?? ''} Days',
+                              style: TextStyle(color: Colors.grey[800]),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
-                  const SizedBox(height: 16),
+                ),
+          
 
-                  const Text('You are setting target of 0.038g per week'),
+                 
+                  const SizedBox(height: 16),
+                  
+                  Text('You are setting target of ${widget.digiSchemeData?.goalTracking?.weeklyTarget ?? ''}g per week'),
                   const SizedBox(height: 16),
 
                   Container(
@@ -173,16 +433,16 @@ class _SetTargetScreenState extends ConsumerState<SetTargetScreen> {
                       borderRadius: BorderRadius.circular(12),
                       color: Colors.white,
                     ),
-                    child: const Column(
+                    child:  Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('To meet your target,'),
-                        Text('Save atleast ₹250 every week',
-                            style: TextStyle(
+                        //Text('To meet your target,'),
+                        Text(widget.digiSchemeData?.goalTracking?.weeklySavingsTip ?? '',
+                            style: const TextStyle(
                                 color: Colors.green,
                                 fontWeight: FontWeight.bold)),
-                        SizedBox(height: 4),
-                        Text(
+                        const SizedBox(height: 4),
+                        const Text(
                             '(Estimated only based on today’s gold rate & will differ daily)',
                             style: TextStyle(fontSize: 12)),
                       ],
@@ -191,19 +451,21 @@ class _SetTargetScreenState extends ConsumerState<SetTargetScreen> {
                   const SizedBox(height: 16),
 
                   // Checkbox
-                  Row(
+                  /* Row(
                     children: [
                       Checkbox(value: false, onChanged: (_) {}),
                       const Text("Just set target, don’t send notifications"),
                     ],
-                  ),
+                  ), */
 
                   // Buttons
                   Row(
                     children: [
                       Expanded(
                         child: OutlinedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
                           style: OutlinedButton.styleFrom(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(24)),
@@ -229,12 +491,12 @@ class _SetTargetScreenState extends ConsumerState<SetTargetScreen> {
                           child: ElevatedButton(
                             onPressed: () async {
                               if (enterAmountText?.text.isEmpty == true) {
-                                ShowToastMessage("Please enter amount");
+                                ShowToastMessage("Please enter target weight");
                                 return;
                               } else {
                                 Map<String, dynamic> data = {};
                                 data = {
-                                  "customerId": widget.digiSchemeData?.schemeId,
+                                  "customerId": await getCustomer_Id(),
                                   "accountId": widget.digiSchemeData?.accountId,
                                   "targetWeight": enterAmountText?.text,
                                 };
@@ -318,11 +580,17 @@ class _SetTargetScreenState extends ConsumerState<SetTargetScreen> {
       children: [
         Text(value,
             style: const TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold)),
+                color: Colors.white70, fontSize: 14,)),
         const SizedBox(height: 4),
         Text(label,
-            style: const TextStyle(color: Colors.white70, fontSize: 12)),
+            style: const TextStyle(color: Colors.white,  fontWeight: FontWeight.bold)),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    enterAmountText?.dispose();
+    super.dispose();
   }
 }

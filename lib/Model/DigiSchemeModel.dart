@@ -43,12 +43,14 @@ class DigiSchemeData {
   double? totalGoldSavedGrams;
   String? jointDate;
   String? maturityDate;
+  int? maturityDays;
   bool? isTargetSet;
   String? currentInterestSlab;
   double? currentInterestSlabRate;
   int? currentDaysFromJointDate;
   bool? showTarget;
   List<InterestSlabs>? interestSlabs;
+  GoalTracking? goalTracking;
 
   DigiSchemeData(
       {this.targetAchievedPercent,
@@ -69,12 +71,14 @@ class DigiSchemeData {
       this.totalGoldSavedGrams,
       this.jointDate,
       this.maturityDate,
+      this.maturityDays,
       this.isTargetSet,
       this.currentInterestSlab,
       this.currentInterestSlabRate,
       this.currentDaysFromJointDate,
       this.showTarget,
-      this.interestSlabs});
+      this.interestSlabs,
+      this.goalTracking});
 
   DigiSchemeData.fromJson(Map<String, dynamic> json) {
     targetAchievedPercent = json['targetAchievedPercent'];
@@ -95,6 +99,7 @@ class DigiSchemeData {
     totalGoldSavedGrams = json['totalGoldSavedGrams'];
     jointDate = json['jointDate'];
     maturityDate = json['maturityDate'];
+    maturityDays = json['maturityDays'];
     isTargetSet = json['isTargetSet'];
     currentInterestSlab = json['currentInterestSlab'];
     currentInterestSlabRate = json['currentInterestSlabRate'];
@@ -106,6 +111,10 @@ class DigiSchemeData {
         interestSlabs!.add(new InterestSlabs.fromJson(v));
       });
     }
+    goalTracking = json['goalTracking'] != null
+        ? new GoalTracking.fromJson(json['goalTracking'])
+        : null;
+      
   }
 
   Map<String, dynamic> toJson() {
@@ -128,6 +137,7 @@ class DigiSchemeData {
     data['totalGoldSavedGrams'] = this.totalGoldSavedGrams;
     data['jointDate'] = this.jointDate;
     data['maturityDate'] = this.maturityDate;
+    data['maturityDays'] = this.maturityDays;
     data['isTargetSet'] = this.isTargetSet;
     data['currentInterestSlab'] = this.currentInterestSlab;
     data['currentInterestSlabRate'] = this.currentInterestSlabRate;
@@ -136,6 +146,10 @@ class DigiSchemeData {
     if (this.interestSlabs != null) {
       data['interestSlabs'] =
           this.interestSlabs!.map((v) => v.toJson()).toList();
+    }
+    final goal = goalTracking;
+    if (goal != null) {
+      data['goalTracking'] = goal.toJson();
     }
     return data;
   }
@@ -170,6 +184,51 @@ class InterestSlabs {
     data['interestRate'] = this.interestRate;
     data['isCurrentSlab'] = this.isCurrentSlab;
     data['slabCrossed'] = this.slabCrossed;
+    return data;
+  }
+}
+
+class GoalTracking {
+  double? targetGrams;
+  int? totalDays;
+  double? weeklyTarget;
+  double? currentSaved;
+  int? daysLeft;
+  String? weeklySavingsTip;
+  bool? showAutoSaveOption;
+  bool? showProgressCard;
+
+  GoalTracking(
+      {this.targetGrams,
+      this.totalDays,
+      this.weeklyTarget,
+      this.currentSaved,
+      this.daysLeft,
+      this.weeklySavingsTip,
+      this.showAutoSaveOption,
+      this.showProgressCard});
+
+  GoalTracking.fromJson(Map<String, dynamic> json) {
+    targetGrams = json['targetGrams'];
+    totalDays = json['totalDays'];
+    weeklyTarget = json['weeklyTarget'];
+    currentSaved = json['currentSaved'];
+    daysLeft = json['daysLeft'];
+    weeklySavingsTip = json['weeklySavingsTip'];
+    showAutoSaveOption = json['showAutoSaveOption'];
+    showProgressCard = json['showProgressCard'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['targetGrams'] = this.targetGrams;
+    data['totalDays'] = this.totalDays;
+    data['weeklyTarget'] = this.weeklyTarget;
+    data['currentSaved'] = this.currentSaved;
+    data['daysLeft'] = this.daysLeft;
+    data['weeklySavingsTip'] = this.weeklySavingsTip;
+    data['showAutoSaveOption'] = this.showAutoSaveOption;
+    data['showProgressCard'] = this.showProgressCard;
     return data;
   }
 }

@@ -424,19 +424,23 @@ class _JoinDigitGoldState extends ConsumerState<JoinDigitGold> {
                 ),
               ),
               const SizedBox(height: 20),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('*Date of Maturity: 30-Apr-2025',
-                        style: TextStyle(
-                            fontSize: 14,
-                            color: Font_Primary_Color,
-                            fontWeight: FontWeight.bold)),
+                    Text(
+                      '*Date of Maturity: ${widget.digiSchemeData!.maturityDate!}',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Font_Primary_Color,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ],
                 ),
               ),
+
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: GestureDetector(

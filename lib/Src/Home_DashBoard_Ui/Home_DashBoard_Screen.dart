@@ -1088,6 +1088,9 @@ class _Home_DashBoard_ScreenState extends ConsumerState<Home_DashBoard_Screen> {
                         return const SizedBox(height: 10);
                       }
                     }, error: (Object error, StackTrace stackTrace) {
+                      print("DIGI ERR: $error");
+                      print("STACK TRACE: $stackTrace");
+
                       return const Text('');
                     }, loading: () {
                       return const CircularProgressIndicator();
@@ -1258,7 +1261,7 @@ class _GoldScrollPriceWidgetState extends ConsumerState<GoldScrollPriceWidget> {
           Row(
             children: [
               Text(
-                '1 GM Gold',
+                'Gold',
                 style: gramST, // Style for the title
               ),
               const SizedBox(width: 5),
@@ -1285,7 +1288,7 @@ class _GoldScrollPriceWidgetState extends ConsumerState<GoldScrollPriceWidget> {
           Row(
             children: [
               Text(
-                '1 Silver',
+                'Silver',
                 style: gramST,
               ),
               const SizedBox(width: 5),
